@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
@@ -13,77 +27,612 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<link rel="canonical" href="http://example.com/">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-FirstBlog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/11/29/FirstBlog/" class="article-date">
-  <time class="dt-published" datetime="2021-11-29T06:39:36.108Z" itemprop="datePublished">2021-11-29</time>
-</a>
-    
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-  <div class="article-inner">
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuesuc/article/details/51524965">分支管理学习</a><br></p>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/02/Cmd%E6%89%A7%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/02/Cmd%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">Cmd执行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-02 10:24:01 / Modified: 11:00:48" itemprop="dateCreated datePublished" datetime="2021-12-02T10:24:01+08:00">2021-12-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>C#执行CMD命令并接收返回结果的实现方法：<a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/RnJWo7XBJq/">大佬的代码</a></p>
+<p>新建项目后，增加一个Cmd类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">public class Cmd</span><br><span class="line">    &#123;</span><br><span class="line">        private Process proc = null;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 构造方法</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        public Cmd()</span><br><span class="line">        &#123;</span><br><span class="line">            proc = new Process();</span><br><span class="line">        &#125;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 执行CMD语句</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;cmd&quot;&gt;要执行的CMD命令&lt;/param&gt;</span><br><span class="line">        public string RunCmd(string cmd)</span><br><span class="line">        &#123;</span><br><span class="line">            proc.StartInfo.CreateNoWindow = true;</span><br><span class="line">            proc.StartInfo.FileName = &quot;cmd.exe&quot;;</span><br><span class="line">            proc.StartInfo.UseShellExecute = false;</span><br><span class="line">            proc.StartInfo.RedirectStandardError = true;</span><br><span class="line">            proc.StartInfo.RedirectStandardInput = true;</span><br><span class="line">            proc.StartInfo.RedirectStandardOutput = true;</span><br><span class="line">            proc.Start();</span><br><span class="line">            proc.StandardInput.WriteLine(cmd);</span><br><span class="line">            proc.StandardInput.WriteLine(&quot;exit&quot;);</span><br><span class="line">            string outStr = proc.StandardOutput.ReadToEnd();</span><br><span class="line">            proc.Close();</span><br><span class="line">            return outStr;</span><br><span class="line">        &#125;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 打开软件并执行命令</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;programName&quot;&gt;软件路径加名称（.exe文件）&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;cmd&quot;&gt;要执行的命令&lt;/param&gt;</span><br><span class="line">        public void RunProgram(string programName, string cmd)</span><br><span class="line">        &#123;</span><br><span class="line">            Process proc = new Process();</span><br><span class="line">            proc.StartInfo.CreateNoWindow = true;</span><br><span class="line">            proc.StartInfo.FileName = programName;</span><br><span class="line">            proc.StartInfo.UseShellExecute = false;</span><br><span class="line">            proc.StartInfo.RedirectStandardError = true;</span><br><span class="line">            proc.StartInfo.RedirectStandardInput = true;</span><br><span class="line">            proc.StartInfo.RedirectStandardOutput = true;</span><br><span class="line">            proc.Start();</span><br><span class="line">            if (cmd.Length != 0)</span><br><span class="line">            &#123;</span><br><span class="line">                proc.StandardInput.WriteLine(cmd);</span><br><span class="line">            &#125;</span><br><span class="line">            proc.Close();</span><br><span class="line">        &#125;</span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 打开软件</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;programName&quot;&gt;软件路径加名称（.exe文件）&lt;/param&gt;</span><br><span class="line">        public void RunProgram(string programName)</span><br><span class="line">        &#123;</span><br><span class="line">            this.RunProgram(programName, &quot;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>然后在窗口类文件中调用这个类中的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public MainWindow()</span><br><span class="line">       &#123;</span><br><span class="line">           InitializeComponent();</span><br><span class="line">           Cmd c = new Cmd();</span><br><span class="line">           richTextBox1.Text = c.RunCmd(txtCmd.Text.Trim());</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>txtCmd.Text.Trim()是把在txtCmd（TextBox）中输入的字符串去除两边的空格。然后传入c实例的RunCmd方法，将运行的返回值传到richTextBox1中。<br>试运行结果如下：<br><img src="/2021/12/02/Cmd%E6%89%A7%E8%A1%8C/1.png"><br>查询进程列表的结果如下：<br><img src="/2021/12/02/Cmd%E6%89%A7%E8%A1%8C/2.png"><br>但是这个方法不能够读取用户输入的信息，默认是直接读取控件中text的内容，并执行一次即退出。<br><img src="/2021/12/02/Cmd%E6%89%A7%E8%A1%8C/3.png"><br>对代码进行修改。</p>
+<p>题外话：今天新建博客时，博客命名了C#中Cmd执行，结果不能打开博客，图片也无法引入。应该是后台把#后边的东西都注释掉了。注意以后不能在题目里使用#符。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/" class="post-title-link" itemprop="url">Linq学习2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-01 13:32:01" itemprop="dateCreated datePublished" datetime="2021-12-01T13:32:01+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-02 10:26:22" itemprop="dateModified" datetime="2021-12-02T10:26:22+08:00">2021-12-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>多个from子句<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;CustomerInfo&gt; clist = new List&lt;CustomerInfo&gt; &#123;</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;欧阳晓晓&quot;, Age=35, Tel =&quot;1330708****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;上官飘飘&quot;, Age=17, Tel =&quot;1592842****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;诸葛菲菲&quot;, Age=23, Tel =&quot;1380524****&quot;&#125;</span><br><span class="line">                                                   &#125;;</span><br><span class="line">            List&lt;CustomerInfo&gt; clist2 = new List&lt;CustomerInfo&gt; &#123;</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;令狐冲&quot;, Age=25, Tel =&quot;1330708****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;东方不败&quot;, Age=35, Tel =&quot;1592842****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;任盈盈&quot;, Age=23, Tel =&quot;1380524****&quot;&#125;</span><br><span class="line">                                                   &#125;;</span><br><span class="line">            //在clist中查找Age大于20的客户，</span><br><span class="line">            //在clist2中查找Age小于30的客户</span><br><span class="line">            var query = from customer in clist</span><br><span class="line">                        where customer.Age &gt; 20</span><br><span class="line">                        from customer2 in clist2</span><br><span class="line">                        where customer2.Age &lt; 30</span><br><span class="line">                        select new &#123; customer, customer2 &#125;;</span><br><span class="line"></span><br><span class="line">            foreach (var ci in query)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;&#123;0&#125; &#123;1&#125;&quot;, ci.customer.Name, ci.customer2.Name);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public class CustomerInfo</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">        public int Age &#123; get; set; &#125;</span><br><span class="line">        public string Tel &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+从结果可看出，是从clist1与clist2中挑选符合条件，然后进行两两组合输出(类似SQL中的笛卡尔乘积)<br><img src="/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/1.png"></li>
+</ul>
+<hr>
+<h3 id="where子句"><a href="#where子句" class="headerlink" title="where子句"></a>where子句</h3><ul>
+<li>常见where子句查询<br>where子句的作用就是筛选元素，除了开始和结束位置，where子句几乎可以出现在LINQ表达式的任意位置。一个LINQ表达式中可以有where子句，也可以没有；可以有一个，可以有多个；多个where子句之间的关系相当于逻辑“与”，每个where子句可以包含1个或多个逻辑表达式，这些条件之间用布尔运算符隔开，比如逻辑“与”用&amp;&amp;，逻辑“或”用||。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">List&lt;CustomerInfo&gt; clist = new List&lt;CustomerInfo&gt; &#123; </span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;欧阳晓晓&quot;, Age=35, Tel =&quot;1330708****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;上官飘飘&quot;, Age=17, Tel =&quot;1592842****&quot;&#125;,</span><br><span class="line">                                                   new CustomerInfo&#123; Name=&quot;令狐冲&quot;, Age=23, Tel =&quot;1380524****&quot;&#125;</span><br><span class="line">                                                   &#125;;</span><br><span class="line"></span><br><span class="line">            //查询名字是3个字或者姓“令”的，但年龄大于20的客户</span><br><span class="line">            var query = from customer in clist</span><br><span class="line">                        where (customer.Name.Length == 3 || customer.Name.Substring(0, 1) == &quot;令&quot;)</span><br><span class="line">                        &amp;&amp; customer.Age &gt; 20</span><br><span class="line">                        select customer;</span><br><span class="line"></span><br><span class="line">            foreach (var ci in query)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;姓名：&#123;0&#125; 年龄：&#123;1&#125; 电话：&#123;2&#125;&quot;, ci.Name, ci.Age, ci.Tel);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+从这可以发现LINQ与SQL的查询功能相似，但是where子句的逻辑运算符不是用SQL中的AND或OR，是&amp;&amp;、||。<br><img src="/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/2.png"></li>
+<li>在where子句中使用自定义函数<br>查询条件均不改变，结果也相同，只是在where的筛选条件中使用了自定义函数CheckName()。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//将where子句判断条件中修改为CheckName</span><br><span class="line">var query = from customer in clist</span><br><span class="line">                        where (customer.Name.Length == 3 &amp;&amp; CheckName(customer.Name))</span><br><span class="line">                        select customer;</span><br><span class="line"></span><br><span class="line">private bool CheckName(string name) //注意如果被Main等静态函数调用时要加上static</span><br><span class="line">        &#123;</span><br><span class="line">            if (name.Substring(0, 1) == &quot;令&quot;)</span><br><span class="line">                return true;</span><br><span class="line">            else</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<li>动态谓词的筛选<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(&quot;请输入人名&quot;);</span><br><span class="line">string str = Console.ReadLine();</span><br><span class="line">string[] names = str.Split(&#x27;，&#x27;);</span><br><span class="line">        </span><br><span class="line">//查询在给定谓词数组里存在的客户</span><br><span class="line">var query = from customer in clist</span><br><span class="line">            where names.Contains(customer.Name)</span><br><span class="line">            select customer;</span><br><span class="line"></span><br><span class="line">foreach (var ci in query)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;姓名：&#123;0&#125; 年龄：&#123;1&#125; 电话：&#123;2&#125;&quot;, ci.Name, ci.Age, ci.Tel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/3.png"><br>在此方法中使用到了contains方法，Contains等价于SQL中的like语句。<br>但是Contains只针对于字符串（string）类型的数据，int等数值类不会有Contains方法。<br>\<strong>Contains等价于like ‘%key%’ 指示指定的 String 对象是否出现在此字符串中。</strong><br>\<strong>EndsWith等价于like ‘%key’ 确定此字符串实例的结尾是否与指定的字符串匹配。</strong><br>\<strong>StartsWith等价于like ‘key%’  确定此字符串实例的开头是否与指定的字符串匹配。</strong><br>\<strong>tips</strong>:使用Contains方法时不要忘记非NULL的判断：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str.Contains(&quot;查询条件&quot;)</span><br><span class="line">//改写为:</span><br><span class="line">str != null &amp;&amp; str.Contains((&quot;查询条件&quot;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="select子句"><a href="#select子句" class="headerlink" title="select子句"></a>select子句</h3><p>LINQ表达式的结果是使用select子句获得的。select子句可以对数据进行转换，这个过程称为“投影”。select子句产生的类容，取决于前面的所有子句及其自身表达式执行后的结果。</p>
+<ul>
+<li>输出查询结果<br>最简单的select就是直接输出from子句建立的那个范围变量：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var query = from customer in clist</span><br><span class="line">                        where names.Contains(customer.Name)</span><br><span class="line">                        select customer; </span><br></pre></td></tr></table></figure>
+//也可以输出范围变量类型中得某个属性：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select customer.Name;</span><br></pre></td></tr></table></figure>
+或者修改一下再输出：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select customer.Name.Replace(&quot;gg&quot;,&quot;mm&quot;);</span><br></pre></td></tr></table></figure>
+或者干脆使用一个自定义的函数，把范围变量传进去，输出处理后的结果：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select MyFunction(customer.Name);</span><br></pre></td></tr></table></figure></li>
+<li>对查询结果进行投影<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MyCustomerInfo</span><br><span class="line">&#123;</span><br><span class="line">    public string Name &#123; get; set; &#125;</span><br><span class="line">    public string Tel &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/2021/12/01/Linq%E5%AD%A6%E4%B9%A02/4.png"></p>
+<hr>
+<h3 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wolf-sun/p/4199383.html">Lambda表达式初步认识</a></p>
+<ul>
+<li>匿名方法<br>如果该方法就使用一次，那么就可以使用匿名方法。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">namespace Wolfy.LinqDemo</span><br><span class="line">&#123;</span><br><span class="line">    /// &lt;summary&gt;</span><br><span class="line">    /// 创建一个委托Del</span><br><span class="line">    /// &lt;/summary&gt;</span><br><span class="line">    /// &lt;param name=&quot;x&quot;&gt;参数&lt;/param&gt;</span><br><span class="line">    public delegate void Del(int x);</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            //使用匿名方法创建一个委托对象d</span><br><span class="line">            Del d = delegate(int x)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(x);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Lambda表达式<br>Lambda 表达式是一种可用于创建委托或表达式目录树类型的匿名函数。<br>若要创建 Lambda 表达式，需要在 Lambda 运算符 =&gt; 左侧指定输入参数（如果有），然后在另一侧输入表达式或语句块。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public delegate void Del(int x);</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Del del = x =&gt; Console.WriteLine(x * x);</span><br><span class="line">            del(2);//4</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+创建表达式目录树<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public delegate void Del(int x);</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Del del = x =&gt; Console.WriteLine(x * x);</span><br><span class="line">            del(2);//4</span><br><span class="line">            System.Linq.Expressions.Expression&lt;Del&gt; expression = x =&gt; Console.WriteLine(x);</span><br><span class="line">            Console.Read();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Linq结合Lambda和委托-Delegate"><a href="#Linq结合Lambda和委托-Delegate" class="headerlink" title="Linq结合Lambda和委托(Delegate)"></a>Linq结合Lambda和委托(Delegate)</h3><a target="_blank" rel="noopener" href="https://www.cnblogs.com/vaevvaev/p/6896742.html">Lambda操作符</a></li>
+<li>Linq查询操作符<br>·<u>First</u> - 返回集合中的第一个元素；不延迟<br>·<u>FirstOrDefault</u> - 返回集合中的第一个元素（如果没有则返回默认值）；不延迟<br>·Last - 返回集合中的最后一个元素；不延迟<br>·LastOrDefault - 返回集合中的最后一个元素（如果没有则返回默认值）<br>·ElementAt - 返回集合中指定索引的元素；不延迟<br>·ElementAtOrDefault - 返回集合中指定索引的元素（如果没有则返回默认值）；不延迟<br>·Contains - 判断集合中是否包含有某一元素；不延迟<br>·<u>Any</u> - 判断集合中是否有元素满足某一条件；不延迟<br>·All - 判断集合中是否所有元素都满足某一条件；不延迟<br>·<u>Count</u> - 返回集合中的元素个数，返回int；不延迟<br>·LongCount - 返回集合中的元素个数，返回long；不延迟<br>·Sum - 集合应为数字类型集合，求其和；不延迟<br>·Min - 返回集合的最小值；不延迟<br>·Max - 返回集合的最大值；不延迟<br>·Average - 集合应为数字类型集合，求其平均值；不延迟<br>·Aggregate - 根据输入的表达式获取一个聚合值；不延迟<br>·Cast - 将集合转换为强类型集合；延迟<br>·DefaultIfEmpty - 查询结果为空则返回默认值；延迟<br>·SequenceEqual - 判断两个集合是否相同；不延迟<br>·OfType - 过滤集合中的指定类型；延迟<br>·ToArray - 将集合转换为数组；不延迟<br>·<u>ToList</u> - 将集合转换为List<T>集合；不延迟<br>·ToDictionary - 将集合转换为&lt;K, V&gt;集合；不延迟</T></li>
+<li>First、FirstDefault查询操作符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void Summary_First_FirstOrDefault()</span><br><span class="line">&#123;</span><br><span class="line">string s = (from a in _ary</span><br><span class="line">select a).First(a =&gt; a.StartsWith(&quot;s&quot;));</span><br><span class="line">// string s = (from a in _ary</span><br><span class="line">// select a).FirstOrDefault(a =&gt; a.StartsWith(&quot;xxx&quot;));</span><br><span class="line">// s == null</span><br><span class="line"></span><br><span class="line">result.InnerHtml += s + &quot;&lt;br /&gt;&quot;;</span><br><span class="line">result.InnerHtml += &quot;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//运行结果silverlight</span><br></pre></td></tr></table></figure></li>
+<li>Any查询操作符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void Summary_Any()</span><br><span class="line">&#123;</span><br><span class="line">bool b = (from a in _ary</span><br><span class="line">select a).Any(p =&gt; p.Length &gt; 10);</span><br><span class="line"></span><br><span class="line">result.InnerHtml += b.ToString() + &quot;&lt;br /&gt;&quot;;</span><br><span class="line">result.InnerHtml += &quot;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//运行结果True</span><br></pre></td></tr></table></figure></li>
+<li>Count查询操作符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void Summary_Count_LongCount()</span><br><span class="line">&#123;</span><br><span class="line">int i = (from a in _ary</span><br><span class="line">select a).Count(p =&gt; p.Length &gt; 10);</span><br><span class="line">// long i = (from a in _ary</span><br><span class="line">// select a).LongCount(p =&gt; p.Length &gt; 10);</span><br><span class="line"></span><br><span class="line">result.InnerHtml += i.ToString() + &quot;&lt;br /&gt;&quot;;</span><br><span class="line">result.InnerHtml += &quot;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//运行结果2</span><br></pre></td></tr></table></figure></li>
+<li>ToList查询操作符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void Summary_ToList()</span><br><span class="line">&#123;</span><br><span class="line">var list = (from a in _ary</span><br><span class="line">where a.Length &gt; 10</span><br><span class="line">select a).ToList();</span><br><span class="line"></span><br><span class="line">foreach (string s in list)</span><br><span class="line">&#123;</span><br><span class="line">result.InnerHtml += s + &quot;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">result.InnerHtml += &quot;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//运行结果silverlight、asp.net ajax</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/20211201/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/01/20211201/" class="post-title-link" itemprop="url">WPF基础学习2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-01 09:10:29 / Modified: 15:56:19" itemprop="dateCreated datePublished" datetime="2021-12-01T09:10:29+08:00">2021-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>算术运算符<br>加+ 减- 乘* 除/ 取余%</p>
+</li>
+<li><p>类型转换</p>
+</li>
+</ul>
+<ol>
+<li>隐式类型转换：要求等号两边参与运算的操作数的类型必须一致，如果不一致，满足下列条件会发生自动类型转换。<br>(1)两种类型兼容<br>如int 和double兼容（都是数字类型）<br>(2)目标类型大于源类型<br>如double&gt;int 小的转大的</li>
+<li>显示类型转换：<br>(1)两种类型相兼容 int &lt;–&gt; double<br>(2)大的转成小的 double –&gt; int<br>语法：(待转换的类型)要转换的值;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int n1 = 10;</span><br><span class="line">int n2 = 3;</span><br><span class="line">double d = n1 * 1.0 / n2;</span><br><span class="line">Console.WriteLine(&quot;&#123;0:0.00&#125;&quot;,d);</span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure>
+上述代码输出的结果为3.33。首先n1乘上1.0转换成了double类型，再除以n2还是double类型，赋值给d也是double的。输出控制{0:0.00}表示有两位小数。</li>
+<li>Convert<br>类型相兼容的两个变量，可以使用自动类型转换或者强制类型转换。<br>类型不兼容时使用Convert的转换工厂进行转换。<br>注意:Conver类型转换时如果str为“abc”，转换成int类型会抛出异常。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double number = Convert.ToDouble(Console.Readline());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>++ --使用<br>++：分为前++和后++,前++先加1后参与运算，后++先参与运算再加1。<br>--：分为前–和后–,前–先减1后参与运算，后–先参与运算再减1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a=5;</span><br><span class="line">int b=a++ + ++a*2 + --a + a++;</span><br><span class="line">//   b= 5 + (6+1)*2 + (7-1) + 6=31; a=7;</span><br></pre></td></tr></table></figure>
+<p>对于像++或–这样只需要一个操作数就能完成的运算，称之为一元运算符（单目）。<br>+ - * / % 这些需要两个或以上才能完成运算的操作符，我们称之为二元运算符（双目）。<br>一元运算符的优先级要高于二元运算符。</p>
+</li>
+<li><p>关系运算符<br>用来描述两个事物之间的关系<br>&gt; 、&lt; 、&gt;= 、&lt;= 、== 、!=<br>由关系运算符连接的表达式叫关系表达式，其结果是bool类型</p>
+</li>
+<li><p>逻辑运算符<br>&amp;&amp;逻辑与<br>||逻辑或<br>!逻辑非<br>以逻辑运算符连接的表达式叫做逻辑表达式<br>逻辑运算符两边一般放的都是关系表达式或者bool类型的值</p>
+</li>
+<li><p>复合赋值运算符<br>int number =10;</p>
+</li>
+</ul>
+<p>+=：number+=20;//number=number+20;<br>-=：number-=5;//number=number-5;<br>*=：number*=2；//number=number*2;</p>
+<p>顺序结构：程序从Main函数进入，从上到下一行一行执行，不落下一行<br>分支结构：if if-else<br>选择结构：if else-if switch-case<br>循环结构：while do-while for foreach</p>
+<p>问：Java的字符比较使用equle，c#可以直接比较？</p>
+<p>if else-if<br>作用：用来处理多条件的区间性的判断<br>语法：<br>if(判断条件)<br>{<br>    要执行的代码;<br>}<br>else if(判断条件)<br>{<br>    要执行的代码;<br>}<br>…..<br>else<br>{<br>    要执行的代码;<br>}</p>
+<ul>
+<li>方法：<br>是一堆代码进行重用的一种机制。<br>函数的语法：<br>[public] static 返回值类型 方法名([参数列表])<br>{<br>  方法体;<br>}<br>public：访问修饰符，公开的，公共的<br>static：静态的<br>返回值类型：如果不需要返回值，写void<br>方法名：Pascal 每个单词的首字母都要大写，其余字母小写<br>参数列表：完成这个方法所必须要提供给这个方法的条件</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/30/Linq%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/30/Linq%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Linq学习1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-30 16:52:01" itemprop="dateCreated datePublished" datetime="2021-11-30T16:52:01+08:00">2021-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-01 17:31:30" itemprop="dateModified" datetime="2021-12-01T17:31:30+08:00">2021-12-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhili/archive/2012/12/24/Linq.html">Linq介绍</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dotnet261010/p/8278793.html">Linq简介</a>：看懂了栗子，还需要实践熟悉此用法<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiashengwang/archive/2012/07/28/2609161.html">Linq查询表达式</a></p>
+<ul>
+<li>LINQ的查询基本部分：<br>获取数据源，创建查询，执行查询。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 1，获取数据源</span><br><span class="line">List&lt;int&gt; numbers = new List&lt;int&gt;() &#123; 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 &#125;;</span><br><span class="line"></span><br><span class="line">// 2，创建查询</span><br><span class="line">var numQuery = from num in numbers</span><br><span class="line">               where num % 2 == 0</span><br><span class="line">               select num;</span><br><span class="line"></span><br><span class="line">// 3,执行查询</span><br><span class="line">foreach (var num in numQuery)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;&#123;0,1&#125;&quot;, num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+! <strong>完整的查询操作如下</strong><br>在 LINQ 中，查询的执行与查询本身截然不同；换句话说，如果只是创建查询变量，则不会检索任何数据。<br>Linq的数据源要求必须实现IEnumerable或IEnumerable<T>接口，数组隐式支持这个接口。numQuery叫做查询变量，它存储了一个查询表达式。注意，声明查询变量并不会执行查询，真正的执行查询延迟到了foreach语句中。<br><img src="/2021/11/30/Linq%E5%AD%A6%E4%B9%A0/1.jpg"></T></li>
+<li>单个form子句<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">string[] values = &#123; &quot;中国&quot;, &quot;日本&quot;, &quot;美国&quot;, &quot;菲律宾&quot;, &quot;越南&quot; &#125;;</span><br><span class="line"></span><br><span class="line">            //查询包含“国”的字符串</span><br><span class="line">            var valueQuery = from v in values</span><br><span class="line">                             where v.IndexOf(&quot;国&quot;) &gt; 0</span><br><span class="line">                             select v;</span><br><span class="line"></span><br><span class="line">            foreach (var v in valueQuery)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;&#123;0,1&#125;&quot;, v);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+在这个LINQ表达式的from子句中，v叫做范围变量，values是数据源。v的作用域存在于当前的LINQ表达式，表达式以外不能访问这个变量。where用来筛选元素，select用于输出元素。<br>这里的范围变量v，和foreach语句中的隐式变量v都可以由编译器推断出其类型。<br>!<em>var是隐式类型，能自动类型推断</em>，也就是说具体的类型会由编译器帮助推断。<br>问：为什么现在有三个包含“国”的字符串，但是Console.WriteLine(“{0,1}”,v)还是可以将三个字符串输出不报错？<br>“{v,w}”中的”v”表示参数下标，”w”表示输出长度。例如{0,5}代表输出下标为0的”i”，且长度为5；{2,-5}代表输出下标为2的”j”，长度也为5，而参数”w”之前加的负号表示此输出为”左对齐”，其它没有加负号的为右对齐。<br>{0,1}表示从v中取下标为0开始，长度为1。刚好符合查询的foreach逐个取v的特点。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">string[] values = &#123; &quot;中国&quot;, &quot;日本&quot;, &quot;美国&quot;, &quot;菲律宾&quot;, &quot;越南&quot;, &quot;韩国&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    //查询包含“国”的字符串</span><br><span class="line">    var valueQuery = from v in values</span><br><span class="line">                     where v.IndexOf(&quot;国&quot;) &gt; 0</span><br><span class="line">                     select v;</span><br><span class="line"></span><br><span class="line">    foreach (var v in valueQuery)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;&#123;0,1&#125;&quot;, v);</span><br><span class="line">    &#125;</span><br><span class="line">    Console.ReadKey();</span><br></pre></td></tr></table></figure>
+<img src="/2021/11/30/Linq%E5%AD%A6%E4%B9%A0/2.png"><br>使用LINQ查询List<T>集合<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerInfo</span><br><span class="line">&#123;</span><br><span class="line">    public string Name &#123; get; set; &#125;</span><br><span class="line">    public int Age &#123; get; set; &#125;</span><br><span class="line">    public string Tel &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line">private void formExpDemo2()</span><br><span class="line">&#123;</span><br><span class="line">    //这里用了，对象和集合初始化器</span><br><span class="line">    List&lt;CustomerInfo&gt; customers = new List&lt;CustomerInfo&gt; &#123; </span><br><span class="line">                                    new CustomerInfo&#123; Name=&quot;欧阳晓晓&quot;, Age=35, Tel =&quot;1330708****&quot;&#125;,</span><br><span class="line">                                    new CustomerInfo&#123; Name=&quot;上官飘飘&quot;, Age=17, Tel =&quot;1592842****&quot;&#125;,</span><br><span class="line">                                    new CustomerInfo&#123; Name=&quot;诸葛菲菲&quot;, Age=23, Tel =&quot;1380524****&quot;&#125;</span><br><span class="line">                                    &#125;;</span><br><span class="line">    //查询年龄大于20的客户，注意这里的范围变量用了显示类型CustomerInfo</span><br><span class="line">    var query = from CustomerInfo ci in customers</span><br><span class="line">                where ci.Age &gt; 20</span><br><span class="line">                select ci;</span><br><span class="line">            </span><br><span class="line">    foreach (CustomerInfo ci in query)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;姓名：&#123;0&#125; 年龄：&#123;1&#125; 电话：&#123;2&#125;&quot;, ci.Name, ci.Age, ci.Tel);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2021/11/30/Linq%E5%AD%A6%E4%B9%A0/3.png"></T></li>
+<li>复合form语句<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class CustomerInfo</span><br><span class="line">        &#123;</span><br><span class="line">            public string Name &#123; get; set; &#125;</span><br><span class="line">            public int Age &#123; get; set; &#125;</span><br><span class="line">            public List&lt;string&gt; TelTable &#123; get; set; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        private void formExpDemo()</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;CustomerInfo&gt; customers = new List&lt;CustomerInfo&gt; &#123; </span><br><span class="line">                                           new CustomerInfo&#123; Name=&quot;欧阳晓晓&quot;, Age=35, TelTable=new List&lt;string&gt;&#123;&quot;1330708****&quot;,&quot;1330709****&quot;&#125;&#125;,</span><br><span class="line">                                           new CustomerInfo&#123; Name=&quot;上官飘飘&quot;, Age=17, TelTable=new List&lt;string&gt;&#123;&quot;1592842****&quot;,&quot;1592843****&quot;&#125;&#125;,</span><br><span class="line">                                           new CustomerInfo&#123; Name=&quot;诸葛菲菲&quot;, Age=23, TelTable=new List&lt;string&gt;&#123;&quot;1380524****&quot;,&quot;1380525****&quot;&#125;&#125;</span><br><span class="line">                                           &#125;;</span><br><span class="line">            //查询包含电话号码1592842****的客户</span><br><span class="line">            var query = from CustomerInfo ci in customers</span><br><span class="line">                        from tel in ci.TelTable</span><br><span class="line">                        where tel.IndexOf(&quot;1592842****&quot;) &gt; -1</span><br><span class="line">                        select ci;</span><br><span class="line"></span><br><span class="line">            foreach (var ci in query)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;姓名：&#123;0&#125; 年龄：&#123;1&#125;&quot;, ci.Name, ci.Age);</span><br><span class="line">                foreach (var tel in ci.TelTable)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;          电话：&#123;0&#125;&quot;, tel);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/30/20211130/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/30/20211130/" class="post-title-link" itemprop="url">WPF基础学习1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-30 09:40:29" itemprop="dateCreated datePublished" datetime="2021-11-30T09:40:29+08:00">2021-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-01 15:26:31" itemprop="dateModified" datetime="2021-12-01T15:26:31+08:00">2021-12-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>.NET FrameWork框架是.NET平台中不可缺少的一部分，它提供了一个稳定的运行环境来保证我们基于.NET平台开发的各种应用能够正常运转。<br>C#是一种编程语言，可以开发基于.NET平台的应用。<br>.NET平台下两种交互模式：C/S【WPF应用程序】、B/S【Internet应用】</p>
+<p>解决方案：公司<br>项目：部门<br>类：员工</p>
+<ul>
+<li>Program中各个组成部分</li>
+</ul>
+<p>1.using引用命名空间<br>2.namespace项目名称<br>3.类<br>4.函数/方法：函数也叫方法，Main函数是程序的主入口</p>
+<p>.sln 解决方案文件，包含整个解决方案的信息，可以双击运行<br>.csproj C#项目（项目文件），保护项目信息，可以双击运行</p>
+<ul>
+<li>Windows控制台程序<br>Main函数中：<br>Console.WriteLine(“Hello World”); //将括号中的内容输出到控制台<br>Console.ReadKey(); //没有这句程序运行结束就关闭，否则等待键盘有输入才关闭。起到暂停当前程序的作用。</li>
+</ul>
+<p>ctrl+shift+B 生成解决方案，帮助排除语法错误</p>
+<p>移除：删除项目<br>卸载：不能再使用，但是可以右键重新加载</p>
+<ul>
+<li><p>注释<br>//注释符：一是注销作用；二是解释作用<br>/**/多行注释：<br>///文档注释：打上///自动生成，summary是摘要，解释类和方法<br><img src="/2021/11/30/20211130/1.png"></p>
+</li>
+<li><p>VS常用快捷键<br><img src="/2021/11/30/20211130/2.png"></p>
+</li>
+<li><p>数据类型</p>
+</li>
+</ul>
+<p>1)、整数类型:int只能存储整数，不能存储小数。<br>2)、小数类型:double 既能存储整数，也能存储小数，小数点后面的位数15~16位。<br>3)、金钱类型:decimal用来存储金钱，值后面需要加上一个m/M。<br>4)、字符串类型:string用来存储多个文本，也可以存储空，字符串类型的值需要被双引号引起来。<br>5)、字符类型:char用来存储单个字符，最多、最少只能有一个字符，不能存储空。字符类型的值需要用单引号引起来。</p>
+<p>波浪线<br>红色波浪线指语法错误，绿色波浪线警告有可能会出现错误</p>
+<p>变量一定要先声明，再赋值，才能使用。</p>
+<ul>
+<li>命名规则<br>首先保证变量名称有意义：</li>
+</ul>
+<p>1.必须以”字母”_或@符号开头，不要以数字开头<br>2.后面可以跟任意”字母”、数字、下划线<br>注意:<br>1.你起的变量名不要与c#系统中的关键字重复．<br>2.在c#中，大小写是敏感的<br>3.同一个变量名不允许重复定义</p>
+<ul>
+<li>命名规范</li>
+</ul>
+<p>1.Camel骆驼命名规范。要求变量名首单词的首字母要小写，其余每个单词的首字母都大写。多用于给变量命名。<br>2.Pascal命名规范。要求每个单词的首字母都要大写，其余字母小写。多用于给类或者方法命名。</p>
+<ul>
+<li>+号的作用</li>
+</ul>
+<p>1.连接：当+号两边有一边是字符串时，起连接的作用<br>2.相加：两边是数字的时候</p>
+<ul>
+<li>占位符</li>
+</ul>
+<p>1.使用方法：先挖个坑，再填个坑。{0}、{1}、{2}<br>Console.WriteLine(“第一个数字是{0}，第二个数字是{1}，第三个数字是{2}”,n1,n2,n3);<br>2.挖了几个坑填几个坑，填的多了不报错，但是不会显示多的。填少了语法不会错误，但会有异常。<br>3.输出顺序：按照挖坑的顺序{x}输出</p>
+<p>异常：语法上无错，再程序运行过程中，由于某些原因出现了问题，使程序不能再正常的运行。</p>
+<ul>
+<li><p>交换变量<br>交换两个int类型的变量，要求不使用第三方的变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int n1=10; </span><br><span class="line">int n2=20;</span><br><span class="line">n1=n1-n2;//n1=-10,n2=20</span><br><span class="line">n2=n1+n2;//n1=-10，n2=10</span><br><span class="line">n1=n2-n1;</span><br><span class="line">/*  a=a+b;</span><br><span class="line">    b=a-b;</span><br><span class="line">    a=a-b;  */</span><br></pre></td></tr></table></figure></li>
+<li><p>接收用户的输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(&quot;请输入你的姓名&quot;);</span><br><span class="line">string name = Console.ReadLine();</span><br><span class="line">Console.WriteLine(&quot;确认您的姓名&#123;0&#125;&quot;, name);</span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure></li>
+<li><p>转义符<br>转义符指的是一个’&#39;+一个特殊的字符，组成了一个具有特殊意义的字符。<br>\n：表示换行<br>&quot;：表示一个英文半角的双引号<br>\t：tab键制表 字符串排版对齐<br>\b：backspace键，将\b前边的一个字符删除，放到字符串两段没有效果。<br>tips：windows操作系统下\n不起效，需要\r\n才生效<br>\\：表示一个\</p>
+</li>
+<li><p>@符号</p>
+</li>
+</ul>
+<p>1.取消\在字符串中的转义作用；<br>2.将字符串按照编辑的原格式输出。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/29/FirstBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/29/FirstBlog/" class="post-title-link" itemprop="url">WPF学习+Hexo配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-29 18:01:00" itemprop="dateCreated datePublished" datetime="2021-11-29T18:01:00+08:00">2021-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-30 09:57:45" itemprop="dateModified" datetime="2021-11-30T09:57:45+08:00">2021-11-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuesuc/article/details/51524965">分支管理学习</a><br></p>
 <ul>
 <li>git提交代码的时候，为什么要提交代码到自己的分支后，再合并到主干?<br><br>在团队协作的开发中，如果每个人都在原始分支master上进行开发各自的功能，那么极易产生冲突，造成管理混乱。因此，合理管理方式为每个人在原始分支上新建一个分支，完成后将自己的本地分支推送到远程仓库，由git管理员来管理远程分支，选择是否接受此分支的合并。同时，也是保证了主干的准确性。<br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xpj8888/article/details/101511273">WPF资源Source绑定</a></li>
 </ul>
@@ -118,46 +667,65 @@
 <p>这时候在你的电脑的目录下:hexosource _posts将会看到md文件<br><br>用MarDown编辑器打开就可以编辑文章了。文章编辑好之后，运行生成、部署命令:<br><br><code>hexo g // 生成 </code><br><br><code>hexo d // 部署 </code><br><br><code>hexo g -d #在部署前先生成</code><br><img src="/2021/11/29/FirstBlog/12.png"><br><img src="/2021/11/29/FirstBlog/13.png"><br>部署成功后访问 <a target="_blank" rel="noopener" href="https://yourname.github.io/">https://yourname.github.io</a> 就可以看到生成的文章。<br><img src="/2021/11/29/FirstBlog/14.png"></p>
 <p>图片插件，只要创建与md文件名相同的文件夹，将图片放入，即可直接使用【图片名.png】来查看。<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">配置教程</a><br>此时，<strong>本地访问Hexo</strong>，只要在cmd中进入Hexo文件夹下，输入<br><code>hexo server</code>即可</p>
 <hr>
-<p>F2 重命名<br>F2 和Ctrl+A(全选)+(Ctrl+C)+(Ctrl+V)快速复制文件名称？？？<br>F5 浏览器刷新<br>F12 浏览器调试模式</p>
+<p>F2 重命名<br>Ctrl+A(全选)+(Ctrl+C)+(Ctrl+V)快速复制文件名称<br>F5 浏览器刷新<br>F12 浏览器调试模式</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/29/FirstBlog/" data-id="ckwkaynbw0000tcwe008h8lur" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/11/29/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-11-29T06:13:15.928Z" itemprop="datePublished">2021-11-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/29/hello-world/">Hello World</a>
-    </h1>
+  
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/29/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-29 14:13:15" itemprop="dateCreated datePublished" datetime="2021-11-29T14:13:15+08:00">2021-11-29</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -173,103 +741,175 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/29/hello-world/" data-id="ckwka036l00003kwe4azv2qtx" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-</article>
-
-
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
-    </div>
-  </div>
+<script src="/js/schemes/muse.js"></script>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/11/29/FirstBlog/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/29/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<script src="/js/next-boot.js"></script>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
