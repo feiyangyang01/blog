@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="线程池当开始一个线程的时候，将花费几百微秒来组织类似以下的内容：一个新的局部变量栈（Stack）线程池就可以节省这种开销：通过预先创建一个可循环使用线程的池来减少这一开销线程池对于高效的并行编程和细粒度并发是必不可少的它运行在不被线程启动的开销淹没的情况下运行短期操作使用线程池需要注意的几点：不可以设置池线程的Name；池线程都是后台线程；阻塞池线程可使性能降低；【可以自由地更改池线程的优先级，当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程与线程学习2">
+<meta property="og:url" content="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/index.html">
+<meta property="og:site_name" content="Sandy的学习之路">
+<meta property="og:description" content="线程池当开始一个线程的时候，将花费几百微秒来组织类似以下的内容：一个新的局部变量栈（Stack）线程池就可以节省这种开销：通过预先创建一个可循环使用线程的池来减少这一开销线程池对于高效的并行编程和细粒度并发是必不可少的它运行在不被线程启动的开销淹没的情况下运行短期操作使用线程池需要注意的几点：不可以设置池线程的Name；池线程都是后台线程；阻塞池线程可使性能降低；【可以自由地更改池线程的优先级，当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/11.png">
+<meta property="article:published_time" content="2021-12-14T03:46:35.000Z">
+<meta property="article:modified_time" content="2021-12-14T06:23:33.046Z">
+<meta property="article:author" content="Sandy">
+<meta property="article:tag" content="进程线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/11.png">
+
+<link rel="canonical" href="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>进程与线程学习2 | Sandy的学习之路</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sandy的学习之路</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          进程与线程学习2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-14 11:46:35 / 修改时间：14:23:33" itemprop="dateCreated datePublished" datetime="2021-12-14T11:46:35+08:00">2021-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h5 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h5><p>当开始一个线程的时候，将花费几百微秒来组织类似以下的内容：一个新的局部变量栈（Stack）<br>线程池就可以节省这种开销：通过预先创建一个可循环使用线程的池来减少这一开销<br>线程池对于高效的并行编程和细粒度并发是必不可少的<br>它运行在不被线程启动的开销淹没的情况下运行短期操作<br>使用线程池需要注意的几点：<br>不可以设置池线程的Name；<br>池线程都是后台线程；<br>阻塞池线程可使性能降低；<br>【可以自由地更改池线程的优先级，当它释放回池的时候优先级将还原为正常状态】<br>可以通过Thread.CurrentThread.IsThreadPoolThread属性来判断是否执行在池线程上。<br>进入线程池：Task.Run</p>
+<h6 id="线程池中的整洁"><a href="#线程池中的整洁" class="headerlink" title="线程池中的整洁"></a>线程池中的整洁</h6><p>线程池提供了另一个功能，即确保临时超出 计算-Bound的工作不会导致CPU超额订阅<br>CPU超额订阅：活跃的线程超过CPU的核数，操作系统就需要对线程进行时间切片<br>超额订阅对性能影响很大，时间切片需要昂贵的上下文切换，可能使CPU缓存失效，而CPU缓存对现代处理器的性能至关重要。<br>CLR的策略：<br>·CLR通过对任务排队并对其启动进行节流限制来避免线程池中的超额订阅。<br>·它首先运行尽可能多的并发任务(只要还有 CPU核)，然后通过爬山算法调整并发级别，并在特定方向上不断调整工作负载。<br>·如果吞吐量提高，它将继续朝同一方向（否则将反转)。<br>·这确保它始终追随最佳性能曲线，即使面对计算机上竞争的进程活动时也是如此·如果下面两点能够满足，那么CLR的策略将发挥出最佳效果:<br>·工作项大多是短时间运行的（&lt;250毫秒，或者理想情况下&lt;100毫秒)，因此CLR有很多机会进行测量和调整。<br>·大部分时间都被阻塞的工作项不会主宰线程池</p>
+<h5 id="Thread的问题"><a href="#Thread的问题" class="headerlink" title="Thread的问题"></a>Thread的问题</h5><p>·线程（Thread）是用来创建并发(concurrency)的一种低级别工具，它有一些限制，尤其是:<br>·虽然开始线程的时候可以方便的传入数据，但是当Join 的时候，很难从线程获得返回值。·可能需要设置一些共享字段。<br>·如果操作抛出异常，捕获和传播该异常都很麻烦。<br>·无法告诉线程在结束时开始做另外的工作，你必须进行Join 操作（在进程中阻塞当前的线程)<br>·很难使用较小的并发(concurrent)来组建大型的并发。</p>
+<h5 id="Task类"><a href="#Task类" class="headerlink" title="Task类"></a>Task类</h5><p>Task类可以解决上述问题，Task是一个相对高级的抽象，它代表了一个并发操作（concurrent）<br>    该操作可能由Thread支持，或不由Thread支持<br>Task是可组合的(使用Continuation把它们串成链)<br>    可以使用线程池来减少启动延迟<br>    使用TaskCompletionSource, Tasks可以利用回调的方式，在等待I/O绑定操作时完全避免线程</p>
+<h6 id="开始一个Task"><a href="#开始一个Task" class="headerlink" title="开始一个Task"></a>开始一个Task</h6><p>Task类在System.Threading.Tasks命名空间下。<br>·开始一个Task最简单的办法就是使用Task.Run这个静态方法。<br>·传入一个Action委托即可<br>·Task 默认使用线程池，也就是后台线程:<br>    当主线程结束时，你创建的所有tasks都会结束。<br>·Task.Run返回一个Task 对象，可以使用它来监视其过程<br>·在Task.Run之后，我们没有调用Start，因为该方法创建的是“热”任务(hot task)<br>·可以通过Task的构造函数创建“冷”任务(cold task)，但是很少这样做</p>
+<h6 id="Wait等待"><a href="#Wait等待" class="headerlink" title="Wait等待"></a>Wait等待</h6><p>调用task的Wait方法会进行阻塞直到操作完成<br>相当于调用thread上的Join方法<br>Wait也可以让你指定一个超时时间和一个取消令牌来提前结束等待</p>
+<h6 id="长时间运行的任务Long-running-tasks"><a href="#长时间运行的任务Long-running-tasks" class="headerlink" title="长时间运行的任务Long-running tasks"></a>长时间运行的任务Long-running tasks</h6><p>默认情况下，CLR在线程池中运行Task，这非常适合短时间运行的Compute-Bound类工作<br>针对长时间运行的任务或者阻塞操作，可以不采用线程池<br><img src="/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/11.png"><br>其中Task.Factory.StartNew()是.Net4.0的Task.Run()。<br>如果同时运行多个 long-running tasks(尤其是其中有处于阻塞状态的)，那么性能将会受很大影响，这时有比TaskCreationOptions.LongRunning更好的办法:<br>·如果任务是IO-Bound,TaskCompletionSource和异步函数可以让你用回调(Coninuations)代替线程来实现并发。<br>·如果任务是Compute-Bound，生产者/消费者队列允许你对任务的并发性进行限流，避免把其他线程和进程饿死。</p>
+<h6 id="Task的返回值"><a href="#Task的返回值" class="headerlink" title="Task的返回值"></a>Task的返回值</h6><p>Task有一个泛型子类叫做Task<TResult>，它允许发出一个返回值<br>使用Func<TResult>委托或者兼容的Lambda表达式来调用Task.Run就可以得到Func<TResult>。<br>随后，可以通过Result属性来获得返回的结果。<br>如果这个task还没有完成操作，访问Result属性会阻塞该线程直到该task完成操作。</TResult></TResult></TResult></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; task = Task.Run(()=&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Foo&quot;);</span><br><span class="line">        return 3;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    int result = task.Result;</span><br><span class="line">    Console.WriteLine(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; primeNumberTask = Task.Run(()=&gt;</span><br><span class="line">        Enumerable.Range(2,3000000).Count(n=&gt;</span><br><span class="line">            Enumberable.Range(2,(int)Math.Sqrt(n)-1).All(i=&gt; n%i&gt;0)));</span><br><span class="line">//在2-3000000的序列中计数，计数对象是能够被2-它的平方根减一的数除后余数不为零</span><br><span class="line">    Cosole.WriteLine(&quot;Task Running...&quot;);</span><br><span class="line">    Cosole.WriteLine(&quot;The answer is &quot;+ primeNumberTask.Result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Task<TResult>可以看作是一种所谓的“未来/许诺”(future、promise)，在它里面包裹着一个Result，在稍后的时候就会变得可用。</TResult></p>
+<h6 id="Task的异常"><a href="#Task的异常" class="headerlink" title="Task的异常"></a>Task的异常</h6><p>与Thread不一样，Task可以很方便的传播异常<br>如果你的task里面抛出了一个未处理的异常（故障)，那么该异常就会重新被抛出给:<br>·调用了wait()的地方<br>·访问了Task<TResult>的Result属性的地方。</TResult></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Task task = Task.Run(() =&gt; &#123; throw null; &#125;);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                task.Wait(); //将throw null;异常重新抛出给wait()</span><br><span class="line">            &#125;</span><br><span class="line">            catch(AggregateException aex)</span><br><span class="line">            &#123;</span><br><span class="line">                if(aex.InnerException is NullReferenceException)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Null&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    throw;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>CLR将异常包裹在AggregateException中，以便在并行编程场景中发挥很好的作用。</p>
+<p>无需重新抛出异常，通过Task的IsFaulted和IsCanceled属性也可以检测出Task是否发生了故障。<br>如果两个属性都返回false，那么没有错误发生。<br>如果IsCanceled为true，那就说明一个OperationCanceledException为该Task抛出了。<br>如果IsFaulted为true，那就说明另一个类型的异常被抛出了，而OException也将指明错误。</p>
+<h6 id="异常与“自治”的Task"><a href="#异常与“自治”的Task" class="headerlink" title="异常与“自治”的Task"></a>异常与“自治”的Task</h6><p>自治的，“设置完就不管了”的Task。就是指不通过调用Wait()方法、Result属性或 continuation进行会合的任务。<br>针对自治的Task，需要像Thread一样，显式的处理异常，避免发生“悄无声息的故障”。<br>自治Task上未处理的异常称为未观察到的异常。</p>
+<h6 id="未观察到的异常"><a href="#未观察到的异常" class="headerlink" title="未观察到的异常"></a>未观察到的异常</h6><p>可以通过全局的TaskScheduler.Unobserved TaskException来订阅未观察到的异常。<br>关于什么是“未观察到的异常”，有一些细微的差别:<br>    使用超时进行等待的Task，如果在超时后发生故障，那么它将会产生一个“未观察到的异常”。<br>    在Task发生故障后，如果访问Task的 Exception属性，那么该异常就被认为是“已观察到的”。</p>
+<h5 id="Continuation"><a href="#Continuation" class="headerlink" title="Continuation"></a>Continuation</h5><p>一个Continuation</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; primeNumberTask = Task.Run(()=&gt;</span><br><span class="line">        Enumerable.Range(2,3000000).Count(n=&gt;</span><br><span class="line">            Enumberable.Range(2,(int)Math.Sqrt(n)-1).All(i=&gt; n%i&gt;0)));</span><br><span class="line"></span><br><span class="line">    var awaiter = prineNumberTask.GetAwaiter();</span><br><span class="line">    awaiter.OnCompleted(()=&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        int result = awaiter.GetResult();</span><br><span class="line">        Console.WriteLine(result);</span><br><span class="line">    &#125;);</span><br><span class="line">    Cosole.ReadLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在task上调用GetAwaiter会返回一个awaiter 对象<br>它的OnCompleted方法会告诉之前的task:”当你结束/发生故障的时候要执行委托”。<br>可以将Continuation附加到已经结束的 task 上面，此时Continuation将会被安排立即执行。</p>
+<h5 id="awaiter"><a href="#awaiter" class="headerlink" title="awaiter"></a>awaiter</h5><p>任何可以暴露下列两个方法和一个属性的对象就是awaiter :<br>·OnCompleted<br>·GetResult<br>一个叫做IsCompleted的 bool属性没有接或者父类来统一这些成员。<br>其中OnCompleted是INotifyCompletion的一部分</p>
+<h6 id="如果发生故障"><a href="#如果发生故障" class="headerlink" title="如果发生故障"></a>如果发生故障</h6><p>·如果之前的任务发生故障，那么当Continuation代码调用awaiter.GetResult()的时候，异常会被重新抛出。<br>·无需调用GetResult，我们可以直接访问task的Result属性。<br>·但调用GetResult的好处是，如果 task发生故障，那么异常会被直接的抛出，而不是包裹在AggregateException里面，这样的话catch 块就简洁很多了。</p>
+<h5 id="非泛型task"><a href="#非泛型task" class="headerlink" title="非泛型task"></a>非泛型task</h5><p>针对非泛型的task，GetResult()方法有一个void返回值，它就是用来重新抛出异常。</p>
+<h5 id="同步上下文"><a href="#同步上下文" class="headerlink" title="同步上下文"></a>同步上下文</h5><p>同步上下文指：阻塞状态和非阻塞状态切换<br>·如果同步上下文出现了，那么OnCompleted 会自动捕获它，并将Continuation提交到这个上下文中。这一点在富客户端应用中非常有用，因为它会把 Continuation放回到U线程中。<br>·如果是编写一个库，则不希望出现上述行为，因为开销较大的UI线程切换应该在程序运行离开库的时候只发生一次，而不是出现在方法调用之间。所以，我们可以便用ConfigureAwait方法来避免这种行为。<br>·如果没有同步上下文出现，或者你使用的是ConfigureAwait(false)，那么Continuation会运行在先前task的同一个线程上，从而避免不必要的开销</p>
+<p>ContinueWith<br>·另外一种附加Continuation的方式就是调用task的 ContinueWith方法<br>·ContinueWith本身返回一个task，它可以用它来附加更多的Continuation。<br>·但是，必须直接处理AggregateException :<br>    ·如果task发生故障，需要写额外的代码来把 Continuation封装(marshal)到UI应用上。<br>    ·在非UI上下文中，若想让Continuation和 task执行在同一个线程上，必须指定TaskContinuationOptions.ExecuteSynchronously，否则它将弹回到线程池。<br>·ContinueWVith对于并行编程来说非常有用。</p>
+<p>【P16待看】</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B/" rel="tag"># 进程线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/14/WPF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A04/" rel="prev" title="WPF基础学习4">
+      <i class="fa fa-chevron-left"></i> WPF基础学习4
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/" rel="next" title="Linux环境安装与熟悉">
+      Linux环境安装与熟悉 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%9A%84%E6%95%B4%E6%B4%81"><span class="nav-number">1.1.</span> <span class="nav-text">线程池中的整洁</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Thread%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">Thread的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Task%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">Task类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AATask"><span class="nav-number">3.1.</span> <span class="nav-text">开始一个Task</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Wait%E7%AD%89%E5%BE%85"><span class="nav-number">3.2.</span> <span class="nav-text">Wait等待</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%95%BF%E6%97%B6%E9%97%B4%E8%BF%90%E8%A1%8C%E7%9A%84%E4%BB%BB%E5%8A%A1Long-running-tasks"><span class="nav-number">3.3.</span> <span class="nav-text">长时间运行的任务Long-running tasks</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Task%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">3.4.</span> <span class="nav-text">Task的返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Task%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">3.5.</span> <span class="nav-text">Task的异常</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E4%B8%8E%E2%80%9C%E8%87%AA%E6%B2%BB%E2%80%9D%E7%9A%84Task"><span class="nav-number">3.6.</span> <span class="nav-text">异常与“自治”的Task</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%9C%AA%E8%A7%82%E5%AF%9F%E5%88%B0%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">3.7.</span> <span class="nav-text">未观察到的异常</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Continuation"><span class="nav-number">4.</span> <span class="nav-text">Continuation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#awaiter"><span class="nav-number">5.</span> <span class="nav-text">awaiter</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%8F%91%E7%94%9F%E6%95%85%E9%9A%9C"><span class="nav-number">5.1.</span> <span class="nav-text">如果发生故障</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E6%B3%9B%E5%9E%8Btask"><span class="nav-number">6.</span> <span class="nav-text">非泛型task</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">7.</span> <span class="nav-text">同步上下文</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sandy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

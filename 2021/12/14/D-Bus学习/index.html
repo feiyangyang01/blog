@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="DBus介绍 D-Bus概述D-Bus是一种本地进程间通信机制。D-Bus的特点是轻量级、快速，为主流桌面环境提供统一的进程间通信界面。与其他重量级的进程间通信技术不同，D-Bus并未使用会话进行通信。D-Bus使用了状态以及连接的概念，使其比UDP等低级的信息传输协议更“聪明”。另一方面，它传送的是离散消息，这又与TCP协议将数据看做“流”有所不同。D-Bus支持点对点的传信，以及广播&#x2F;订阅式的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D-Bus学习">
+<meta property="og:url" content="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Sandy的学习之路">
+<meta property="og:description" content="DBus介绍 D-Bus概述D-Bus是一种本地进程间通信机制。D-Bus的特点是轻量级、快速，为主流桌面环境提供统一的进程间通信界面。与其他重量级的进程间通信技术不同，D-Bus并未使用会话进行通信。D-Bus使用了状态以及连接的概念，使其比UDP等低级的信息传输协议更“聪明”。另一方面，它传送的是离散消息，这又与TCP协议将数据看做“流”有所不同。D-Bus支持点对点的传信，以及广播&#x2F;订阅式的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/1.png">
+<meta property="article:published_time" content="2021-12-14T06:48:25.000Z">
+<meta property="article:modified_time" content="2021-12-24T02:49:42.682Z">
+<meta property="article:author" content="Sandy">
+<meta property="article:tag" content="DBus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/1.png">
+
+<link rel="canonical" href="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>D-Bus学习 | Sandy的学习之路</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sandy的学习之路</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          D-Bus学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 14:48:25" itemprop="dateCreated datePublished" datetime="2021-12-14T14:48:25+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-24 10:49:42" itemprop="dateModified" datetime="2021-12-24T10:49:42+08:00">2021-12-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizzywu/article/details/7651483?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.highlightwordscore&spm=1001.2101.3001.4242.2">DBus介绍</a></p>
+<h3 id="D-Bus概述"><a href="#D-Bus概述" class="headerlink" title="D-Bus概述"></a>D-Bus概述</h3><p>D-Bus是一种<strong>本地进程间通信机制</strong>。D-Bus的特点是轻量级、快速，为主流桌面环境提供统一的进程间通信界面。<br>与其他重量级的进程间通信技术不同，D-Bus并未使用会话进行通信。D-Bus使用了<strong>状态以及连接</strong>的概念，使其比UDP等低级的信息传输协议更“聪明”。另一方面，它传送的是<strong>离散消息</strong>，这又与TCP协议将数据看做“流”有所不同。D-Bus支持<strong>点对点</strong>的传信，以及<strong>广播/订阅式</strong>的传信两种传信方式。</p>
+<h3 id="与编程语言的绑定"><a href="#与编程语言的绑定" class="headerlink" title="与编程语言的绑定"></a>与编程语言的绑定</h3><p>与一般的通信概念相比，使用D-Bus时应该更倾向于使用面向对象的思维方式。D-Bus在不同语言的实现接口差别很大，而且在一些语言中显得很简单。</p>
+<h3 id="Buses-总线"><a href="#Buses-总线" class="headerlink" title="Buses(总线)"></a>Buses(总线)</h3><p>D-Bus有两个主要组成部分：<br>一是<strong>点对点通信的支持库</strong>，任何想用D-Bus通信的进程都可以引用；<br>二是<strong>dbus服务进程</strong>，其作用类似于总线，进程可以连接到这个总线，并在总线上传输消息。<br>典型的使用流程是：进程使用支持库，连接到服务进程总线，并收发消息。<br>一个系统中可以同时存在多条D-Bus总线。</p>
+<h3 id="Addresses"><a href="#Addresses" class="headerlink" title="Addresses"></a>Addresses</h3><p>每条总线都有总线地址，进程通过这个地址连接到总线。<br>总线地址一般是类似于”/tmp/.hiddensocket”这类Socket接口，但也有可能是TCP端口，或者其他通信方式接口。具体如何使用这些接口通信，是完全封装在dbus支持库中。我们一般只说客户进程打开并使用到总线的连接。</p>
+<h3 id="Bus-Name"><a href="#Bus-Name" class="headerlink" title="Bus Name"></a>Bus Name</h3><p>总线上的每个连接都有一个或多个名字。这些名字一般叫做连接名(connection’s bus names 或简单地称为 bus names)。连接名由”.”分开的字符组成，比如”com.acme.Foo”，中间的字符可以是字母、数字、连接线、下划线。每个连接拥有一个连接名。<br>当连接建立以后，D-Bus服务会分配一个不可改变的连接名，称为唯一连接名，这个连接名即使在进程结束后也不会再被其他进程所使用。<strong>唯一连接名以冒号开头</strong>，像是这个样子”:34-907″（后面的数字没有任何意义，仅用来区分不同连接）<br>此外，连接还可以引证另外的连接名，比如提供服务的进程可以起一个大家都知道的连接名，以便使用其服务的客户进程连接。这个名字必须<strong>包含两个以上的”.”</strong>，比如：”com.acme.PortableHole”。与唯一名不同的是，这个连接名可以转给其他进程使用。</p>
+<h3 id="Objects（对象）"><a href="#Objects（对象）" class="headerlink" title="Objects（对象）"></a>Objects（对象）</h3><p>总线中信息流向的<strong>端点</strong>在D-Bus中称为对象。对象由客户进程创建，并在连接进程中保持不变。对象是客户进程提供服务的方式，客户进程可以创建多个对象。<br>总线的通信以对象为中心，其上的任何信息不外乎以下三类：<br>发送到对象上的请求；<br>从对象到请求进程的请求的响应；<br>单向的广播消息，发送到之前注册过这类消息的进程。<br>因此，从更高的角度看，总线支持两种形式的通信，“<strong>一对一的请求-响应</strong>”发送到对象(<strong>methods</strong>)，及来自于对象的“<strong>一对多的广播-订阅</strong>”(<strong>signals</strong>)。<br><em>每条总线至少都有一个对象</em>，这个对象代表总线本身。客户进程可以通过向这个总线对象发送请求来得到当前总线的状态。后面你将看到，总线对象有更多有用的功能。</p>
+<h3 id="Proxies（代理）"><a href="#Proxies（代理）" class="headerlink" title="Proxies（代理）"></a>Proxies（代理）</h3><p>总线上的对象一般通过代理来访问。总线上的对象位于客户进程以外，而客户可以调用的本地接口与对象通信，此时，本地接口充当了代理的角色。<br>是否要区分代理与对象的概念取决于你如何使用D-Bus。在Java语言中并不区分这两个概念，使你好像是在直接操作本地模块。<br>对象拥有名称，它的构成类似于Unix文件系统中的文件路径，因此通常也称为<strong>路径path</strong>。如代表电子表格中某一栏内容的对象名称可能为”/org/kde/kspread/sheets/3/cells/4/5″。对象名在客户连接中要保持唯一性。为了取得电子表格中这栏内容的代理访问，你需要在电子表格的连接中请求”/org/kde/kspread/sheets/3/cells/4/5″对象。<br>既然任何对象都存在于连接之上，它的名称由连接名与对象本身名称组成。<em>一旦你找到了你需要的对象，并想在程序过程中一直使用这个对象，你一般需要保存这个对象的代理变量。</em>通过代理变量，你可以在以后操作这个对象。</p>
+<h3 id="Methods（方法）"><a href="#Methods（方法）" class="headerlink" title="Methods（方法）"></a>Methods（方法）</h3><p>客户向某对象发送一个请求的过程，看起来就像在这个对象上执行了一个方法：对象被请求执行一个明确的，有名称的动作。如果客户请求执行一个目标对象未提供的方法，将会产生一个错误。<br>方法的定义中可以支持输入参数。对于每个请求，都有一个包含请求结果以及结果数据（输出参数）的响应返回给请求者。当请求无法完成时，响应中将包含异常信息，其中至少有异常名称以及错误信息。</p>
+<h3 id="Signals（信号）"><a href="#Signals（信号）" class="headerlink" title="Signals（信号）"></a>Signals（信号）</h3><p>信号，这种通信形式依然遵从面向对象概念，<strong>它是从对象发出但没有特定目的地址的单向数据广播</strong>。客户进程可以预先注册其感兴趣的信号，如特定名称的信号或从某个对象发出的信号等。当对象发出信号后，所有订阅了该信号的客户将收到此信号的复本。接收端可能有多种情况出现，或者有一个客户，或者有多个客户，或者根本没有客户对这个信号感兴趣。对于信号来说没有响应消息，发出信号的对象不会知道是不是有客户在接收，有多少客户接收，以及从客户端收到任何反馈。<br>信号一般用来广播一些客户可能会感兴趣的事件，比如某个其他的客户与总线的连接断开等。这些信号来自总线对象，因此从信号中客户可以分辨断线是由于正常退出、被杀掉或者程序崩溃。</p>
+<h3 id="Interfaces（接口）"><a href="#Interfaces（接口）" class="headerlink" title="Interfaces（接口）"></a>Interfaces（接口）</h3><p>每个对象都具有一些方法、以及可以产生特定的信号。方法与信号的集合称为这个对象的成员。<br>对象的所有成员都通过接口来定义。与JAVA类似，接口就是成员声明的集合。接口的实现就等于说这个接口提供了其所有方法及信号。所有成员必须按照接口声明的那样来提供服务。<br>对象可以都实现同一个接口。另一方面，某个对象可以同时实现多个接口。D-Bus中<em>没有实现任何接口的对象是没有意义的</em>。对象所有支持的接口集合被称为对象的类型（object’s type）。<br><strong>当客户进程要执行一个对象方法或等待信号时，它必须指明要使用的对象及其对象成员。除此以外，客户可能还要指明对象成员所在的接口。</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总结一下客户程序从还未连接到总线，直至找到其所需要的方法或订阅信号的整个流程。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>表示方法</th>
+<th>栗子</th>
+<th>管理者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总线</td>
+<td>地址</td>
+<td>unix:path=/var/run/dbus/system_bus_socket</td>
+<td>系统设置</td>
+</tr>
+<tr>
+<td>连接</td>
+<td>连接地址</td>
+<td>:34-907 (唯一名)<br>com.mycompany.TextEditor (公共名)</td>
+<td>D-Bus(唯一名)<br>服务进程 (公共名)</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>路径</td>
+<td>/com/mycompany/TextFileManager</td>
+<td>服务进程</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>接口名</td>
+<td>org.freedesktop.Hal.Manager</td>
+<td>服务进程</td>
+</tr>
+<tr>
+<td>成员</td>
+<td>成员名</td>
+<td>ListNames</td>
+<td>服务进程</td>
+</tr>
+</tbody></table>
+<h3 id="信息顺序"><a href="#信息顺序" class="headerlink" title="信息顺序"></a>信息顺序</h3><p>对于同一个对象的请求的到达顺序总会与其发送顺序一致。同样地，对同一目标的响应也会与对象发送顺序一致。<br>但这并不意味所有的消息都会按照发送时间的顺序到达。比如两个客户进程同时向同一个对象发送请求时，对象的接收顺序是不确定的。再比如客户向同一个对象连续发送两个请求，相应的两个响应顺序也是不确定的。对象本身的实现可能使用多线程或内部消息优先级等机制打乱消息的处理顺序。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>到目前为止，我们所举的例子都是基于对象已经被服务进程创建的情况。除此之外，还一另外一种提供服务的方式：<strong>D-Bus服务进程可以按需要启动对应服务。</strong><br>D-Bus服务进程可以按需要启动对应服务。有两种启动方式，它们都需要请求服务的客户提供要连接的公共名：</p>
+<ol>
+<li>使用总线对象所提供的方法</li>
+<li>使用连接公共名，直接调用目标连接上的对象方法</li>
+</ol>
+<h3 id="几种重要元素之间的关系与标识"><a href="#几种重要元素之间的关系与标识" class="headerlink" title="几种重要元素之间的关系与标识"></a>几种重要元素之间的关系与标识</h3><p>D-bus可以分成三部分来看：<br>(1)dbus-daemon，一个dbus的后台守护程序，用于多个应用之间消息的转发；<br>(2)libdbus.so，dbus的功能接口，当你的程序需要使用dbus时，其实就是调用libdbus.so里面的接口；<br>(3)高层封装，如dbus-glib和QT D-bus，这些其实都对D-bus的再封装，让你使用起来更方便。<br>从D-bus官网下载到源码，其实只包含上面所说的１和２两部分，libdbus.so里面的接口也就是官网说的low-level API。</p>
+<p>首先，运行一个dbus-daemon就是创建了一条通信的总线Bus。当一个application连接到这条Bus上面时，就产生了Connection。<br>每个application里面会有不同的Object。这里Object的概念，可以简单地理解为C++里面一个类的实例。从D-bus的概念上说，通信双方是Object，不是application，一个application是可以包含很多个Object的。<br>而一个Object里面又会有不同的Interface，这个Interface我把它理解为Object里面的一个类的成员。这些Interface其实是通信方式的集合。<br>这里又牵扯出来一个通信方式，D-bus里面支持的通信方式有两种，一种叫signal，一种叫method。signal简单地讲，其实就是广播，就是一对多的通信方式，可以从app1向其他所有的app发消息，但其他的app是不会对signal进行回复的。method则是一对一的通信，一问一答。这种方式有点像远程调用，app1调用app2的method并传递参数给这个method，获取到这个method返回的结果。<br>上面把D-bus通信里面的几个重要元素都介绍了一下，大概的关系是这样的：<br><img src="/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/1.png"><br>几个重要的元素之间的关系都画出来了，那么在程序里面怎么去标识这些元素呢？这里又提出来了一些名词address、bus name、path、Interface name。<br>(1)address是用来标识dbus-daemon的。当一个dbus-daemon运行以后，其他的app该怎么连接到这个dbus-daemon，靠的就是address。address的格式要求像这样：unix:path=/var/run/dbus/system_bus_socket。<br>(2)bus name是用来标识application的。当一个app1连接上dbus-daemon以后，相当于有了一个Connection，但其他的app2、app3怎么找到app1，靠的就是bus name。这个bus name标识了app1的Connection，也就相当于标识了app1。bus name由两种，一种是已冒号开头的唯一标识，像:34-907这样；另一种是通用的标识，是方便人看的，像com.mycompany.TextEditor。<br>(3)path用于标识Object。当app1的Object1要跟app2的Object2通信时，Object1要和Object2通信时，就要告诉dbus-daemon，Object2的path。path的格式像这样，/com/mycompany/TextFileManager，以“/”开头。<br>(4)每个Interface都会有自己的名字，也就是interface name，我们通过这个interface name就可以找到这个interface。interface name像这样org.freedesktop.Hal.Manager<br>(5)Signal和Method也有自己的名字，这个名字没什么特别的格式要求，随便改个名字就可以了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DBus/" rel="tag"># DBus</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" rel="prev" title="Hexo主题配置">
+      <i class="fa fa-chevron-left"></i> Hexo主题配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/15/DBus%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/" rel="next" title="DBus的配置使用">
+      DBus的配置使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Bus%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">D-Bus概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">与编程语言的绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buses-%E6%80%BB%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">Buses(总线)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Addresses"><span class="nav-number">4.</span> <span class="nav-text">Addresses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bus-Name"><span class="nav-number">5.</span> <span class="nav-text">Bus Name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects%EF%BC%88%E5%AF%B9%E8%B1%A1%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">Objects（对象）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxies%EF%BC%88%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">Proxies（代理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods%EF%BC%88%E6%96%B9%E6%B3%95%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">Methods（方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Signals%EF%BC%88%E4%BF%A1%E5%8F%B7%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">Signals（信号）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interfaces%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">Interfaces（接口）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E9%A1%BA%E5%BA%8F"><span class="nav-number">12.</span> <span class="nav-text">信息顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">13.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E9%87%8D%E8%A6%81%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E6%A0%87%E8%AF%86"><span class="nav-number">14.</span> <span class="nav-text">几种重要元素之间的关系与标识</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sandy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
