@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="java实现HTTP请求的三种方式多线程分段下载文件多线程下载介绍在网页中实现pdf在线预览为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。好吧，这个方式需要访问远程网址才能使用，战略性放弃了。  找了python的官网下载一个使用指南。访问链接(https:&#x2F;&#x2F;www.python.org&#x2F;ft">
+  <meta name="description" content="java实现HTTP请求的四种方式java实现HTTP请求的三种方式多线程分段下载文件多线程下载介绍在网页中实现pdf在线预览为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。好吧，这个方式需要访问远程网址才能使用，战略性放弃了。  找了python的官网下载一个使用指南。访问链接(https:&#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程下载文件">
 <meta property="og:url" content="http://example.com/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Sandy的学习之路">
-<meta property="og:description" content="java实现HTTP请求的三种方式多线程分段下载文件多线程下载介绍在网页中实现pdf在线预览为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。好吧，这个方式需要访问远程网址才能使用，战略性放弃了。  找了python的官网下载一个使用指南。访问链接(https:&#x2F;&#x2F;www.python.org&#x2F;ft">
+<meta property="og:description" content="java实现HTTP请求的四种方式java实现HTTP请求的三种方式多线程分段下载文件多线程下载介绍在网页中实现pdf在线预览为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。好吧，这个方式需要访问远程网址才能使用，战略性放弃了。  找了python的官网下载一个使用指南。访问链接(https:&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/1.png">
 <meta property="og:image" content="http://example.com/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/2.png">
 <meta property="article:published_time" content="2021-12-24T07:53:36.000Z">
-<meta property="article:modified_time" content="2021-12-24T09:45:21.130Z">
+<meta property="article:modified_time" content="2021-12-24T10:14:38.719Z">
 <meta property="article:author" content="Sandy">
 <meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-12-24 15:53:36 / 修改时间：17:45:21" itemprop="dateCreated datePublished" datetime="2021-12-24T15:53:36+08:00">2021-12-24</time>
+              <time title="创建时间：2021-12-24 15:53:36 / 修改时间：18:14:38" itemprop="dateCreated datePublished" datetime="2021-12-24T15:53:36+08:00">2021-12-24</time>
             </span>
 
           
@@ -207,7 +207,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hhhshct/p/8523697.html">java实现HTTP请求的三种方式</a><br><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/aokunsang-1069794">多线程分段下载文件</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34401512/article/details/77867576">多线程下载介绍</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43827595/article/details/104574959?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.highlightwordscore&spm=1001.2101.3001.4242.1">在网页中实现pdf在线预览</a><br>为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。<br>在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。<br><img src="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/1.png"><br>好吧，这个方式需要访问远程网址才能使用，战略性放弃了。</p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_16055765/article/details/83342069">java实现HTTP请求的四种方式</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hhhshct/p/8523697.html">java实现HTTP请求的三种方式</a><br><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/aokunsang-1069794">多线程分段下载文件</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34401512/article/details/77867576">多线程下载介绍</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43827595/article/details/104574959?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.highlightwordscore&spm=1001.2101.3001.4242.1">在网页中实现pdf在线预览</a><br>为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。<br>在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。<br><img src="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/1.png"><br>好吧，这个方式需要访问远程网址才能使用，战略性放弃了。</p>
 <hr>
 <p>找了python的官网下载一个使用指南。访问链接(<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.10.1/python3101.chm">https://www.python.org/ftp/python/3.10.1/python3101.chm</a>)</p>
 <hr>
