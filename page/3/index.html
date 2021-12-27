@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,178 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">初始化工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-06 16:12:41" itemprop="dateCreated datePublished" datetime="2021-12-06T16:12:41+08:00">2021-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-14 14:23:09" itemprop="dateModified" datetime="2021-12-14T14:23:09+08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="窗口界面搭建"><a href="#窗口界面搭建" class="headerlink" title="窗口界面搭建"></a>窗口界面搭建</h3><ol>
+<li>首先把metro框架和MVVM框架引入</li>
+<li>将窗口搭建好，此时涉及到以前遗留的问题，datagrid填充数据时会在最后一行多一个空白行。<br>产生的原因：该行是为了让用户输入信息到里边预留的空白行。所以即使填充的数据没内容一样会出现空白行。<br>解决方法：将datagrid的属性CanUserAddRows属性改为false即可。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/1.png"></li>
+<li>最终效果如下<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/2.png"></li>
+</ol>
+<h3 id="启动Windows-Time服务"><a href="#启动Windows-Time服务" class="headerlink" title="启动Windows Time服务"></a>启动Windows Time服务</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiyucha/p/10199544.html">使用servicecontroller组件控制计算机服务</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxrj2008/article/details/81316485">ServiceController控制windows服务</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiyucha/p/10315829.html">启动windows服务</a></p>
+<ol>
+<li>在services.msc窗口中找到Windows Time服务，服务名称为<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/3.png"></li>
+<li>添加引用<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/4.png"></li>
+<li>编写功能代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public bool StartServices(string serName)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                ServiceController sc = new ServiceController();</span><br><span class="line">                sc.ServiceName = serName;</span><br><span class="line">                sc.Refresh();</span><br><span class="line">                if (sc.Status == ServiceControllerStatus.Stopped)   //判断服务状态</span><br><span class="line">                &#123;</span><br><span class="line">                    sc.Start();                                 //启动服务</span><br><span class="line">                    sc.WaitForStatus(ServiceControllerStatus.Running);</span><br><span class="line">                &#125;</span><br><span class="line">                sc.Close();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (InvalidOperationException)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(serName + &quot;服务启动失败&quot;);</span><br><span class="line">                //将flag置为false，文本框不勾选，停止程序</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<li>修改管理员权限<br>打开项目的属性，选择“安全性”，勾选启用ClickOnce安全设置<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/7.png"><br>然后会在Properties里自动生成 app.manifest。打开app.manifest中修改配置<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/6.png"><br>如果现在直接运行会报错,所以要在之前的属性里取消勾选启用ClickOnce安全设置。现在运行程序就会以管理员身份运行了。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/5.png"></li>
+<li>运行结果<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/8.png"></li>
+</ol>
+<h3 id="提高代码通用性"><a href="#提高代码通用性" class="headerlink" title="提高代码通用性"></a>提高代码通用性</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuqiyun/p/13597165.html">接口作用的深入理解</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/allencxw/p/9528443.html">接口的实现与继承</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zwj7612356/article/details/8272520?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.showsourcetag&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.showsourcetag">委托和事件</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengfuwanliu/p/10892940.html">EventHandler定义与使用</a><br>notice:非抽象子类继承父类时要实现父类中的所有抽象方法。</p>
+<p>将MainViewModel类作为父类，其中包含委托事件和Status方法。StartService和NetworkInfo是子类。<br>通过MainViewModel方法调用子类中的方法并将结果返回到窗口显示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;MainModel&gt; _eventList = new List&lt;MainModel&gt;();</span><br><span class="line">        public List&lt;MainModel&gt; EventList</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return this._eventList;</span><br><span class="line">            &#125;</span><br><span class="line">            set</span><br><span class="line">            &#123;</span><br><span class="line">                this._eventList = value;</span><br><span class="line">                this.RaisePropertyChanged(&quot;_eventList&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public MainViewModel()</span><br><span class="line">        &#123;</span><br><span class="line">            EventList = new List&lt;MainModel&gt;() &#123;StartService.timeser,NetworkInfo.netInfo &#125;;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">        public static string Status(bool statu)</span><br><span class="line">        &#123;</span><br><span class="line">            if (statu)</span><br><span class="line">            &#123;</span><br><span class="line">                return &quot;执行成功&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            return &quot;正在处理&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>整体代码的可用性还不够，后期继续修改。</p>
+<h3 id="检查外网连接状态"><a href="#检查外网连接状态" class="headerlink" title="检查外网连接状态"></a>检查外网连接状态</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/manbuwoniu/p/12598733.html">c#检查网络是否连接互联网的方法</a><br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/651908760822565645.html">C#循环ping多个IP</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static bool ChinarPing(string url)</span><br><span class="line">        &#123;</span><br><span class="line">            bool result=true;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                string[] urlArray = url.Split(&#x27;,&#x27;);</span><br><span class="line">                for (int i = 0; i &lt; urlArray.Length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Ping p = new Ping();</span><br><span class="line">                    PingReply pr = p.Send(urlArray[i]);</span><br><span class="line">                    if (pr.Status != IPStatus.Success)</span><br><span class="line">                        result = false;</span><br><span class="line">                &#125;</span><br><span class="line">                return result;</span><br><span class="line">            &#125;</span><br><span class="line">            catch</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;外网连接失败，无法ping通&quot;+url);</span><br><span class="line">                //将flag置为false，文本框不勾选，停止程序</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="同步系统时钟"><a href="#同步系统时钟" class="headerlink" title="同步系统时钟"></a>同步系统时钟</h3><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/20b68a88aeba53796cec62a8.html">如何使用w32time</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34195142/article/details/92973252">Windows server 时间服务</a><br><a target="_blank" rel="noopener" href="http://www.hongxiekeji.com/news/721.html">W32time自动更新时间</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/e295166319/article/details/77932082">Process方法调用cmd执行命令</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/babycool/p/3570648.html">程序调用cmd执行命令</a><br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/176835734063068804.html">判断dos命令是否执行完毕</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static bool setSystemTime(string cmd)</span><br><span class="line">        &#123;</span><br><span class="line">            Process p = new Process();</span><br><span class="line">            p.StartInfo.FileName = &quot;cmd.exe&quot;;</span><br><span class="line">            p.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动</span><br><span class="line">            p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息</span><br><span class="line">            p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息</span><br><span class="line">            p.StartInfo.RedirectStandardError = true;//重定向标准错误输出</span><br><span class="line">            p.StartInfo.CreateNoWindow = true;//不显示程序窗口</span><br><span class="line">            p.Start();//启动程序</span><br><span class="line">            </span><br><span class="line">            p.StandardInput.WriteLine(cmd);//这里就是执行这些命令，相当于在cmd窗口敲了一遍这些命令</span><br><span class="line">            p.StandardInput.AutoFlush = true;// 前面一个命令不管是否执行成功都执行后面(exit)命令，如果不执行exit命令，后面调用ReadToEnd()方法会假死</span><br><span class="line">            p.StandardInput.WriteLine(&quot;exit&quot;);</span><br><span class="line">            string output = p.StandardOutput.ReadToEnd();</span><br><span class="line">            p.WaitForExit();//等待程序执行完退出进程</span><br><span class="line">            p.Close();</span><br><span class="line">            if (output.Contains(&quot;成功&quot;))</span><br><span class="line">                return true;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序结构调整"><a href="#程序结构调整" class="headerlink" title="程序结构调整"></a>程序结构调整</h3><p>现在的程序运行结果如下<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/13.png"><br>考虑到小工具是原来有数据项，等到点击按钮后才执行事件并修改数据项中的显示数据。<br>此外，复选框是用户可以自己调整的，选择是否执行该条命令。因此复选框默认状态是true，用户取消勾选则为false，跳过。<br>考虑ddd聚合模式,尽量不要使用静态方法，子类名称尽量使用名词而不是动词。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/netfocus/p/3307971.html">关于聚合设计的几个原则</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33943836/article/details/90628891">ENode框架Conference案例分析系列</a></p>
+<h3 id="提交分支"><a href="#提交分支" class="headerlink" title="提交分支"></a>提交分支</h3><p>VS团队资源管理器新建分支。<br>同步，将本地修改的文件推送到新建的远程分支。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/12.png"><br>登录gitlab创建一个合并请求。<br>再点击审核通过。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/10.png"><br>最后同意合并。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/11.png"></p>
+<p><strong>题外话</strong>：百度输入框内通过site选项筛选出某个网站上的相关内容<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/9.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">简易进程管理器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-06 13:34:01" itemprop="dateCreated datePublished" datetime="2021-12-06T13:34:01+08:00">2021-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-14 14:23:26" itemprop="dateModified" datetime="2021-12-14T14:23:26+08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -957,87 +1129,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-29 14:13:15" itemprop="dateCreated datePublished" datetime="2021-11-29T14:13:15+08:00">2021-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:29:59" itemprop="dateModified" datetime="2021-12-14T14:29:59+08:00">2021-12-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1103,7 +1198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

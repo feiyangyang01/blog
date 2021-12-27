@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,207 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">D-Bus学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 14:48:25" itemprop="dateCreated datePublished" datetime="2021-12-14T14:48:25+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-24 10:49:42" itemprop="dateModified" datetime="2021-12-24T10:49:42+08:00">2021-12-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizzywu/article/details/7651483?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.highlightwordscore&spm=1001.2101.3001.4242.2">DBus介绍</a></p>
+<h3 id="D-Bus概述"><a href="#D-Bus概述" class="headerlink" title="D-Bus概述"></a>D-Bus概述</h3><p>D-Bus是一种<strong>本地进程间通信机制</strong>。D-Bus的特点是轻量级、快速，为主流桌面环境提供统一的进程间通信界面。<br>与其他重量级的进程间通信技术不同，D-Bus并未使用会话进行通信。D-Bus使用了<strong>状态以及连接</strong>的概念，使其比UDP等低级的信息传输协议更“聪明”。另一方面，它传送的是<strong>离散消息</strong>，这又与TCP协议将数据看做“流”有所不同。D-Bus支持<strong>点对点</strong>的传信，以及<strong>广播/订阅式</strong>的传信两种传信方式。</p>
+<h3 id="与编程语言的绑定"><a href="#与编程语言的绑定" class="headerlink" title="与编程语言的绑定"></a>与编程语言的绑定</h3><p>与一般的通信概念相比，使用D-Bus时应该更倾向于使用面向对象的思维方式。D-Bus在不同语言的实现接口差别很大，而且在一些语言中显得很简单。</p>
+<h3 id="Buses-总线"><a href="#Buses-总线" class="headerlink" title="Buses(总线)"></a>Buses(总线)</h3><p>D-Bus有两个主要组成部分：<br>一是<strong>点对点通信的支持库</strong>，任何想用D-Bus通信的进程都可以引用；<br>二是<strong>dbus服务进程</strong>，其作用类似于总线，进程可以连接到这个总线，并在总线上传输消息。<br>典型的使用流程是：进程使用支持库，连接到服务进程总线，并收发消息。<br>一个系统中可以同时存在多条D-Bus总线。</p>
+<h3 id="Addresses"><a href="#Addresses" class="headerlink" title="Addresses"></a>Addresses</h3><p>每条总线都有总线地址，进程通过这个地址连接到总线。<br>总线地址一般是类似于”/tmp/.hiddensocket”这类Socket接口，但也有可能是TCP端口，或者其他通信方式接口。具体如何使用这些接口通信，是完全封装在dbus支持库中。我们一般只说客户进程打开并使用到总线的连接。</p>
+<h3 id="Bus-Name"><a href="#Bus-Name" class="headerlink" title="Bus Name"></a>Bus Name</h3><p>总线上的每个连接都有一个或多个名字。这些名字一般叫做连接名(connection’s bus names 或简单地称为 bus names)。连接名由”.”分开的字符组成，比如”com.acme.Foo”，中间的字符可以是字母、数字、连接线、下划线。每个连接拥有一个连接名。<br>当连接建立以后，D-Bus服务会分配一个不可改变的连接名，称为唯一连接名，这个连接名即使在进程结束后也不会再被其他进程所使用。<strong>唯一连接名以冒号开头</strong>，像是这个样子”:34-907″（后面的数字没有任何意义，仅用来区分不同连接）<br>此外，连接还可以引证另外的连接名，比如提供服务的进程可以起一个大家都知道的连接名，以便使用其服务的客户进程连接。这个名字必须<strong>包含两个以上的”.”</strong>，比如：”com.acme.PortableHole”。与唯一名不同的是，这个连接名可以转给其他进程使用。</p>
+<h3 id="Objects（对象）"><a href="#Objects（对象）" class="headerlink" title="Objects（对象）"></a>Objects（对象）</h3><p>总线中信息流向的<strong>端点</strong>在D-Bus中称为对象。对象由客户进程创建，并在连接进程中保持不变。对象是客户进程提供服务的方式，客户进程可以创建多个对象。<br>总线的通信以对象为中心，其上的任何信息不外乎以下三类：<br>发送到对象上的请求；<br>从对象到请求进程的请求的响应；<br>单向的广播消息，发送到之前注册过这类消息的进程。<br>因此，从更高的角度看，总线支持两种形式的通信，“<strong>一对一的请求-响应</strong>”发送到对象(<strong>methods</strong>)，及来自于对象的“<strong>一对多的广播-订阅</strong>”(<strong>signals</strong>)。<br><em>每条总线至少都有一个对象</em>，这个对象代表总线本身。客户进程可以通过向这个总线对象发送请求来得到当前总线的状态。后面你将看到，总线对象有更多有用的功能。</p>
+<h3 id="Proxies（代理）"><a href="#Proxies（代理）" class="headerlink" title="Proxies（代理）"></a>Proxies（代理）</h3><p>总线上的对象一般通过代理来访问。总线上的对象位于客户进程以外，而客户可以调用的本地接口与对象通信，此时，本地接口充当了代理的角色。<br>是否要区分代理与对象的概念取决于你如何使用D-Bus。在Java语言中并不区分这两个概念，使你好像是在直接操作本地模块。<br>对象拥有名称，它的构成类似于Unix文件系统中的文件路径，因此通常也称为<strong>路径path</strong>。如代表电子表格中某一栏内容的对象名称可能为”/org/kde/kspread/sheets/3/cells/4/5″。对象名在客户连接中要保持唯一性。为了取得电子表格中这栏内容的代理访问，你需要在电子表格的连接中请求”/org/kde/kspread/sheets/3/cells/4/5″对象。<br>既然任何对象都存在于连接之上，它的名称由连接名与对象本身名称组成。<em>一旦你找到了你需要的对象，并想在程序过程中一直使用这个对象，你一般需要保存这个对象的代理变量。</em>通过代理变量，你可以在以后操作这个对象。</p>
+<h3 id="Methods（方法）"><a href="#Methods（方法）" class="headerlink" title="Methods（方法）"></a>Methods（方法）</h3><p>客户向某对象发送一个请求的过程，看起来就像在这个对象上执行了一个方法：对象被请求执行一个明确的，有名称的动作。如果客户请求执行一个目标对象未提供的方法，将会产生一个错误。<br>方法的定义中可以支持输入参数。对于每个请求，都有一个包含请求结果以及结果数据（输出参数）的响应返回给请求者。当请求无法完成时，响应中将包含异常信息，其中至少有异常名称以及错误信息。</p>
+<h3 id="Signals（信号）"><a href="#Signals（信号）" class="headerlink" title="Signals（信号）"></a>Signals（信号）</h3><p>信号，这种通信形式依然遵从面向对象概念，<strong>它是从对象发出但没有特定目的地址的单向数据广播</strong>。客户进程可以预先注册其感兴趣的信号，如特定名称的信号或从某个对象发出的信号等。当对象发出信号后，所有订阅了该信号的客户将收到此信号的复本。接收端可能有多种情况出现，或者有一个客户，或者有多个客户，或者根本没有客户对这个信号感兴趣。对于信号来说没有响应消息，发出信号的对象不会知道是不是有客户在接收，有多少客户接收，以及从客户端收到任何反馈。<br>信号一般用来广播一些客户可能会感兴趣的事件，比如某个其他的客户与总线的连接断开等。这些信号来自总线对象，因此从信号中客户可以分辨断线是由于正常退出、被杀掉或者程序崩溃。</p>
+<h3 id="Interfaces（接口）"><a href="#Interfaces（接口）" class="headerlink" title="Interfaces（接口）"></a>Interfaces（接口）</h3><p>每个对象都具有一些方法、以及可以产生特定的信号。方法与信号的集合称为这个对象的成员。<br>对象的所有成员都通过接口来定义。与JAVA类似，接口就是成员声明的集合。接口的实现就等于说这个接口提供了其所有方法及信号。所有成员必须按照接口声明的那样来提供服务。<br>对象可以都实现同一个接口。另一方面，某个对象可以同时实现多个接口。D-Bus中<em>没有实现任何接口的对象是没有意义的</em>。对象所有支持的接口集合被称为对象的类型（object’s type）。<br><strong>当客户进程要执行一个对象方法或等待信号时，它必须指明要使用的对象及其对象成员。除此以外，客户可能还要指明对象成员所在的接口。</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总结一下客户程序从还未连接到总线，直至找到其所需要的方法或订阅信号的整个流程。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>表示方法</th>
+<th>栗子</th>
+<th>管理者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总线</td>
+<td>地址</td>
+<td>unix:path=/var/run/dbus/system_bus_socket</td>
+<td>系统设置</td>
+</tr>
+<tr>
+<td>连接</td>
+<td>连接地址</td>
+<td>:34-907 (唯一名)<br>com.mycompany.TextEditor (公共名)</td>
+<td>D-Bus(唯一名)<br>服务进程 (公共名)</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>路径</td>
+<td>/com/mycompany/TextFileManager</td>
+<td>服务进程</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>接口名</td>
+<td>org.freedesktop.Hal.Manager</td>
+<td>服务进程</td>
+</tr>
+<tr>
+<td>成员</td>
+<td>成员名</td>
+<td>ListNames</td>
+<td>服务进程</td>
+</tr>
+</tbody></table>
+<h3 id="信息顺序"><a href="#信息顺序" class="headerlink" title="信息顺序"></a>信息顺序</h3><p>对于同一个对象的请求的到达顺序总会与其发送顺序一致。同样地，对同一目标的响应也会与对象发送顺序一致。<br>但这并不意味所有的消息都会按照发送时间的顺序到达。比如两个客户进程同时向同一个对象发送请求时，对象的接收顺序是不确定的。再比如客户向同一个对象连续发送两个请求，相应的两个响应顺序也是不确定的。对象本身的实现可能使用多线程或内部消息优先级等机制打乱消息的处理顺序。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>到目前为止，我们所举的例子都是基于对象已经被服务进程创建的情况。除此之外，还一另外一种提供服务的方式：<strong>D-Bus服务进程可以按需要启动对应服务。</strong><br>D-Bus服务进程可以按需要启动对应服务。有两种启动方式，它们都需要请求服务的客户提供要连接的公共名：</p>
+<ol>
+<li>使用总线对象所提供的方法</li>
+<li>使用连接公共名，直接调用目标连接上的对象方法</li>
+</ol>
+<h3 id="几种重要元素之间的关系与标识"><a href="#几种重要元素之间的关系与标识" class="headerlink" title="几种重要元素之间的关系与标识"></a>几种重要元素之间的关系与标识</h3><p>D-bus可以分成三部分来看：<br>(1)dbus-daemon，一个dbus的后台守护程序，用于多个应用之间消息的转发；<br>(2)libdbus.so，dbus的功能接口，当你的程序需要使用dbus时，其实就是调用libdbus.so里面的接口；<br>(3)高层封装，如dbus-glib和QT D-bus，这些其实都对D-bus的再封装，让你使用起来更方便。<br>从D-bus官网下载到源码，其实只包含上面所说的１和２两部分，libdbus.so里面的接口也就是官网说的low-level API。</p>
+<p>首先，运行一个dbus-daemon就是创建了一条通信的总线Bus。当一个application连接到这条Bus上面时，就产生了Connection。<br>每个application里面会有不同的Object。这里Object的概念，可以简单地理解为C++里面一个类的实例。从D-bus的概念上说，通信双方是Object，不是application，一个application是可以包含很多个Object的。<br>而一个Object里面又会有不同的Interface，这个Interface我把它理解为Object里面的一个类的成员。这些Interface其实是通信方式的集合。<br>这里又牵扯出来一个通信方式，D-bus里面支持的通信方式有两种，一种叫signal，一种叫method。signal简单地讲，其实就是广播，就是一对多的通信方式，可以从app1向其他所有的app发消息，但其他的app是不会对signal进行回复的。method则是一对一的通信，一问一答。这种方式有点像远程调用，app1调用app2的method并传递参数给这个method，获取到这个method返回的结果。<br>上面把D-bus通信里面的几个重要元素都介绍了一下，大概的关系是这样的：<br><img src="/2021/12/14/D-Bus%E5%AD%A6%E4%B9%A0/1.png"><br>几个重要的元素之间的关系都画出来了，那么在程序里面怎么去标识这些元素呢？这里又提出来了一些名词address、bus name、path、Interface name。<br>(1)address是用来标识dbus-daemon的。当一个dbus-daemon运行以后，其他的app该怎么连接到这个dbus-daemon，靠的就是address。address的格式要求像这样：unix:path=/var/run/dbus/system_bus_socket。<br>(2)bus name是用来标识application的。当一个app1连接上dbus-daemon以后，相当于有了一个Connection，但其他的app2、app3怎么找到app1，靠的就是bus name。这个bus name标识了app1的Connection，也就相当于标识了app1。bus name由两种，一种是已冒号开头的唯一标识，像:34-907这样；另一种是通用的标识，是方便人看的，像com.mycompany.TextEditor。<br>(3)path用于标识Object。当app1的Object1要跟app2的Object2通信时，Object1要和Object2通信时，就要告诉dbus-daemon，Object2的path。path的格式像这样，/com/mycompany/TextFileManager，以“/”开头。<br>(4)每个Interface都会有自己的名字，也就是interface name，我们通过这个interface name就可以找到这个interface。interface name像这样org.freedesktop.Hal.Manager<br>(5)Signal和Method也有自己的名字，这个名字没什么特别的格式要求，随便改个名字就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Hexo主题配置及使用问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 14:28:51" itemprop="dateCreated datePublished" datetime="2021-12-14T14:28:51+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-24 18:13:39" itemprop="dateModified" datetime="2021-12-24T18:13:39+08:00">2021-12-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>之前一直想把主题美化一下，但是总出错，点击标签、分类找不到文章，原来是缺少了几个步骤，参考下面的内容完成了美化。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">Hexo博客优化之Next主题美化</a><br><a target="_blank" rel="noopener" href="https://himmy.blog.csdn.net/article/details/93644533?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase">Next主题下添加分类、标签、关于菜单项</a></p>
+<p>今天使用的时候发现报错warning了<br><img src="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/1.png"><br>网上说是因为node版本太高了<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010263423/article/details/106981801/">解决办法</a></p>
+<p>文章tags的写法：<br> tags: [标签1,标签2,标签3]</p>
+<p>hexo d上传时发生错误<br>hexo发生error：spawn failed错误的解决方法<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43336281/article/details/114744671?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162971334816780274119137%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=162971334816780274119137&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2">将https改为http</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1146,182 +1347,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">初始化工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-06 16:12:41" itemprop="dateCreated datePublished" datetime="2021-12-06T16:12:41+08:00">2021-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:23:09" itemprop="dateModified" datetime="2021-12-14T14:23:09+08:00">2021-12-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="窗口界面搭建"><a href="#窗口界面搭建" class="headerlink" title="窗口界面搭建"></a>窗口界面搭建</h3><ol>
-<li>首先把metro框架和MVVM框架引入</li>
-<li>将窗口搭建好，此时涉及到以前遗留的问题，datagrid填充数据时会在最后一行多一个空白行。<br>产生的原因：该行是为了让用户输入信息到里边预留的空白行。所以即使填充的数据没内容一样会出现空白行。<br>解决方法：将datagrid的属性CanUserAddRows属性改为false即可。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/1.png"></li>
-<li>最终效果如下<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/2.png"></li>
-</ol>
-<h3 id="启动Windows-Time服务"><a href="#启动Windows-Time服务" class="headerlink" title="启动Windows Time服务"></a>启动Windows Time服务</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiyucha/p/10199544.html">使用servicecontroller组件控制计算机服务</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxrj2008/article/details/81316485">ServiceController控制windows服务</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiyucha/p/10315829.html">启动windows服务</a></p>
-<ol>
-<li>在services.msc窗口中找到Windows Time服务，服务名称为<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/3.png"></li>
-<li>添加引用<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/4.png"></li>
-<li>编写功能代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public bool StartServices(string serName)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                ServiceController sc = new ServiceController();</span><br><span class="line">                sc.ServiceName = serName;</span><br><span class="line">                sc.Refresh();</span><br><span class="line">                if (sc.Status == ServiceControllerStatus.Stopped)   //判断服务状态</span><br><span class="line">                &#123;</span><br><span class="line">                    sc.Start();                                 //启动服务</span><br><span class="line">                    sc.WaitForStatus(ServiceControllerStatus.Running);</span><br><span class="line">                &#125;</span><br><span class="line">                sc.Close();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (InvalidOperationException)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(serName + &quot;服务启动失败&quot;);</span><br><span class="line">                //将flag置为false，文本框不勾选，停止程序</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
-<li>修改管理员权限<br>打开项目的属性，选择“安全性”，勾选启用ClickOnce安全设置<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/7.png"><br>然后会在Properties里自动生成 app.manifest。打开app.manifest中修改配置<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/6.png"><br>如果现在直接运行会报错,所以要在之前的属性里取消勾选启用ClickOnce安全设置。现在运行程序就会以管理员身份运行了。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/5.png"></li>
-<li>运行结果<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/8.png"></li>
-</ol>
-<h3 id="提高代码通用性"><a href="#提高代码通用性" class="headerlink" title="提高代码通用性"></a>提高代码通用性</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuqiyun/p/13597165.html">接口作用的深入理解</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/allencxw/p/9528443.html">接口的实现与继承</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zwj7612356/article/details/8272520?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.showsourcetag&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.showsourcetag">委托和事件</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengfuwanliu/p/10892940.html">EventHandler定义与使用</a><br>notice:非抽象子类继承父类时要实现父类中的所有抽象方法。</p>
-<p>将MainViewModel类作为父类，其中包含委托事件和Status方法。StartService和NetworkInfo是子类。<br>通过MainViewModel方法调用子类中的方法并将结果返回到窗口显示。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;MainModel&gt; _eventList = new List&lt;MainModel&gt;();</span><br><span class="line">        public List&lt;MainModel&gt; EventList</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return this._eventList;</span><br><span class="line">            &#125;</span><br><span class="line">            set</span><br><span class="line">            &#123;</span><br><span class="line">                this._eventList = value;</span><br><span class="line">                this.RaisePropertyChanged(&quot;_eventList&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public MainViewModel()</span><br><span class="line">        &#123;</span><br><span class="line">            EventList = new List&lt;MainModel&gt;() &#123;StartService.timeser,NetworkInfo.netInfo &#125;;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">        public static string Status(bool statu)</span><br><span class="line">        &#123;</span><br><span class="line">            if (statu)</span><br><span class="line">            &#123;</span><br><span class="line">                return &quot;执行成功&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            return &quot;正在处理&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>整体代码的可用性还不够，后期继续修改。</p>
-<h3 id="检查外网连接状态"><a href="#检查外网连接状态" class="headerlink" title="检查外网连接状态"></a>检查外网连接状态</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/manbuwoniu/p/12598733.html">c#检查网络是否连接互联网的方法</a><br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/651908760822565645.html">C#循环ping多个IP</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static bool ChinarPing(string url)</span><br><span class="line">        &#123;</span><br><span class="line">            bool result=true;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                string[] urlArray = url.Split(&#x27;,&#x27;);</span><br><span class="line">                for (int i = 0; i &lt; urlArray.Length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Ping p = new Ping();</span><br><span class="line">                    PingReply pr = p.Send(urlArray[i]);</span><br><span class="line">                    if (pr.Status != IPStatus.Success)</span><br><span class="line">                        result = false;</span><br><span class="line">                &#125;</span><br><span class="line">                return result;</span><br><span class="line">            &#125;</span><br><span class="line">            catch</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;外网连接失败，无法ping通&quot;+url);</span><br><span class="line">                //将flag置为false，文本框不勾选，停止程序</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="同步系统时钟"><a href="#同步系统时钟" class="headerlink" title="同步系统时钟"></a>同步系统时钟</h3><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/20b68a88aeba53796cec62a8.html">如何使用w32time</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34195142/article/details/92973252">Windows server 时间服务</a><br><a target="_blank" rel="noopener" href="http://www.hongxiekeji.com/news/721.html">W32time自动更新时间</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/e295166319/article/details/77932082">Process方法调用cmd执行命令</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/babycool/p/3570648.html">程序调用cmd执行命令</a><br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/176835734063068804.html">判断dos命令是否执行完毕</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static bool setSystemTime(string cmd)</span><br><span class="line">        &#123;</span><br><span class="line">            Process p = new Process();</span><br><span class="line">            p.StartInfo.FileName = &quot;cmd.exe&quot;;</span><br><span class="line">            p.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动</span><br><span class="line">            p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息</span><br><span class="line">            p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息</span><br><span class="line">            p.StartInfo.RedirectStandardError = true;//重定向标准错误输出</span><br><span class="line">            p.StartInfo.CreateNoWindow = true;//不显示程序窗口</span><br><span class="line">            p.Start();//启动程序</span><br><span class="line">            </span><br><span class="line">            p.StandardInput.WriteLine(cmd);//这里就是执行这些命令，相当于在cmd窗口敲了一遍这些命令</span><br><span class="line">            p.StandardInput.AutoFlush = true;// 前面一个命令不管是否执行成功都执行后面(exit)命令，如果不执行exit命令，后面调用ReadToEnd()方法会假死</span><br><span class="line">            p.StandardInput.WriteLine(&quot;exit&quot;);</span><br><span class="line">            string output = p.StandardOutput.ReadToEnd();</span><br><span class="line">            p.WaitForExit();//等待程序执行完退出进程</span><br><span class="line">            p.Close();</span><br><span class="line">            if (output.Contains(&quot;成功&quot;))</span><br><span class="line">                return true;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="程序结构调整"><a href="#程序结构调整" class="headerlink" title="程序结构调整"></a>程序结构调整</h3><p>现在的程序运行结果如下<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/13.png"><br>考虑到小工具是原来有数据项，等到点击按钮后才执行事件并修改数据项中的显示数据。<br>此外，复选框是用户可以自己调整的，选择是否执行该条命令。因此复选框默认状态是true，用户取消勾选则为false，跳过。<br>考虑ddd聚合模式,尽量不要使用静态方法，子类名称尽量使用名词而不是动词。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/netfocus/p/3307971.html">关于聚合设计的几个原则</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33943836/article/details/90628891">ENode框架Conference案例分析系列</a></p>
-<h3 id="提交分支"><a href="#提交分支" class="headerlink" title="提交分支"></a>提交分支</h3><p>VS团队资源管理器新建分支。<br>同步，将本地修改的文件推送到新建的远程分支。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/12.png"><br>登录gitlab创建一个合并请求。<br>再点击审核通过。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/10.png"><br>最后同意合并。<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/11.png"></p>
-<p><strong>题外话</strong>：百度输入框内通过site选项筛选出某个网站上的相关内容<br><img src="/2021/12/06/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B7/9.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">简易进程管理器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-06 13:34:01" itemprop="dateCreated datePublished" datetime="2021-12-06T13:34:01+08:00">2021-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:23:26" itemprop="dateModified" datetime="2021-12-14T14:23:26+08:00">2021-12-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1387,7 +1416,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
