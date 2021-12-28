@@ -120,7 +120,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,239 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/30/20211130/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/30/20211130/" class="post-title-link" itemprop="url">WPF基础学习1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-30 09:40:29" itemprop="dateCreated datePublished" datetime="2021-11-30T09:40:29+08:00">2021-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-14 14:22:57" itemprop="dateModified" datetime="2021-12-14T14:22:57+08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>.NET FrameWork框架是.NET平台中不可缺少的一部分，它提供了一个稳定的运行环境来保证我们基于.NET平台开发的各种应用能够正常运转。<br>C#是一种编程语言，可以开发基于.NET平台的应用。<br>.NET平台下两种交互模式：C/S【WPF应用程序】、B/S【Internet应用】</p>
+<p>解决方案：公司<br>项目：部门<br>类：员工</p>
+<ul>
+<li>Program中各个组成部分</li>
+</ul>
+<p>1.using引用命名空间<br>2.namespace项目名称<br>3.类<br>4.函数/方法：函数也叫方法，Main函数是程序的主入口</p>
+<p>.sln 解决方案文件，包含整个解决方案的信息，可以双击运行<br>.csproj C#项目（项目文件），保护项目信息，可以双击运行</p>
+<ul>
+<li>Windows控制台程序<br>Main函数中：<br>Console.WriteLine(“Hello World”); //将括号中的内容输出到控制台<br>Console.ReadKey(); //没有这句程序运行结束就关闭，否则等待键盘有输入才关闭。起到暂停当前程序的作用。</li>
+</ul>
+<p>ctrl+shift+B 生成解决方案，帮助排除语法错误</p>
+<p>移除：删除项目<br>卸载：不能再使用，但是可以右键重新加载</p>
+<ul>
+<li><p>注释<br>//注释符：一是注销作用；二是解释作用<br>/**/多行注释：<br>///文档注释：打上///自动生成，summary是摘要，解释类和方法<br><img src="/2021/11/30/20211130/1.png"></p>
+</li>
+<li><p>VS常用快捷键<br><img src="/2021/11/30/20211130/2.png"></p>
+</li>
+<li><p>数据类型</p>
+</li>
+</ul>
+<p>1)、整数类型:int只能存储整数，不能存储小数。<br>2)、小数类型:double 既能存储整数，也能存储小数，小数点后面的位数15~16位。<br>3)、金钱类型:decimal用来存储金钱，值后面需要加上一个m/M。<br>4)、字符串类型:string用来存储多个文本，也可以存储空，字符串类型的值需要被双引号引起来。<br>5)、字符类型:char用来存储单个字符，最多、最少只能有一个字符，不能存储空。字符类型的值需要用单引号引起来。</p>
+<p>波浪线<br>红色波浪线指语法错误，绿色波浪线警告有可能会出现错误</p>
+<p>变量一定要先声明，再赋值，才能使用。</p>
+<ul>
+<li>命名规则<br>首先保证变量名称有意义：</li>
+</ul>
+<p>1.必须以”字母”_或@符号开头，不要以数字开头<br>2.后面可以跟任意”字母”、数字、下划线<br>注意:<br>1.你起的变量名不要与c#系统中的关键字重复．<br>2.在c#中，大小写是敏感的<br>3.同一个变量名不允许重复定义</p>
+<ul>
+<li>命名规范</li>
+</ul>
+<p>1.Camel骆驼命名规范。要求变量名首单词的首字母要小写，其余每个单词的首字母都大写。多用于给变量命名。<br>2.Pascal命名规范。要求每个单词的首字母都要大写，其余字母小写。多用于给类或者方法命名。</p>
+<ul>
+<li>+号的作用</li>
+</ul>
+<p>1.连接：当+号两边有一边是字符串时，起连接的作用<br>2.相加：两边是数字的时候</p>
+<ul>
+<li>占位符</li>
+</ul>
+<p>1.使用方法：先挖个坑，再填个坑。{0}、{1}、{2}<br>Console.WriteLine(“第一个数字是{0}，第二个数字是{1}，第三个数字是{2}”,n1,n2,n3);<br>2.挖了几个坑填几个坑，填的多了不报错，但是不会显示多的。填少了语法不会错误，但会有异常。<br>3.输出顺序：按照挖坑的顺序{x}输出</p>
+<p>异常：语法上无错，再程序运行过程中，由于某些原因出现了问题，使程序不能再正常的运行。</p>
+<ul>
+<li><p>交换变量<br>交换两个int类型的变量，要求不使用第三方的变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int n1=10; </span><br><span class="line">int n2=20;</span><br><span class="line">n1=n1-n2;//n1=-10,n2=20</span><br><span class="line">n2=n1+n2;//n1=-10，n2=10</span><br><span class="line">n1=n2-n1;</span><br><span class="line">/*  a=a+b;</span><br><span class="line">    b=a-b;</span><br><span class="line">    a=a-b;  */</span><br></pre></td></tr></table></figure></li>
+<li><p>接收用户的输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(&quot;请输入你的姓名&quot;);</span><br><span class="line">string name = Console.ReadLine();</span><br><span class="line">Console.WriteLine(&quot;确认您的姓名&#123;0&#125;&quot;, name);</span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure></li>
+<li><p>转义符<br>转义符指的是一个’&#39;+一个特殊的字符，组成了一个具有特殊意义的字符。<br>\n：表示换行<br>&quot;：表示一个英文半角的双引号<br>\t：tab键制表 字符串排版对齐<br>\b：backspace键，将\b前边的一个字符删除，放到字符串两段没有效果。<br>tips：windows操作系统下\n不起效，需要\r\n才生效<br>\\：表示一个\</p>
+</li>
+<li><p>@符号</p>
+</li>
+</ul>
+<p>1.取消\在字符串中的转义作用；<br>2.将字符串按照编辑的原格式输出。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/29/FirstBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/29/FirstBlog/" class="post-title-link" itemprop="url">WPF学习+Hexo配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-29 18:01:00" itemprop="dateCreated datePublished" datetime="2021-11-29T18:01:00+08:00">2021-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-14 14:23:43" itemprop="dateModified" datetime="2021-12-14T14:23:43+08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuesuc/article/details/51524965">分支管理学习</a><br></p>
+<ul>
+<li>git提交代码的时候，为什么要提交代码到自己的分支后，再合并到主干?<br><br>在团队协作的开发中，如果每个人都在原始分支master上进行开发各自的功能，那么极易产生冲突，造成管理混乱。因此，合理管理方式为每个人在原始分支上新建一个分支，完成后将自己的本地分支推送到远程仓库，由git管理员来管理远程分支，选择是否接受此分支的合并。同时，也是保证了主干的准确性。<br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xpj8888/article/details/101511273">WPF资源Source绑定</a></li>
+</ul>
+<hr>
+<h3 id="1-尝试在ViewModel类中执行弹窗代码。"><a href="#1-尝试在ViewModel类中执行弹窗代码。" class="headerlink" title="1. 尝试在ViewModel类中执行弹窗代码。"></a>1. 尝试在ViewModel类中执行弹窗代码。</h3><p>从远程仓库clone主干代码，修改项目名称。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wzh2010/p/6679025.html">参考文档</a><br>点击按钮弹出消息框：<br><img src="/2021/11/29/FirstBlog/15.png"></p>
+<h3 id="2-多线程的运用、锁、信号量。"><a href="#2-多线程的运用、锁、信号量。" class="headerlink" title="2. 多线程的运用、锁、信号量。"></a>2. 多线程的运用、锁、信号量。</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kenjianqi1647/article/details/83792575">参考文档</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/threading-model?redirectedfrom=MSDN&view=netframeworkdesktop-4.8#threading_overview">栗子</a></p>
+<h3 id="3-单例模式。为什么要用单例模式，单例模式和静态变量有什么区别。单例模式有哪几种区别。"><a href="#3-单例模式。为什么要用单例模式，单例模式和静态变量有什么区别。单例模式有哪几种区别。" class="headerlink" title="3. 单例模式。为什么要用单例模式，单例模式和静态变量有什么区别。单例模式有哪几种区别。"></a>3. 单例模式。为什么要用单例模式，单例模式和静态变量有什么区别。单例模式有哪几种区别。</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a772304419/article/details/89709608">为什么要用单例模式</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010004317/article/details/68957682">单例模式与静态变量的区别</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjk-main/p/11435287.html">单例模式种类</a><br>为什么用单例模式？<br>从面向对象的角度：单例模式是面向对象的，面向对象的代码提供一个更好的编程思想。如果应该使用非静态的方法，但是创建类时只要维护一份实例，就需要用单例模式。<br>（静态方法是基于对象的，面向对象的继承和多态，都是非静态方法）<br>从功能的角度：单例模式可以控制单例数量，进行有意义的派生，对实例的创建有更自由的控制。<br>单例模式和静态变量的区别？<br>（1）静态变量方式不能确保某类的实例的唯一性。单例模式解决了引用唯一实例可能被重新赋值的问题。<br>（2）静态变量的定义位置不确定，需要协议商定，将这些静态变量分类别定义在一个固定的位置。单例模式则不需要进行商定，团队成员直接使用。<br>（3）声明静态变量时一般直接对其进行初始化赋值，占用内存为该初始化赋值对象实际内存。单例模式通过懒汉创建法延迟初始化，声明时实际内存占用只有4字节。<br>单例模式的区别？<br>常用的单例模式有懒汉式、饿汉式。主要体现在加载时间上，饿汉式是在类加载时就加载，懒汉式时在需要用到该实例时才加载。如果确定某个单例一定会用上，饿汉式是一种很合适方法；如果不一定会用的某个单例，懒汉式是比较合适的方法。</p>
+<h3 id="4-泛型、父类、接口，重载。"><a href="#4-泛型、父类、接口，重载。" class="headerlink" title="4. 泛型、父类、接口，重载。"></a>4. 泛型、父类、接口，重载。</h3><p>泛型（Generic） 允许延迟编写类或方法中的编程元素的数据类型的规范，直到实际在程序中使用它的时候。换句话说，泛型允许您编写一个可以与任何数据类型一起工作的类或方法。可以创建自己的泛型接口、泛型类、泛型方法、泛型事件和泛型委托。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/csharp/csharp-generic.html">泛型栗子</a></p>
+<p>父类：继承时的基类，对于派生类来说这个基类就是它的父类。<br>派生类继承了基类的成员变量和成员方法。因此父类对象应在子类对象创建之前被创建。<br>多重继承指的是一个类别可以同时从多于一个父类继承行为与特征的功能。与单一继承相对，单一继承指一个类别只可以继承自一个父类。<br>C# 不支持多重继承。但是，可以使用接口来实现多重继承。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/csharp/csharp-inheritance.html">继承栗子</a></p>
+<p>接口：接口定义了属性、方法和事件，这些都是接口的成员。接口只包含了成员的声明。成员的定义是子类的责任。接口提供了子类应遵循的标准结构。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/csharp/csharp-interface.html">接口栗子</a></p>
+<p>重载：重定义或重载 C# 中内置的运算符。重载运算符是具有特殊名称的函数，是通过关键字 operator 后跟运算符的符号来定义的。与其他函数一样，重载运算符有返回类型和参数列表。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/csharp/csharp-operator-overloading.html">重载栗子</a></p>
+<h3 id="5-堆和栈有何区别，值类型和引用类型是什么。"><a href="#5-堆和栈有何区别，值类型和引用类型是什么。" class="headerlink" title="5. 堆和栈有何区别，值类型和引用类型是什么。"></a>5. 堆和栈有何区别，值类型和引用类型是什么。</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tonney/archive/2011/04/28/2032205.html">值类型、引用类型含义</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/315659027">堆栈区别</a><br>C#两种类据类型：值类型和引用类型；<br><img src="/2021/11/29/FirstBlog/16.png"></p>
+<ul>
+<li>值类型与引用类型的区别：<br>1、它们存储的位置不一样<br>class(类）实例化出来的对象，指向了内存堆中分配的空间<br>struct(结构) 实例化出来的对象，是在内存栈中分配<br>2、如果是引用类型，当两个对象指向同一个地方，修改某一个的时候，其它对象的值会发生改变</li>
+<li>堆栈区别：<br>1、堆栈空间分配区别<br>栈（操作系统）：由操作系统（编译器）自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。<br>堆（操作系统）：一般由程序员分配释放，若程序员不释放，程序结束时可能由操作系统回收，分配方式类似于链表。<br>2、堆栈缓存方式区别<br>栈使用的是一级缓存， 它们通常都是被调用时处于存储空间中，调用完毕立即释放。<br>堆则是存放在二级缓存中，生命周期由虚拟机的垃圾回收算法来决定（并不是一旦成为孤儿对象就能被回收）。所以调用这些对象的速度要相对来得低一些。<br>3、堆栈数据结构区别<br>堆（数据结构）：堆可以被看成是一棵树，如：堆排序。<br>栈（数据结构）：一种先进后出的数据结构。</li>
+</ul>
+<hr>
+<ul>
+<li><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">下载地址</a><br><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/13f45e24b1de/">安装教程</a><br></li>
+</ul>
+<p><img src="/2021/11/29/FirstBlog/1.png"><br><code> npm config set prefix &quot;C:\node\node_global&quot;</code><br><br><code>npm config set cache &quot;C:\node\node_cache&quot; </code></p>
+<blockquote>
+<p>以上操作表示，修改全局包下载目录为C:\node\node_global,缓存目录为C:\node\node_cache,并会自动创建node_global目录，而node_cache目录是缓存目录，会在你下载全局包时自动创建<br></p>
+</blockquote>
+<p><img src="/2021/11/29/FirstBlog/2.png"><br><br>修改环境变量为:<br><img src="/2021/11/29/FirstBlog/3.png"><br></p>
+<ul>
+<li><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo:"></a>安装Hexo:</h3><img src="/2021/11/29/FirstBlog/4.png"><br><br>下载安装成功:<br><br><img src="/2021/11/29/FirstBlog/5.png"><br></li>
+<li><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34626094/article/details/113074171">博客搭建教程</a><br>到新的目录下,进行Hexo初始博客<br><img src="/2021/11/29/FirstBlog/6.png"><br>此时可以在localhost:4000访问本地博客<br><img src="/2021/11/29/FirstBlog/7.png"></li>
+</ul>
+<p><strong>远程部署博客</strong><br>首先在github上创建一个名为 用户名.github.io的仓库<br><img src="/2021/11/29/FirstBlog/8.png"><br>在blog根目录里的_config.yml文件（站点配置文件）末尾写上并保存：<br><img src="/2021/11/29/FirstBlog/9.png"><br>最后安装Git部署插件<br><img src="/2021/11/29/FirstBlog/10.png"></p>
+<p><strong>发布文章</strong><br>在命令行或者git bash中进入hexo文件目录，再执行下面的命令<br><code>hexo new post &quot;article title&quot;</code><br><img src="/2021/11/29/FirstBlog/11.png"></p>
+<p>这时候在你的电脑的目录下:hexosource _posts将会看到md文件<br><br>用MarDown编辑器打开就可以编辑文章了。文章编辑好之后，运行生成、部署命令:<br><br><code>hexo g // 生成 </code><br><br><code>hexo d // 部署 </code><br><br><code>hexo g -d #在部署前先生成</code><br><img src="/2021/11/29/FirstBlog/12.png"><br><img src="/2021/11/29/FirstBlog/13.png"><br>部署成功后访问 <a target="_blank" rel="noopener" href="https://yourname.github.io/">https://yourname.github.io</a> 就可以看到生成的文章。<br><img src="/2021/11/29/FirstBlog/14.png"></p>
+<p>图片插件，只要创建与md文件名相同的文件夹，将图片放入，即可直接使用【图片名.png】来查看。<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">配置教程</a><br>此时，<strong>本地访问Hexo</strong>，只要在cmd中进入Hexo文件夹下，输入<br><code>hexo server</code>即可</p>
+<hr>
+<p>F2 重命名<br>Ctrl+A(全选)+(Ctrl+C)+(Ctrl+V)快速复制文件名称<br>F5 浏览器刷新<br>F12 浏览器调试模式</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -302,7 +535,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +548,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
