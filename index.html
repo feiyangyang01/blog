@@ -125,12 +125,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
 
   </li>
   </ul>
@@ -160,6 +160,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/" class="post-title-link" itemprop="url">HTTP通信2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-29 10:14:08 / 修改时间：18:03:59" itemprop="dateCreated datePublished" datetime="2021-12-29T10:14:08+08:00">2021-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>HttpUrlConnect是JAVA的原生类，HttpClient是Apache Jakarta Common下的子项目，支持HTTP协议的客户端编程工具包。这是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/UUUz/p/9990891.html">Httpclient和HttpUrlConnect区别</a>。<br>关于URLConnection还可以看：<a target="_blank" rel="noopener" href="http://www.blogjava.net/supercrsky/articles/247449.html">JDK中的URLConnection参数详解</a>。<br>有时间可以了解<a target="_blank" rel="noopener" href="https://www.cnblogs.com/shenjiangwei/p/11068312.html">HttpClient的使用方法</a>。</p>
+<h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/117264481886">Java代码发送Http的GET和POST请求</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0842b888d94a">如何在Java中发送HTTP GET/POST请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qiqishuang/article/details/51644372">Java发送http的get、post、put请求</a><br>在看代码的过程中涉及到的知识点：</p>
+<ul>
+<li>UserAgent:<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c5cf6a1967d1">查看方式</a></li>
+<li>OutputStreamWriter类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ai_bao_zi/article/details/81168420">JAVA基础知识之OutputStreamWriter流</a></li>
+<li>DataOutputStream类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lili13897741554/article/details/81876443">Java IO流</a><blockquote>
+<p>writeByte(int v)—将一个字节写到数据输出流中(实际是基础输出流)</p>
+</blockquote>
+</li>
+<li>InputStream类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ddd295569371/article/details/104430626">getInputStream与getOutputStream详解</a><blockquote>
+<p>getOutputStream方法得到的是一个输出流，客户端的Socket对象上的getOutputStream方法得到的输出流其实就是发送给服务器端的数据。</p>
+</blockquote>
+</li>
+</ul>
+<p>使用gin编写的r.POST(“/somePost”, postting),postting内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">postting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	message := c.PostForm(<span class="string">&quot;message&quot;</span>)</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;anonymous&quot;</span>)</span><br><span class="line"></span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;posted&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: message,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/somePost能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/1.png"><br>Java运行访问到/somePost,读取并修改其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/6.png"></p>
+<h3 id="PUT请求"><a href="#PUT请求" class="headerlink" title="PUT请求"></a>PUT请求</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zcf520android/article/details/51314959">HttpURLConnection 发送PUT请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36666651/article/details/79835777">使用HttpURLConnection的put或者post请求上传文件</a><br><a target="_blank" rel="noopener" href="https://codingdict.com/questions/134100">HttpURLConnection发送PUT，DELETE HTTP请求</a></p>
+<p>使用gin编写的r.PUT(“/somePut”, putting),putting内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">putting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;put&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    <span class="string">&quot;456&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/somePut能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/2.png"><br>Java运行访问到/somePut,读取其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/5.png"></p>
+<h3 id="DELETE请求"><a href="#DELETE请求" class="headerlink" title="DELETE请求"></a>DELETE请求</h3><p>使用gin编写的r.DELETE(“/someDELETE”, delete),delete内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delete</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;sandy&quot;</span>)</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;delete&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;helloworld&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">        <span class="string">&quot;describtion&quot;</span>: <span class="string">&quot;this is a delete request&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/someDELETE能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/3.png"><br>Java运行访问到/someDELETE,读取其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/4.png"></p>
+<p>###PUT请求上传文件<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangchengzi/p/9865100.html">给idea设置默认使用的maven配置</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38384994/article/details/115116418">idea配置自带maven</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -183,9 +279,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-28 17:08:51 / 修改时间：18:12:45" itemprop="dateCreated datePublished" datetime="2021-12-28T17:08:51+08:00">2021-12-28</time>
+              <time title="创建时间：2021-12-28 17:08:51" itemprop="dateCreated datePublished" datetime="2021-12-28T17:08:51+08:00">2021-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 17:47:47" itemprop="dateModified" datetime="2021-12-29T17:47:47+08:00">2021-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
             </span>
 
           
@@ -238,10 +349,16 @@
 <h3 id="Gin学习"><a href="#Gin学习" class="headerlink" title="Gin学习"></a>Gin学习</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013210620/article/details/82773905">golangWeb框架—github.com/gin-gonic/gin学习</a></p>
 <h4 id="post传参"><a href="#post传参" class="headerlink" title="post传参"></a>post传参</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	router := gin.Default()</span><br><span class="line"></span><br><span class="line">	router.POST(<span class="string">&quot;/someGet&quot;</span>, getting)</span><br><span class="line">	router.Run()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getting</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">	message := c.PostForm(<span class="string">&quot;message&quot;</span>)</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;anonymous&quot;</span>)</span><br><span class="line"></span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;posted&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: message,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>由于是post方式，不能通过浏览器输入网址（get）访问，使用postman，效果图如下：</p>
-<p><img src="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/2.png"></p>
-<p>可以通过传值修改json字段</p>
-<p><img src="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/3.png"></p>
+<p>由于是post方式，不能通过浏览器输入网址（get）访问，使用postman，效果图如下：<br><img src="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/2.png"></p>
+<p>可以通过传值修改json字段<br><img src="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/3.png"></p>
+<h4 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h4><ol>
+<li>首先建立新的空文件夹</li>
+<li>初始化：go mod init upfile</li>
+<li>将github的<a target="_blank" rel="noopener" href="https://github.com/gin-gonic/examples/tree/master/upload-file/single">示例代码</a>导入到本地</li>
+<li>下载import包：go get github.com/gin-gonic/gin</li>
+<li>运行：go run ./main.go</li>
+<li>直接访问localhost:8080，看到如下页面：<br><img src="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/4.png"><br>ps：<a target="_blank" rel="noopener" href="https://www.pianshen.com/article/15081184761/">Psotman-POST方式上传文件</a></li>
+</ol>
 
       
     </div>
@@ -284,9 +401,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-28 09:24:46 / 修改时间：16:20:32" itemprop="dateCreated datePublished" datetime="2021-12-28T09:24:46+08:00">2021-12-28</time>
+              <time title="创建时间：2021-12-28 09:24:46" itemprop="dateCreated datePublished" datetime="2021-12-28T09:24:46+08:00">2021-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 17:46:42" itemprop="dateModified" datetime="2021-12-29T17:46:42+08:00">2021-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
             </span>
 
           
@@ -391,9 +523,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-27 13:57:30 / 修改时间：15:12:40" itemprop="dateCreated datePublished" datetime="2021-12-27T13:57:30+08:00">2021-12-27</time>
+              <time title="创建时间：2021-12-27 13:57:30" itemprop="dateCreated datePublished" datetime="2021-12-27T13:57:30+08:00">2021-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 17:47:14" itemprop="dateModified" datetime="2021-12-29T17:47:14+08:00">2021-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
             </span>
 
           
@@ -487,9 +634,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-27 09:48:26 / 修改时间：17:54:38" itemprop="dateCreated datePublished" datetime="2021-12-27T09:48:26+08:00">2021-12-27</time>
+              <time title="创建时间：2021-12-27 09:48:26" itemprop="dateCreated datePublished" datetime="2021-12-27T09:48:26+08:00">2021-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 17:46:22" itemprop="dateModified" datetime="2021-12-29T17:46:22+08:00">2021-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
             </span>
 
           
@@ -737,8 +899,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-27 17:33:38" itemprop="dateModified" datetime="2021-12-27T17:33:38+08:00">2021-12-27</time>
+                <time title="修改时间：2021-12-29 17:46:18" itemprop="dateModified" datetime="2021-12-29T17:46:18+08:00">2021-12-29</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
 
           
 
@@ -1116,97 +1287,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">java-DBus开发</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-20 16:42:32" itemprop="dateCreated datePublished" datetime="2021-12-20T16:42:32+08:00">2021-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-24 10:49:57" itemprop="dateModified" datetime="2021-12-24T10:49:57+08:00">2021-12-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在D-Feet上找到关机的命令<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/1.png"></p>
-<p>查看虚拟机wifi信息，发现硬件没有打开<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/2.png"></p>
-<hr>
-<p>由于最新版的java-dbus3.3.0没有参考文档，API与现存的API文档不同，使用起来较为困难，更换java-dbus的版本为2.7.1。将pom.xml文件内容修改：<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/3.png"><br>再清空缓存重启后，重新build，完成版本的更改。<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/4.png"><br>此时可以使用API文档上的low-level参考代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">			BusAddress address = <span class="keyword">new</span> BusAddress(</span><br><span class="line">					System.getenv(<span class="string">&quot;DBUS_SESSION_BUS_ADDRESS&quot;</span>));</span><br><span class="line">			Transport conn = <span class="keyword">new</span> Transport(address);</span><br><span class="line"></span><br><span class="line">			Message m = <span class="keyword">new</span> MethodCall(<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;/org/freedesktop/DBus&quot;</span>,</span><br><span class="line">					<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;Hello&quot;</span>, (<span class="keyword">byte</span>) <span class="number">0</span>, <span class="keyword">null</span>);</span><br><span class="line">			conn.mout.writeMessage(m);</span><br><span class="line"></span><br><span class="line">			m = conn.min.readMessage();</span><br><span class="line">			System.out.println(<span class="string">&quot;Response to Hello is: &quot;</span>+m);</span><br><span class="line"></span><br><span class="line">			m = <span class="keyword">new</span> MethodCall(<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;/org/freedesktop/DBus&quot;</span>,</span><br><span class="line">					<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;RequestName&quot;</span>, (<span class="keyword">byte</span>) <span class="number">0</span>,</span><br><span class="line">					<span class="string">&quot;su&quot;</span>, <span class="string">&quot;org.testname&quot;</span>, <span class="number">0</span>);</span><br><span class="line">			conn.mout.writeMessage(m);</span><br><span class="line">			conn.disconnect();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果为：<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/5.png"></p>
-<hr>
-<p>查询正在运行的服务<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/6.png"></p>
-<p>调用异步方法时抛出异常：<br>org.freedesktop.dbus.exceptions.DBusExecutionException: org.freedesktop.DBus$Introspectable.LockSession(java.lang.String)<br>原因是为官方的Introspectable是写好了的，自己使用需要重新定义一个接口实现dbusinterface。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DBusInterfaceName(&quot;org.freedesktop.login1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Login1</span> <span class="keyword">extends</span> <span class="title">DBusInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ListSessions</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LockSession</span> <span class="params">(String session)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再调用该接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DBusConnection conn;</span><br><span class="line">		Login intro = <span class="keyword">null</span>;</span><br><span class="line">		conn = DBusConnection.getConnection(DBusConnection.SYSTEM);</span><br><span class="line">		intro = conn.getRemoteObject(</span><br><span class="line">				<span class="string">&quot;org.freedesktop.login1&quot;</span>, <span class="string">&quot;/org/freedesktop/login1&quot;</span>,</span><br><span class="line">				Login.class);</span><br><span class="line"></span><br><span class="line">		intro.LockSession(<span class="string">&quot;2&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			DBusAsyncReply&lt;?&gt; stuffreply = conn.callMethodAsync(intro, <span class="string">&quot;LockSession&quot;</span>,<span class="string">&quot;2&quot;</span>);</span><br><span class="line">			<span class="keyword">if</span> (stuffreply.hasReply()) &#123;</span><br><span class="line">				Object b = stuffreply.getReply();</span><br><span class="line">				System.out.println(b);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span> (Exception e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;error:&quot;</span>+e);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-<p>此时会报错：<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/7.png"><br>先猜测是权限问题所以拒绝返回Rejected send message。<br>查看是否是system session的问题。<br>重新查看了一遍接口，发现是接口引用错误。<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/8.png"><br>成功运行了锁屏。<br>尝试运行ListSession的method，但是方法返回结果包含了object，无法输出。<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/10.png"></p>
-<p>这是什么？<br><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/9.png"></p>
-<p>不小心运行了login1的suspend，系统休眠了，怎么操作都没有反映。重启才解决。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_28672681/article/details/116730839">Linux系统注销</a><br>在Session Bus中找到了用户注销的命令，输入1即可。</p>
-<p><img src="/2021/12/20/java-DBus%E5%BC%80%E5%8F%91/10.png"></p>
-<p><a target="_blank" rel="noopener" href="http://storaged.org/doc/udisks2-api/2.7.1/">DBus2.7.1版本UDisk手册</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1276,14 +1356,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

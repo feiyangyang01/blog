@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="HttpUrlConnect是JAVA的原生类，HttpClient是Apache Jakarta Common下的子项目，支持HTTP协议的客户端编程工具包。这是Httpclient和HttpUrlConnect区别。关于URLConnection还可以看：JDK中的URLConnection参数详解。有时间可以了解HttpClient的使用方法。 POST请求Java代码发送Http的GET和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP通信2">
+<meta property="og:url" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/index.html">
+<meta property="og:site_name" content="Sandy的学习之路">
+<meta property="og:description" content="HttpUrlConnect是JAVA的原生类，HttpClient是Apache Jakarta Common下的子项目，支持HTTP协议的客户端编程工具包。这是Httpclient和HttpUrlConnect区别。关于URLConnection还可以看：JDK中的URLConnection参数详解。有时间可以了解HttpClient的使用方法。 POST请求Java代码发送Http的GET和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/1.png">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/6.png">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/2.png">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/5.png">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/3.png">
+<meta property="og:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/4.png">
+<meta property="article:published_time" content="2021-12-29T02:14:08.000Z">
+<meta property="article:modified_time" content="2021-12-29T10:03:59.714Z">
+<meta property="article:author" content="Sandy">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/1.png">
+
+<link rel="canonical" href="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTTP通信2 | Sandy的学习之路</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sandy的学习之路</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTTP通信2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-29 10:14:08 / 修改时间：18:03:59" itemprop="dateCreated datePublished" datetime="2021-12-29T10:14:08+08:00">2021-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>HttpUrlConnect是JAVA的原生类，HttpClient是Apache Jakarta Common下的子项目，支持HTTP协议的客户端编程工具包。这是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/UUUz/p/9990891.html">Httpclient和HttpUrlConnect区别</a>。<br>关于URLConnection还可以看：<a target="_blank" rel="noopener" href="http://www.blogjava.net/supercrsky/articles/247449.html">JDK中的URLConnection参数详解</a>。<br>有时间可以了解<a target="_blank" rel="noopener" href="https://www.cnblogs.com/shenjiangwei/p/11068312.html">HttpClient的使用方法</a>。</p>
+<h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/117264481886">Java代码发送Http的GET和POST请求</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0842b888d94a">如何在Java中发送HTTP GET/POST请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qiqishuang/article/details/51644372">Java发送http的get、post、put请求</a><br>在看代码的过程中涉及到的知识点：</p>
+<ul>
+<li>UserAgent:<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c5cf6a1967d1">查看方式</a></li>
+<li>OutputStreamWriter类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ai_bao_zi/article/details/81168420">JAVA基础知识之OutputStreamWriter流</a></li>
+<li>DataOutputStream类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lili13897741554/article/details/81876443">Java IO流</a><blockquote>
+<p>writeByte(int v)—将一个字节写到数据输出流中(实际是基础输出流)</p>
+</blockquote>
+</li>
+<li>InputStream类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ddd295569371/article/details/104430626">getInputStream与getOutputStream详解</a><blockquote>
+<p>getOutputStream方法得到的是一个输出流，客户端的Socket对象上的getOutputStream方法得到的输出流其实就是发送给服务器端的数据。</p>
+</blockquote>
+</li>
+</ul>
+<p>使用gin编写的r.POST(“/somePost”, postting),postting内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">postting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	message := c.PostForm(<span class="string">&quot;message&quot;</span>)</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;anonymous&quot;</span>)</span><br><span class="line"></span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;posted&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: message,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/somePost能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/1.png"><br>Java运行访问到/somePost,读取并修改其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/6.png"></p>
+<h3 id="PUT请求"><a href="#PUT请求" class="headerlink" title="PUT请求"></a>PUT请求</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zcf520android/article/details/51314959">HttpURLConnection 发送PUT请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36666651/article/details/79835777">使用HttpURLConnection的put或者post请求上传文件</a><br><a target="_blank" rel="noopener" href="https://codingdict.com/questions/134100">HttpURLConnection发送PUT，DELETE HTTP请求</a></p>
+<p>使用gin编写的r.PUT(“/somePut”, putting),putting内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">putting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;put&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    <span class="string">&quot;456&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/somePut能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/2.png"><br>Java运行访问到/somePut,读取其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/5.png"></p>
+<h3 id="DELETE请求"><a href="#DELETE请求" class="headerlink" title="DELETE请求"></a>DELETE请求</h3><p>使用gin编写的r.DELETE(“/someDELETE”, delete),delete内容如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delete</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;sandy&quot;</span>)</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;delete&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;helloworld&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">        <span class="string">&quot;describtion&quot;</span>: <span class="string">&quot;this is a delete request&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过Postman可以看到/someDELETE能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/3.png"><br>Java运行访问到/someDELETE,读取其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/4.png"></p>
+<p>###PUT请求上传文件<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangchengzi/p/9865100.html">给idea设置默认使用的maven配置</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38384994/article/details/115116418">idea配置自带maven</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/28/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8/" rel="prev" title="go语言使用">
+      <i class="fa fa-chevron-left"></i> go语言使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#POST%E8%AF%B7%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PUT%E8%AF%B7%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">PUT请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE%E8%AF%B7%E6%B1%82"><span class="nav-number">3.</span> <span class="nav-text">DELETE请求</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sandy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
