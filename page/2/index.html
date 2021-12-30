@@ -120,17 +120,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,357 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">HTTP请求学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-24 14:28:57 / 修改时间：18:13:45" itemprop="dateCreated datePublished" datetime="2021-12-24T14:28:57+08:00">2021-12-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ailunlee/article/details/90600174">HTTP请求的完全过程</a></p>
+<h2 id="HTTP请求的过程"><a href="#HTTP请求的过程" class="headerlink" title="HTTP请求的过程"></a>HTTP请求的过程</h2><h3 id="1-浏览器根据域名解析IP地址"><a href="#1-浏览器根据域名解析IP地址" class="headerlink" title="1.浏览器根据域名解析IP地址"></a>1.浏览器根据域名解析IP地址</h3><p>浏览器根据访问的域名找到其IP地址。DNS查找过程：<br>（1）浏览器缓存：首先搜索浏览器自身的DNS缓存（缓存的时间比较短，大概只有1分钟，且只能容纳1000条缓存），看自身的缓存中是否是有域名对应的条目，而且没有过期，如果有且没有过期则解析到此结束。<br>（2）系统缓存：如果浏览器自身的缓存里面没有找到对应的条目，那么浏览器会搜索操作系统自身的DNS缓存，如果找到且没有过期则停止搜索解析到此结束。<br>（3）路由器缓存：如果系统缓存也没有找到，则会向路由器发送查询请求。<br>（4）ISP（互联网服务提供商） DNS缓存：如果在路由缓存也没找到，最后要查的就是ISP缓存DNS的服务器。</p>
+<h3 id="2-浏览器和WEB服务器建立一个TCP连接"><a href="#2-浏览器和WEB服务器建立一个TCP连接" class="headerlink" title="2.浏览器和WEB服务器建立一个TCP连接"></a>2.浏览器和WEB服务器建立一个TCP连接</h3><p>TCP的3次握手。</p>
+<h3 id="3-浏览器给WEB服务器发送一个HTTP请求"><a href="#3-浏览器给WEB服务器发送一个HTTP请求" class="headerlink" title="3.浏览器给WEB服务器发送一个HTTP请求"></a>3.浏览器给WEB服务器发送一个HTTP请求</h3><p>一个HTTP请求报文由请求行（request line）、请求头部（headers）、空行（blank line）和请求数据（request body）4个部分组成。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/1.png"></p>
+<h4 id="3-1请求行"><a href="#3-1请求行" class="headerlink" title="3.1请求行"></a>3.1请求行</h4><p>请求行分为三个部分：请求方法、请求地址URL和HTTP协议版本，它们之间用空格分割。例如，GET /index.html HTTP/1.1。</p>
+<h5 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h5><p>HTTP/1.1 定义的请求方法有8种：GET（完整请求一个资源）、POST（提交表单）、PUT（上传文件）、DELETE（删除）、PATCH、HEAD（仅请求响应首部）、OPTIONS（返回请求的资源所支持的方法）、TRACE（追求一个资源请求中间所经过的代理）。最常的两种GET和POST，如果是RESTful接口的话一般会用到GET、POST、DELETE、PUT。</p>
+<ol>
+<li>Get<br>点击<strong>网页上的链接</strong>或者通过<strong>浏览器的地址栏输入网址</strong>来浏览网页的，使用的都是GET方式。<br>GET方法要求服务器将URL定位的资源放在<strong>响应报文的数据部分</strong>，会送给客户端。<br>使用GET方法时，<em>请求参数和对应的值附加在URL后面</em>，利用一个问号‘？’代表URL的结尾与请求参数的开始，<strong>传递参数长度受限制</strong>。<br>地址中‘？’之后的部分就是通过GET发送的请求数据，各个数据之间用‘&amp;’符号隔开。<br>不同的浏览器对地址的字符限制也有所不同，一般最多只能识别1024个字符，所以如果需要传送大量数据的时候，也不适合使用GET方式。<br>如果数据是英文字母/数字，原样发送；如果是空格，转换为+；如果是中文/其他字符，则直接把字符串用BASE64加密，得出：%E4%BD%A0%E5%A5%BD，其中%XX中的XX为该符号以16进制表示的ASCII。</li>
+<li>POST<br>客户端可以给服务器提供大量信息。<br>POST方法将<em>请求参数封装在HTTP请求数据中</em>，以名称/值的形式出现，<strong>可以传输大量数据</strong>，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。<br>POST方式请求行中不包含数据字符串，这些<strong>数据保存在“请求内容”部分</strong>，各数据之间也是使用‘&amp;’符号隔开。<br>POST方式大多用于页面的表单中。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/2.png"></li>
+</ol>
+<h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h5><p>URL：统一资源定位符，是一种资源位置的抽象唯一识别方法。<br>组成：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;<br>端口和路径有事可以省略（HTTP默认端口号是80）<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/3.png"></p>
+<h5 id="协议版本"><a href="#协议版本" class="headerlink" title="协议版本"></a>协议版本</h5><p>协议版本的格式为：HTTP/主版本号.次版本号，常用的有HTTP/1.0和HTTP/1.1</p>
+<h4 id="3-2请求头部"><a href="#3-2请求头部" class="headerlink" title="3.2请求头部"></a>3.2请求头部</h4><p>请求头部为请求报文添加了一些附加信息，由“名/值”对组成，每行一对，名和值之间使用冒号分隔。<br>请求头部的最后会有一个空行，表示请求头部结束，接下来为请求数据。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/4.png"></p>
+<h4 id="3-3请求数据"><a href="#3-3请求数据" class="headerlink" title="3.3请求数据"></a>3.3请求数据</h4><p>请求数据不在GET方法中使用，而<strong>在POST方法中使用</strong>。POST方法适用于需要客户填写表单的场合。与请求数据相关的最长使用的请求头部是Cntent-Type和Content-Length。下面是一个POST方法的请求报文：</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST   /index.php  HTTP/<span class="number">1.1</span>    请求行</span><br><span class="line">Host: localhost</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">5.1</span>; rv:<span class="number">10.0</span><span class="number">.2</span>) Gecko/<span class="number">20100101</span> Firefox/<span class="number">10.0</span><span class="number">.2</span>   请求头</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,/;q=<span class="number">0.8</span></span><br><span class="line">Accept-Language: zh-cn,zh;q=<span class="number">0.5</span></span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Referer: http:<span class="comment">//localhost/</span></span><br><span class="line">Content-Length：<span class="number">25</span></span><br><span class="line">Content-Type：application/x-www-form-urlencoded</span><br><span class="line">    空行</span><br><span class="line">username=aa&amp;password=<span class="number">1234</span>   请求数据</span><br></pre></td></tr></table></figure>
+<h3 id="4-服务器端响应HTTP请求，浏览器得到HTML代码"><a href="#4-服务器端响应HTTP请求，浏览器得到HTML代码" class="headerlink" title="4.服务器端响应HTTP请求，浏览器得到HTML代码"></a>4.服务器端响应HTTP请求，浏览器得到HTML代码</h3><p>HTTP响应报文由状态行（status line）、相应头部（headers）、空行（blank line）和响应数据（response body）4个部分组成。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/5.png"></p>
+<h4 id="4-1状态行"><a href="#4-1状态行" class="headerlink" title="4.1状态行"></a>4.1状态行</h4><p>状态行由3部分组成，分别为：协议版本、状态码、状态码扫描。其中协议版本与请求报文一致，状态码描述是对状态码的简单描述。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/6.png"></p>
+<h4 id="4-2响应头部"><a href="#4-2响应头部" class="headerlink" title="4.2响应头部"></a>4.2响应头部</h4><p><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/7.png"></p>
+<h4 id="4-3响应数据"><a href="#4-3响应数据" class="headerlink" title="4.3响应数据"></a>4.3响应数据</h4><p>用于存放需要返回给客户端的数据信息。</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK    状态行</span><br><span class="line">Date: Sun, <span class="number">17</span> Mar <span class="number">2013</span> <span class="number">08</span>:<span class="number">12</span>:<span class="number">54</span> GMT    响应头部</span><br><span class="line">Server: Apache/<span class="number">2.2</span><span class="number">.8</span> (Win32) PHP/<span class="number">5.2</span><span class="number">.5</span></span><br><span class="line">X-Powered-By: PHP/<span class="number">5.2</span><span class="number">.5</span></span><br><span class="line">Set-Cookie: PHPSESSID=c0huq7pdkmm5gg6osoe3mgjmm3; path=/</span><br><span class="line">Expires: Thu, <span class="number">19</span> Nov <span class="number">1981</span> <span class="number">08</span>:<span class="number">52</span>:<span class="number">00</span> GMT</span><br><span class="line">Cache-Control: no-store, no-cache, must-revalidate, post-check=<span class="number">0</span>, pre-check=<span class="number">0</span></span><br><span class="line">Pragma: no-cache</span><br><span class="line">Content-Length: <span class="number">4393</span></span><br><span class="line">Keep-Alive: timeout=<span class="number">5</span>, max=<span class="number">100</span></span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=utf<span class="number">-8</span></span><br><span class="line">    空行</span><br><span class="line">&lt;html&gt;     响应数据</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;HTTP响应示例&lt;title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">Hello HTTP!</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-浏览器解析HTML代码，并请求HTML代码中的资源"><a href="#5-浏览器解析HTML代码，并请求HTML代码中的资源" class="headerlink" title="5.浏览器解析HTML代码，并请求HTML代码中的资源"></a>5.浏览器解析HTML代码，并请求HTML代码中的资源</h3><p>浏览器拿到HTML文件后，开始解析HTML代码，遇到静态资源时，就向服务器端去请求下载。</p>
+<h3 id="6-关闭TCP连接，浏览器对页面进行渲染呈现给用户"><a href="#6-关闭TCP连接，浏览器对页面进行渲染呈现给用户" class="headerlink" title="6.关闭TCP连接，浏览器对页面进行渲染呈现给用户"></a>6.关闭TCP连接，浏览器对页面进行渲染呈现给用户</h3><p>浏览器利用自己内部的工作机制，把请求到的静态资源和HTML代码进行渲染，呈现给用户。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/" class="post-title-link" itemprop="url">java-DBus开发2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-23 09:42:05" itemprop="dateCreated datePublished" datetime="2021-12-23T09:42:05+08:00">2021-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-24 17:55:20" itemprop="dateModified" datetime="2021-12-24T17:55:20+08:00">2021-12-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Ubuntu下git安装使用"><a href="#Ubuntu下git安装使用" class="headerlink" title="Ubuntu下git安装使用"></a>Ubuntu下git安装使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/12.png"></p>
+<p>由于最早的时候发送.gitignore文件没有生效，于是根据<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010566681/article/details/53183146">详解Github的.gitignore忽略文件</a>将缓存清空再次上传。<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/13.png"><br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/14.png"><br>本地仓库已经提交过了，现在只需要push就好，但是报错了。<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/15.png"><br>这是当前分支和远程分支不一致所致，解决方法如下：<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/17.png"><br>上传成功，但是好像还是没生效。不理解了，后边再找找资料。</p>
+<h3 id="DBUS的signal使用"><a href="#DBUS的signal使用" class="headerlink" title="DBUS的signal使用"></a>DBUS的signal使用</h3><p><a target="_blank" rel="noopener" href="https://dbus.freedesktop.org/doc/dbus-java/dbus-java/dbus-javase3.html">官方文档关于signal的说法</a></p>
+<blockquote>
+<p>如果您有在重命名的接口中声明的信号（有关信号，请参见下文），那么在添加信号处理程序时，您必须使用addSigHandler方法，该方法采用与该信号对应的类对象。如果不这样做，则接收信号将失败。</p>
+</blockquote>
+<blockquote>
+<p>信号也被声明为接口的一部分。Java API 将这些建模为接口内的内部类。包含接口必须扩展 DBusInterface，表示信号的内部类必须扩展 DBusSignal 10. Signal 名称派生自此内部类的名称，而接口派生自其包含的接口。<br>信号可以像方法一样接受参数（尽管它们不能返回任何东西）。为了使反射起作用，一个 Signal 声明了一个正确类型的构造函数。构造函数必须将它们发出的对象路径作为它们的第一个（字符串）参数，然后依次是其他参数。它们还必须使用相同的参数调用超类构造函数。信号的完整定义见下：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.freedesktop;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusInterface;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSignal;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.exceptions.DBusException;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DBus</span> <span class="keyword">extends</span> <span class="title">DBusInterface</span>  </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameAcquired</span> <span class="keyword">extends</span> <span class="title">DBusSignal</span>  </span></span><br><span class="line"><span class="class">   </span>&#123;  </span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">final</span> String name;  </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">NameAcquired</span><span class="params">(String path, String name)</span>  </span></span><br><span class="line"><span class="function">                              <span class="keyword">throws</span> DBusException  </span></span><br><span class="line"><span class="function">      </span>&#123;  </span><br><span class="line">         <span class="keyword">super</span>(path, name);  </span><br><span class="line">         <span class="keyword">this</span>.name = name;  </span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要处理来自总线上其他程序的传入信号，您必须注册一个信号处理程序。这必须实现 DBusSigHandler 并提供 handle 方法的实现。示例信号处理程序如下所示 。信号处理程序应该使用它们正在处理的信号进行参数化。如果您想要一个信号处理程序来处理多个信号，您可以省略参数化并使用 instanceof来检查您正在处理的信号类型。信号处理程序将在它们自己的线程中运行。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSignal;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSigHandler;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span> <span class="keyword">extends</span> <span class="title">DBusSigHandler</span>&lt;<span class="title">DBus</span>.<span class="title">NameAcquired</span>&gt;  </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(DBus.NameAcquired sig)</span>  </span></span><br><span class="line"><span class="function">   </span>&#123;  </span><br><span class="line">         ...  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是实现USB监听的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DBusInterfaceName(&quot;org.freedesktop.DBus.ObjectManager&quot;)</span><span class="comment">//一定要注意大小写</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ObjectManager</span> <span class="keyword">extends</span> <span class="title">DBusInterface</span> </span>&#123;</span><br><span class="line">    <span class="meta">@DBusMemberName(&quot;InterfacesAdded&quot;)</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InterfacesAdded</span> <span class="keyword">extends</span> <span class="title">DBusSignal</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> Path objectpath;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> Map&lt;String, Map&lt;String,Variant&gt;&gt; map;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InterfacesAdded</span><span class="params">(String path,Path objectpath,Map&lt;String,Map&lt;String,Variant&gt;&gt; map)</span><span class="keyword">throws</span> DBusException </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(path,objectpath,map);</span><br><span class="line">            <span class="keyword">this</span>.objectpath=objectpath;</span><br><span class="line">            <span class="keyword">this</span>.map=map;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Path <span class="title">getObjectPath</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> objectpath;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> Map&lt;String, Map&lt;String, Variant&gt;&gt; getInterfacesAdded() &#123;</span><br><span class="line">            <span class="keyword">return</span> map;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceAddedHandler</span> <span class="keyword">implements</span> <span class="title">DBusSigHandler</span>&lt;<span class="title">ObjectManager</span>.<span class="title">InterfacesAdded</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> hasDeviceConnected = <span class="keyword">false</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InterfaceAddedHandler</span><span class="params">()</span> <span class="keyword">throws</span> DBusException</span>&#123;</span><br><span class="line">        DBusConnection dBusConnection;</span><br><span class="line">        dBusConnection = DBusConnection.getConnection(DBusConnection.SYSTEM);</span><br><span class="line">        dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>, <span class="string">&quot;/org/freedesktop/UDisks2&quot;</span>, ObjectManager.class);</span><br><span class="line">        dBusConnection.addSigHandler(ObjectManager.InterfacesAdded.class, <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(ObjectManager.InterfacesAdded signal)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println(signal.getInterfacesAdded().keySet().toString()); //这个方法看到下面过滤的条件应该是什么</span></span><br><span class="line">        Map&lt;String, Variant&gt; iamap=signal.getInterfacesAdded().get(<span class="string">&quot;org.freedesktop.UDisks2.Block&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(iamap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(iamap);</span><br><span class="line">            hasDeviceConnected = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> DBusException, IOException </span>&#123;</span><br><span class="line">    DBusConnection dBusConnection;</span><br><span class="line">    dBusConnection = DBusConnection.getConnection(DBusConnection.SYSTEM);</span><br><span class="line">    org.freedesktop.DBus dbus = dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;/or/freedesktop/DBus&quot;</span>, org.freedesktop.DBus.class);</span><br><span class="line">    String uDiskDbusBusName = dbus.GetNameOwner(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>);</span><br><span class="line">    InterfaceAddedHandler interfaceAddedHandler=<span class="keyword">new</span> InterfaceAddedHandler();</span><br><span class="line">    ObjectManager udiskObjectManager=dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>, <span class="string">&quot;/&quot;</span>, ObjectManager.class);</span><br><span class="line">    dBusConnection.addSigHandler(ObjectManager.InterfacesAdded.class,uDiskDbusBusName,udiskObjectManager,interfaceAddedHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一定要检查DBus接口名是否正确，对于某些过滤条件可以通过各种方式（如System.out输出）来查看原有哪些条件，比如这句signal.getInterfacesAdded().get(“org.freedesktop.UDisks2.Block”);就是因为get了错误的对象，因此没有输出。</p>
+<p>首先运行程序，在VM的选项中选择USB的连接事件，运行结果如下：<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/1.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">设计模式学习1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-20 18:09:10" itemprop="dateCreated datePublished" datetime="2021-12-20T18:09:10+08:00">2021-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-30 18:05:44" itemprop="dateModified" datetime="2021-12-30T18:05:44+08:00">2021-12-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1，设计模式概述"><a href="#1，设计模式概述" class="headerlink" title="1，设计模式概述"></a>1，设计模式概述</h1><h2 id="1-1-产生背景"><a href="#1-1-产生背景" class="headerlink" title="1.1 产生背景"></a>1.1 产生背景</h2><p>1990年软件工程届开始研讨设计模式的话题，GoF为出版《设计模式：可复用面向对象软件的基础》的4位作者。</p>
+<h2 id="1-2-概念"><a href="#1-2-概念" class="headerlink" title="1.2 概念"></a>1.2 概念</h2><p>软件设计模式(Software Design Pattern)，又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。它描述了在软件设计过程中的一些不断重复发生的问题，以及该问题的解决方案。也就是说，它是解决特定问题的一系列套路，是前辈们的代码设计经验的总结，具有一定的普遍性，可以反复使用。</p>
+<h2 id="1-3-学习的必要性"><a href="#1-3-学习的必要性" class="headerlink" title="1.3 学习的必要性"></a>1.3 学习的必要性</h2><p>设计模式的本质是面向对象设计原则的实际运用，是对类的封装性、继承性和多态性以及类的关联关系和组合关系的充分理解。<br>正确使用设计模式具有以下优点。</p>
+<ul>
+<li>可以提高程序员的思维能力、编程能力和设计能力。</li>
+<li>使程序设计更加标准化、代码编制更加工程化，使软件开发效率大大提高，从而缩短软件的开发周期。</li>
+<li>使设计的代码可重用性高、可读性强、可靠性高、灵活性好、可维护性强。</li>
+</ul>
+<h2 id="1-4-设计模式分类"><a href="#1-4-设计模式分类" class="headerlink" title="1.4 设计模式分类"></a>1.4 设计模式分类</h2><ul>
+<li><p>创建性模式</p>
+<p>用于描述“怎样创建对象”，它的主要特点是“将对象的创建与使用分离”。GoF（四人组）书中提供了单例、原型、工厂方法、抽象工厂、建造者等5种创建型模式。</p>
+</li>
+<li><p>结构性模式</p>
+<p>用于描述如何将类或对象按某种布局组成更大的结构，coE(四人组)书中提供了代理、适配器、桥接、装饰、外观、享元、组合7种结构型模式。</p>
+</li>
+<li><p>行为型模式</p>
+<p>用于描述类或对象之间怎样相互协作共同完成单个对象无法单独完成的任务，以及怎样分配职责。GoF(四人组)书中提供了模板方法、策略、命令、职责链、状态、观察者、中介者、迭代器、访问者、备忘录、解释器等11 种行为型模式。</p>
+</li>
+</ul>
+<h1 id="2，UML"><a href="#2，UML" class="headerlink" title="2，UML"></a>2，UML</h1><p>统一建模语言(Unified Modeling Language，UML）是用来设计软件的可视化建模语言。它的特点是简单、统一、图形化、能表达软件设计中的动态与静态信息。<br>UML从目标系统的不同角度出发，定义了用例图、类图、对象图、状态图、活动图、时序图、协作图、构件图、部署图等9种图。</p>
+<h2 id="2-1-类图概述"><a href="#2-1-类图概述" class="headerlink" title="2.1 类图概述"></a>2.1 类图概述</h2><p>类图(Class diagram)是显示了模型的静态结构，特别是模型中存在的类、类的内部结构以及它们与其他类的关系等。类图不显示暂时性的信息。类图是面向对象建模的主要组成部分。</p>
+<h2 id="2-2-类图的作用"><a href="#2-2-类图的作用" class="headerlink" title="2.2 类图的作用"></a>2.2 类图的作用</h2><ul>
+<li>在软件工程中，类图是一种静态的结构图，描述了系统的类的集合，类的属性和类之间的关系，可以简化了人们对系统的理解;</li>
+<li>类图是系统分析和设计阶段的重要产物，是系统编码和测试的重要模型。</li>
+</ul>
+<h2 id="2-3-类图表示法"><a href="#2-3-类图表示法" class="headerlink" title="2.3 类图表示法"></a>2.3 类图表示法</h2><h3 id="2-3-1-类的表示方式"><a href="#2-3-1-类的表示方式" class="headerlink" title="2.3.1 类的表示方式"></a>2.3.1 类的表示方式</h3><p>在M类图中，类使用包含类名、属性(field）和方法(method)且带有分割线的矩形来表示，比如下图表示一个Employee类，它包含name , age和address这3个属性，以及work()方法。</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219230432131.png" alt="image-20211219230432131"></p>
+<p>属性/方法名称前加的加号和减号表示了这个属性/方法的可见性，UML类图中表示可见性的符号有三种:</p>
+<ul>
+<li>+:表示public</li>
+<li>-:表示private</li>
+<li>#:表示protected</li>
+</ul>
+<p>属性的完整表示方式是:  **可见性   名称 ︰ 类型  [  =  缺省值] **<br>方法的完整表示方式是:  <strong>可见性   名称(参数列表)    [    :    返回类型]</strong></p>
+<blockquote>
+<p>注意</p>
+<p>1,中括号的内容表示是可选的</p>
+<p>2，也有将类型放在变量名前面，返回值类型放在方法名前面</p>
+</blockquote>
+<p><strong>栗子：</strong></p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219231117885.png" alt="image-20211219231117885"></p>
+<p>上图Demo类定义了三个方法</p>
+<ul>
+<li><p>methond()方法：修饰符为public，没有参数，没有返回值</p>
+</li>
+<li><p>method1()方法：修饰符为private，没有参数，返回值类型string</p>
+</li>
+<li><p>method2()方法：修饰符为protected，接受两个参数，第一个参数为int，第二个参数为string，返回值类型为int</p>
+</li>
+</ul>
+<h3 id="2-3-2-类与类之间关系的表示方式"><a href="#2-3-2-类与类之间关系的表示方式" class="headerlink" title="2.3.2 类与类之间关系的表示方式"></a>2.3.2 类与类之间关系的表示方式</h3><h4 id="2-3-2-1-关联关系"><a href="#2-3-2-1-关联关系" class="headerlink" title="2.3.2.1 关联关系"></a>2.3.2.1 关联关系</h4><p>关联关系是对象之间的一种引用关系，用于表示一类对象与另一类对象之间的联系，如老师和学生、师傅和徒弟、丈夫和妻子等。关联关系是类与类之间最常用的一种关系，分为一般关联关系、聚合关系和组合关系。我们先介绍一般关联。<br>关联又可以分为单向关联，双向关联，自关联。</p>
+<p><strong>1,单向关联</strong></p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219231850881.png" alt="image-20211219231850881"></p>
+<p>在UML类图中单向关联用一个带箭头的实线表示。上图表示每个顾客都有一个地址，这通过让customer类持有一个类型为Address的成员变量类实现。</p>
+<p><strong>2,双向关联</strong></p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219233951851.png" alt="image-20211219233951851"></p>
+<p>从上图中我们很容易看出，所谓的双向关联就是双方各自持有对方类型的成员变量。<br>在UML类图中，双向关联用一个不带箭头的直线表示。上图中在customer类中维护一个List&lt;Product&gt;，表示一个顾客可以购买多个商品;在Product类中维护一个Customer类型的成员变量表示这个产品被哪个顾客所购买。</p>
+<p><strong>3,自关联</strong></p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234158055.png" alt="image-20211219234158055"></p>
+<p>自关联在UML类图中用一个带有箭头且指向自身的线表示。上图的意思就是Node类包含类型为subNode的成员变量，也就是“自己包含自己”。</p>
+<h4 id="2-3-2-2-聚合关系"><a href="#2-3-2-2-聚合关系" class="headerlink" title="2.3.2.2 聚合关系"></a>2.3.2.2 聚合关系</h4><p>聚合关系是关联关系的一种，是强关联关系，是整体和部分之间的关系。<br>聚合关系也是通过成员对象来实现的，其中成员对象是整体对象的一部分，但是成员对象可以脱离整体对象而独立存在。例如，学校与老师的关系，学校包含老师，但如果学校停办了，老师依然存在。<br>在UML类图中，聚合关系可以用带空心菱形的实线来表示，菱形指向整体。下图所示是大学和教师的关系图:</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234441276.png" alt="image-20211219234441276"></p>
+<h4 id="2-3-2-3-组合关系"><a href="#2-3-2-3-组合关系" class="headerlink" title="2.3.2.3 组合关系"></a>2.3.2.3 组合关系</h4><p>组合表示类之间的整体与部分的关系，但它是一种更强烈的聚合关系。<br>在组合关系中，整体对象可以控制部分对象的生命周期，一旦整体对象不存在，部分对象也将不存在，部分对象不能脱离整体对象而存在。例如，头和嘴的关系，没有了头，嘴也就不存在了。<br>在UML类图中，组合关系用带实心菱形的实线来表示，菱形指向整体。下图所示是头和嘴的关系图:</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234808482.png" alt="image-20211219234808482"></p>
+<h4 id="2-3-2-4-依赖关系"><a href="#2-3-2-4-依赖关系" class="headerlink" title="2.3.2.4 依赖关系"></a>2.3.2.4 依赖关系</h4><p>依赖关系是一种使用关系，它是对象之间耦合度最弱的一种关联方式，是临时性的关联。在代码中，某个类的方法通过局部变量、方法的参数或者对静态方法的调用来访问另一个类（被依赖类)中的某些方法来完成一些职责。在UML类图中，依赖关系使用带箭头的虚线来表示，箭头从使用类指向被依赖的类。下图所示是司机和汽车的关系图，司机驾驶汽车:</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235001423.png" alt="image-20211219235001423"></p>
+<h4 id="2-3-2-5-继承关系"><a href="#2-3-2-5-继承关系" class="headerlink" title="2.3.2.5 继承关系"></a>2.3.2.5 继承关系</h4><p>继承关系是对象之间耦合度最大的一种关系，表示一般与特殊的关系，是父类与子类之间的关系，是一种继承关系。<br>在UML类图中，泛化关系用带空心三角箭头的实线来表示，箭头从子类指向父类。在代码实现时，使用面向对象的继承机制来实现泛化关系。例如，Student类和Teacher类都是Person类的子类，其类图如下图所示:</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235257998.png" alt="image-20211219235257998"></p>
+<h4 id="2-3-2-6-实现关系"><a href="#2-3-2-6-实现关系" class="headerlink" title="2.3.2.6 实现关系"></a>2.3.2.6 实现关系</h4><p>实现关系是接口与实现类之间的关系。在这种关系中，类实现了接口，类中的操作实现了接口中所声明的所有的抽象操作。</p>
+<p>在UML类图中，实现关系使用带空心三角箭头的虚线来表示，箭头从实现类指向接口。例如，汽车和船实现了交通工具,其类图如下所示:</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235608370.png" alt="image-20211219235608370"></p>
+<h1 id="3，软件设计原则"><a href="#3，软件设计原则" class="headerlink" title="3，软件设计原则"></a>3，软件设计原则</h1><p>在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性，程序员要尽量根据6条原则来开发程序，从而提高软件开发效率、节约软件开发成本和维护成本。</p>
+<h2 id="3-1-开闭原则"><a href="#3-1-开闭原则" class="headerlink" title="3.1 开闭原则"></a>3.1 开闭原则</h2><p><strong>对扩展开放，对修改关闭</strong>。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果简言之，是为了使程序的扩展性好，易于维护和升级。<br>想要达到这样的效果，我们需要使用接口和抽象类。<br>因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。</p>
+<p>下面以 搜狗输入法 的皮肤为例介绍开闭原则的应用。</p>
+<p>【例】搜狗输入法 的皮肤设计</p>
+<p>分析：搜狗输入法的皮肤是输入法背景图片、窗口颜色和声音等元素的组合。用户可以根据自己喜爱更换自己的输入法皮肤，也可以从网上下载新的皮肤。这些皮肤有共同的特点，可以为其定义一个抽象类（AbstractSkin），而每个具体的皮肤（DefaultSkin和HeimaSkin）是其子类。用户窗体可以根据需要选择或者增加新的主题，而不需要修改原代码，所以它是满足开闭原则的。[sougouInput跟AbstractSkin是聚合关系，图画错了]</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211230110425974.png" alt="image-20211230110425974"></p>
+<h2 id="3-2-里氏代换原则"><a href="#3-2-里氏代换原则" class="headerlink" title="3.2 里氏代换原则"></a>3.2 里氏代换原则</h2><p>里氏代换原则是面向对象设计的基本原则之一。</p>
+<p>里氏代换原则:任何基类可以出现的地方，子类一定可以出现。通俗理解:子类可以扩展父类的功能，但不能改变父类原有的功能。换句话说，子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。</p>
+<p>如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时,程序运行出错的概率会非常大。</p>
+<p>下面看一个里氏替换原则中经典的一个例子</p>
+<p>【例】正方形不是长方形</p>
+<p>在数学领域里，正方形毫无疑问是长方形，它是一个长宽相等的长方形。所以，我们开发的一个与几何图形相关的软件系统，就可以顺理成章的让正方形继承自长方形。</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211230114641970.png" alt="image-20211230114641970"></p>
+<p>我们运行一下这段代码就会发现，假如我们把一个普通长方形作为参数传入resize方法，就会看到长方形宽度逐渐增长的效果，当宽度大于长度,代码就会停止，这种行为的结果符合我们的预期;假如我们再把一个正方形作为参数传入resize方法后，就会看到正方形的宽度和长度都在不断增长，代码会一直运行下去，直至系统产生溢出错误。所以，普通的长方形是适合这段代码的，正方形不适合。我们得出结论:在resize方法中，Rectangle类型的参数是不能被square类型的参数所代替，如果进行了替换就得不到预期结果。因此，Square类和Rectangle类之间的继承关系违反了里氏代换原则，它们之间的继承关系不成立，正方形不是长方形。</p>
+<p>如何改进呢?此时我们需要重新设计他们之间的关系。抽象出来一个四边形接口(Quadrilateral)，让Rectangle类和square类实现Quadrilateral接口</p>
+<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211230134142210.png" alt="image-20211230134142210"></p>
+<h2 id="3-3-依赖倒转原则"><a href="#3-3-依赖倒转原则" class="headerlink" title="3.3 依赖倒转原则"></a>3.3 依赖倒转原则</h2><p>这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
+<h2 id="3-4-接口隔离原则"><a href="#3-4-接口隔离原则" class="headerlink" title="3.4 接口隔离原则"></a>3.4 接口隔离原则</h2><p>使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
+<h2 id="3-5-迪米特法则"><a href="#3-5-迪米特法则" class="headerlink" title="3.5 迪米特法则"></a>3.5 迪米特法则</h2><p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
+<h2 id="3-6-合成复用原则"><a href="#3-6-合成复用原则" class="headerlink" title="3.6 合成复用原则"></a>3.6 合成复用原则</h2><p>尽量使用合成/聚合的方式，而不是使用继承。</p>
+<h1 id="4，创建者模式"><a href="#4，创建者模式" class="headerlink" title="4，创建者模式"></a>4，创建者模式</h1><p>创建型模式的主要关注点是”怎样创建对象?”，它的主要特点是”将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节。<br>创建型模式分为:</p>
+<ul>
+<li>单例模式</li>
+<li>工厂方法模式</li>
+<li>抽象工程模式</li>
+<li>原型模式</li>
+<li>建造者模式</li>
+</ul>
+<h2 id="4-1-单例设计模式"><a href="#4-1-单例设计模式" class="headerlink" title="4.1 单例设计模式"></a>4.1 单例设计模式</h2><p>单例模式(singleton Pattern)是Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式,可以直接访问，不需要实例化该类的对象。</p>
+<h3 id="4-1-1-单例模式的结构"><a href="#4-1-1-单例模式的结构" class="headerlink" title="4.1.1 单例模式的结构"></a>4.1.1 单例模式的结构</h3><p>单例模式的主要有以下角色:</p>
+<ul>
+<li>单例类。只能创建一个实例的类</li>
+<li>访问类。使用单例类</li>
+</ul>
+<h3 id="4-1-2-单例模式的实现"><a href="#4-1-2-单例模式的实现" class="headerlink" title="4.1.2 单例模式的实现"></a>4.1.2 单例模式的实现</h3><blockquote>
+<p>单例设计模式分类两种：<br>​ 饿汉式:类加载就会导致该单实例对象被创建<br>​ 懒汉式:类加载不会导致该单实例对象被创建，而是首次使用该对象时才会创建</p>
+</blockquote>
+<h3 id="4-1-3-使用场景"><a href="#4-1-3-使用场景" class="headerlink" title="4.1.3 使用场景"></a>4.1.3 使用场景</h3><ul>
+<li>1、要求生产唯一序列号。</li>
+<li>2、WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</li>
+<li>3、创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -282,7 +633,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-24 14:16:07" itemprop="dateModified" datetime="2021-12-24T14:16:07+08:00">2021-12-24</time>
+                <time title="修改时间：2021-12-30 11:32:37" itemprop="dateModified" datetime="2021-12-30T11:32:37+08:00">2021-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,6 +674,7 @@
 <p>工程根目录下就只有src和target两个目录。<br>target存放项目构建后的文件和目录，jar包、war包、编译的class文件等。target里的所有内容都是maven构建的时候生成的。</p>
 <hr>
 <h3 id="IDEA的git使用"><a href="#IDEA的git使用" class="headerlink" title="IDEA的git使用"></a>IDEA的git使用</h3><p>首先提交commit到本地。此时会跳出来一个提示框说有worning信息，选择commit。<br><img src="/2021/12/20/IDEA%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE/10.png"><br>push时发现报了如下错误，搜索资料发现可能是ssh key有问题，检查了没错。之前push也是可以用的。然后发现虚拟机连接不上网络了。解决方案在<a target="_blank" rel="noopener" href="http://localhost:4000/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/">这篇文档</a>。<br><img src="/2021/12/20/IDEA%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE/11.png"><br>commit后点击push按钮，直接上传。<br><img src="/2021/12/20/IDEA%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE/12.png"></p>
+<h3 id="IDEA快捷键"><a href="#IDEA快捷键" class="headerlink" title="IDEA快捷键"></a>IDEA快捷键</h3><p>alt+insert打开“Generate”,可以快速生成get/set方法。</p>
 
       
     </div>
@@ -583,7 +935,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-24 18:13:39" itemprop="dateModified" datetime="2021-12-24T18:13:39+08:00">2021-12-24</time>
+                <time title="修改时间：2021-12-30 14:09:34" itemprop="dateModified" datetime="2021-12-30T14:09:34+08:00">2021-12-30</time>
               </span>
 
           
@@ -597,10 +949,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>之前一直想把主题美化一下，但是总出错，点击标签、分类找不到文章，原来是缺少了几个步骤，参考下面的内容完成了美化。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">Hexo博客优化之Next主题美化</a><br><a target="_blank" rel="noopener" href="https://himmy.blog.csdn.net/article/details/93644533?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase">Next主题下添加分类、标签、关于菜单项</a></p>
-<p>今天使用的时候发现报错warning了<br><img src="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/1.png"><br>网上说是因为node版本太高了<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010263423/article/details/106981801/">解决办法</a></p>
-<p>文章tags的写法：<br> tags: [标签1,标签2,标签3]</p>
-<p>hexo d上传时发生错误<br>hexo发生error：spawn failed错误的解决方法<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43336281/article/details/114744671?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162971334816780274119137%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=162971334816780274119137&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2">将https改为http</a></p>
+          <h3 id="Hexo主题配置"><a href="#Hexo主题配置" class="headerlink" title="Hexo主题配置"></a>Hexo主题配置</h3><p>之前一直想把主题美化一下，但是总出错，点击标签、分类找不到文章，原来是缺少了几个步骤，参考下面的内容完成了美化。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">Hexo博客优化之Next主题美化</a><br><a target="_blank" rel="noopener" href="https://himmy.blog.csdn.net/article/details/93644533?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase">Next主题下添加分类、标签、关于菜单项</a></p>
+<h3 id="warning"><a href="#warning" class="headerlink" title="warning"></a>warning</h3><p>今天使用的时候发现报错warning了<br><img src="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/1.png"><br>网上说是因为node版本太高了<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010263423/article/details/106981801/">解决办法</a></p>
+<h3 id="文章tags的写法："><a href="#文章tags的写法：" class="headerlink" title="文章tags的写法："></a>文章tags的写法：</h3><p> tags: [标签1,标签2,标签3]</p>
+<h3 id="文章categories写法："><a href="#文章categories写法：" class="headerlink" title="文章categories写法："></a>文章categories写法：</h3><ul>
+<li>子分类写法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">  - Java</span><br><span class="line">  - Servlet</span><br></pre></td></tr></table></figure>
+或者<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">categories: [Java, Servlet]</span><br></pre></td></tr></table></figure></li>
+<li>多个分类写法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [Java, Servlet]</span><br><span class="line">- [Programming]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="hexo-d上传时发生错误"><a href="#hexo-d上传时发生错误" class="headerlink" title="hexo d上传时发生错误"></a>hexo d上传时发生错误</h3><p>hexo发生error：spawn failed错误的解决方法<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43336281/article/details/114744671?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162971334816780274119137%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=162971334816780274119137&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2">将https改为http</a></p>
 
       
     </div>
@@ -1003,244 +1360,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/WPF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/14/WPF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A04/" class="post-title-link" itemprop="url">WPF基础学习4</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-14 11:43:56" itemprop="dateCreated datePublished" datetime="2021-12-14T11:43:56+08:00">2021-12-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-15 18:32:40" itemprop="dateModified" datetime="2021-12-15T18:32:40+08:00">2021-12-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>面向过程—-&gt;面向对象<br>面向过程：面向的是完成这件事的过程，强调的是完成这件事的动作。<br>面向对象：找对象帮你做事。意在写出一个通用的代码，屏蔽差异。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/" class="post-title-link" itemprop="url">初始化工具5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-13 10:05:23" itemprop="dateCreated datePublished" datetime="2021-12-13T10:05:23+08:00">2021-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:27:17" itemprop="dateModified" datetime="2021-12-14T14:27:17+08:00">2021-12-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>实体类与JSON对象对应<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/1.png"><br>将BaseData类只留下JSON解析需要的对象，发现可以使用。再一项一项增加，发现<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/2.png"><br>此时会报错<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/3.png"></p>
-<p>查看原始工具代码，发现枚举用法为控制显示<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/4.png"></p>
-<p>使用单线程实现每个项目逐一运行<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/5.png"></p>
-<p>使用lock将程序块锁定，但是锁定后UI界面也卡死了，不能使用<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/6.png"><br>修改发现没有lock，使用async和await也会造成UI界面卡死<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/7.png"><br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/8.png"></p>
-<h4 id="JSON使用"><a href="#JSON使用" class="headerlink" title="JSON使用"></a>JSON使用</h4><p><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/9.png"><br>JSONConvert.DeserializeObject方法可以将JSON反序列化为给定的匿名类型。</p>
-<h4 id="信号量学习"><a href="#信号量学习" class="headerlink" title="信号量学习"></a>信号量学习</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yifengjianbai/p/5468449.html">C#多线程–信号量（Semaphore）</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static Semaphore sema = new Semaphore(5, 5);//信号量，x为还剩余的资源数量，y为总的资源数量。</span><br><span class="line">        const int cycleNum = 9;  //进程总数</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int i = 0;i &lt; cycleNum; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Thread td = new Thread(new ParameterizedThreadStart(testFun));</span><br><span class="line">                td.Name = string.Format(&quot;编号&#123;0&#125;&quot;, i.ToString()); //字符串常规类型格式化的重载</span><br><span class="line">                td.Start(td.Name);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">        public static void testFun(object obj)</span><br><span class="line">        &#123;</span><br><span class="line">            sema.WaitOne();//每次有线程调用该方法则资源减1</span><br><span class="line">            Console.WriteLine(obj.ToString() + &quot;进洗手间：&quot; + DateTime.Now.ToString());</span><br><span class="line">            Thread.Sleep(2000);</span><br><span class="line">            Console.WriteLine(obj.ToString() + &quot;出洗手间&quot; +DateTime.Now.ToString());</span><br><span class="line">            sema.Release();//该线程完成方法，释放资源，可用资源数加1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下<br><img src="/2021/12/13/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B75/10.png"><br>信号量控制的只是线程同步的量，而不管顺序，这个例子来说线程控制的就是线程同步量为5，也就是同时并发的线程数量为5个，至于是哪个先哪个后不是由这里的信号量决定的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int Release(int releaseCount);</span><br></pre></td></tr></table></figure>
-<p>releaseCount指的是释放的信号量数量，如果没有参数默认为1，Release()就相当于Release(1)。<br>这里要说明一点，当Release()或者Release(int releaseCount)执行时导致信号量计数大于最大数量时会抛出SemaphoreFullException异常。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public virtual bool WaitOne(TimeSpan timeout);</span><br><span class="line">public virtual bool WaitOne(int millisecondsTimeout);</span><br></pre></td></tr></table></figure>
-<p>第一个重载参数timeout：指定时间间隔，若在这段时间内没有接收到信号则跳过等待继续执行<br>第二个重载参数millisecondsTimeout：指定时间间隔整数毫秒，若在这段时间内没有接收到信号则跳过等待继续执行</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/goody9807/archive/2010/06/17/1759645.html">C#线程锁使用全功略</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/10/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B74/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/10/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B74/" class="post-title-link" itemprop="url">初始化工具4</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-10 10:05:23" itemprop="dateCreated datePublished" datetime="2021-12-10T10:05:23+08:00">2021-12-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:23:19" itemprop="dateModified" datetime="2021-12-14T14:23:19+08:00">2021-12-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="检测环境变量并添加指定路径"><a href="#检测环境变量并添加指定路径" class="headerlink" title="检测环境变量并添加指定路径"></a>检测环境变量并添加指定路径</h3><p>！！！一定要定期保存注册表<br>做环境变量相关内容时不小心把系统环境变量path全清空了..<br>注册表也没有path的相关信息了。<br>只能重新添加了..</p>
-<p>将未修改前的环境变量读出到txt文件中，然后执行，成功添加了指定路径到系统环境变量。<br><img src="/2021/12/10/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B74/1.png"></p>
-<h3 id="JSON-Net"><a href="#JSON-Net" class="headerlink" title="JSON.Net"></a>JSON.Net</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zoujinhua/p/10330066.html">C#如何解析JSON数据</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8b80121d14ee">Newtonsoft.Json 简单操作用法</a><br>先在json文件中写了如下内容。但是后续操作还没想好。<br><img src="/2021/12/10/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E5%85%B74/2.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1310,20 +1429,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

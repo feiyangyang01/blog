@@ -120,17 +120,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a>
 
   </li>
   </ul>
@@ -160,6 +160,278 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A12/" class="post-title-link" itemprop="url">Socket局域网通信2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-30 17:24:37 / 修改时间：17:58:15" itemprop="dateCreated datePublished" datetime="2021-12-30T17:24:37+08:00">2021-12-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/119850.htm">java 实现局域网文件传输的实例</a></p>
+<h3 id="InetAddress类"><a href="#InetAddress类" class="headerlink" title="InetAddress类"></a>InetAddress类</h3><p><a target="_blank" rel="noopener" href="https://www.itcast.cn/news/20210628/1615185428.shtml">InetAddress类的常用方法与基本操作演示</a><br>在JDK中提供了一个与IP地址相关的InetAddress类，该类用于封装一个IP地址，并提供了一系列与IP地址相关的方法。<br>InetAddress类中的一些常用方法：</p>
+<table>
+    <tr>
+        <th>方法声明</th>
+        <th>功能描述</th>
+    </tr>
+    <tr>
+        <td>InetAddress getByName(String host)</td>
+        <td>获取给定主机名的的IP地址，host参数表示指定主机</td>
+    </tr>
+    <tr>
+        <td>InetAddress getLocalHost()</td>
+        <td>获取本地主机地址</td>
+    </tr>
+    <tr>
+        <td>String getHostName()</td>
+        <td>获取本地IP地址的主机名</td>
+    </tr>
+    <tr>
+        <td>boolean isReachable(int timeout)</td>
+        <td>判断在限定时间内指定的IP地址是否可以访问</td>
+    </tr>
+    <tr>
+        <td>String getHostAddress()</td>
+        <td>获取字符串格式的原始IP地址</td>
+    </tr>
+</table>
+
+<h3 id="UDP网络编程"><a href="#UDP网络编程" class="headerlink" title="UDP网络编程"></a>UDP网络编程</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44618862/article/details/98480120">网络编程（DatagramSocket &amp;&amp; DatagramPacket）</a></p>
+<h3 id="TCP网络编程"><a href="#TCP网络编程" class="headerlink" title="TCP网络编程"></a>TCP网络编程</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xujian2014/p/4660570.html">Java网络编程之TCP通信</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41517936/article/details/81015711">Socket和ServerSocket的简单介绍及例子</a></p>
+<h4 id="Socket类"><a href="#Socket类" class="headerlink" title="Socket类"></a>Socket类</h4><p>socket可以使一个应用从网络中读取和写入数据，不同计算机上的两个应用可以通过连接发送和接受字节流，当发送消息时，你需要知道对方的ip和端口，在java中，socket指的是java.net.Socket类。<br>一旦成功创建一个Socket类的实例，可以用它来发送和接收字节流，发送时调用getOutputStream方法获取一个java.io.OutputStream对象，接收远程对象发送来的信息可以调用getInputStream方法来返回一个java.io.InputStream对象。</p>
+<h4 id="ServerSocket类"><a href="#ServerSocket类" class="headerlink" title="ServerSocket类"></a>ServerSocket类</h4><p>Socket类代表一个客户端套接字，即任何时候连接到一个远程服务器应用时构建所需的socket。现在，要实现一个服务器应用，需要不同的做法。服务器需随时待命，因为不知道客户端什么时候会发来请求，此时，我们需要使用ServerSocket，对应的是java.net.ServerSocket类。<br>ServerSocket与Socket不同，ServerSocket是等待客户端的请求，一旦获得一个连接请求，就创建一个Socket示例来与客户端进行通信。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">Socket局域网通信</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-30 14:12:15 / 修改时间：17:58:19" itemprop="dateCreated datePublished" datetime="2021-12-30T14:12:15+08:00">2021-12-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/pashanhu6402/article/details/96428887">Socket原理讲解</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/android-tutorial-socket1.html">基于TCP协议的Socket通信(1)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sara_YF/article/details/51628220">局域网内主机之间Socket通信实现</a></p>
+<h3 id="Socket含义"><a href="#Socket含义" class="headerlink" title="Socket含义"></a>Socket含义</h3><p>Socket套接字。网络中的进程是通过socket来通信，socket起源于Unix，Unix/Linux都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。Socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作（读/写IO、打开、关闭）。</p>
+<h3 id="Socket的基本操作"><a href="#Socket的基本操作" class="headerlink" title="Socket的基本操作"></a>Socket的基本操作</h3><h4 id="socket-函数"><a href="#socket-函数" class="headerlink" title="socket()函数"></a>socket()函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int socket(int domain, int type, int protocol);</span><br></pre></td></tr></table></figure>
+<p>socket函数对应于普通文件的打开操作。普通文件的打开操作返回一个文件描述字，而socket()用于创建一个socket描述符（socket descriptor），它唯一标识一个socket。这个socket描述字跟文件描述字一样，后续的操作都有用到它，把它作为参数，通过它来进行一些读写操作。<br>创建socket的时候，可以指定不同的参数创建不同的socket描述符，socket函数的三个参数分别为：</p>
+<ul>
+<li>domain：即协议域，又称为协议族（family）。常用的协议族有，AF_INET、AF_INET6、AF_LOCAL（或称AF_UNIX，Unix域socket）、AF_ROUTE等等。<br>协议族决定了socket的地址类型，在通信中必须采用对应的地址，如AF_INET决定了要用ipv4地址（32位的）与端口号（16位的）的组合、AF_UNIX决定了要用一个绝对路径名作为地址。</li>
+<li>type：指定socket类型。常用的socket类型有，SOCK_STREAM、SOCK_DGRAM、SOCK_RAW、SOCK_PACKET、SOCK_SEQPACKET等等。</li>
+<li>protocol：指定协议。常用的协议有，IPPROTO_TCP、IPPTOTO_UDP、IPPROTO_SCTP、IPPROTO_TIPC等，它们分别对应TCP传输协议、UDP传输协议、STCP传输协议、TIPC传输协议。</li>
+</ul>
+<p><strong>注意：</strong>并不是上面的type和protocol可以随意组合的，如SOCK_STREAM不可以跟IPPROTO_UDP组合。当protocol为0时，会自动选择type类型对应的默认协议。<br>当我们调用socket创建一个socket时，返回的socket描述字它存在于协议族（address family，AF_XXX）空间中，但没有一个具体的地址。如果想要给它赋值一个地址，就必须调用bind()函数，否则就当调用connect()、listen()时系统会自动随机分配一个端口。</p>
+<h4 id="bind-函数"><a href="#bind-函数" class="headerlink" title="bind()函数"></a>bind()函数</h4><p>bind()函数把一个地址族中的特定地址赋给socket。例如对应AF_INET、AF_INET6就是把一个ipv4或ipv6地址和端口号组合赋给socket。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span><br></pre></td></tr></table></figure>
+<p>函数的三个参数分别为：</p>
+<ul>
+<li>sockfd：即socket描述字，它是通过socket()函数创建了，唯一标识一个socket。bind()函数就是将给这个描述字绑定一个名字。</li>
+<li>addr：一个const struct sockaddr *指针，指向要绑定给sockfd的协议地址。这个地址结构根据地址创建socket时的地址协议族的不同而不同，如ipv4对应的是：<br>struct sockaddr_in {<br>  sa_family_t    sin_family;<br>  in_port_t      sin_port;<br>  struct in_addr sin_addr;<br>};<br>struct in_addr {<br>  uint32_t       s_addr;<br>};</li>
+</ul>
+<p>ipv6对应的是：<br>struct sockaddr_in6 {<br>    sa_family_t     sin6_family;<br>    in_port_t       sin6_port;<br>    uint32_t        sin6_flowinfo;<br>    struct in6_addr sin6_addr;<br>    uint32_t        sin6_scope_id;<br>};<br>struct in6_addr {<br>    unsigned char   s6_addr[16];<br>};</p>
+<p>Unix域对应的是：<br>#define UNIX_PATH_MAX    108</p>
+<p>struct sockaddr_un {<br>    sa_family_t sun_family;<br>    char        sun_path[UNIX_PATH_MAX];<br>};</p>
+<ul>
+<li>addrlen：对应的是地址的长度。</li>
+</ul>
+<p>通常服务器在启动的时候都会绑定一个众所周知的地址（如ip地址+端口号），用于提供服务，客户就可以通过它来接连服务器；而客户端就不用指定，有系统自动分配一个端口号和自身的ip地址组合。这就是为什么通常服务器端在listen之前会调用bind()，而客户端就不会调用，而是在connect()时由系统随机生成一个。</p>
+<blockquote>
+<p><strong>网络字节序与主机字节序</strong><br>主机字节序就是我们平常说的大端和小端模式：不同的CPU有不同的字节序类型，这些字节序是指整数在内存中保存的顺序，这个叫做主机序。<br>引用标准的Big-Endian和Little-Endian的定义如下：<br>&nbsp;&nbsp;&nbsp;&nbsp;a) Little-Endian就是低位字节排放在内存的低地址端，高位字节排放在内存的高地址端。<br>&nbsp;&nbsp;&nbsp;&nbsp;b) Big-Endian就是高位字节排放在内存的低地址端，低位字节排放在内存的高地址端。</p>
+</blockquote>
+<blockquote>
+<p>网络字节序：4个字节的32 bit值以下面的次序传输：首先是0～7bit，其次8～15bit，然后16～23bit，最后是24~31bit。这种传输次序称作大端字节序。由于TCP/IP首部中所有的二进制整数在网络中传输时都要求以这种次序，因此它又称作网络字节序。字节序，顾名思义字节的顺序，就是大于一个字节类型的数据在内存中的存放顺序，一个字节的数据没有顺序的问题了。</p>
+</blockquote>
+<blockquote>
+<p>所以： 在将一个地址绑定到socket的时候，请先将主机字节序转换成为网络字节序，而不要假定主机字节序跟网络字节序一样使用的是Big-Endian。由于 这个问题曾引发过血案！公司项目代码中由于存在这个问题，导致了很多莫名其妙的问题，所以请谨记对主机字节序不要做任何假定，务必将其转化为网络字节序再 赋给socket。</p>
+</blockquote>
+<h4 id="listen-、connect-函数"><a href="#listen-、connect-函数" class="headerlink" title="listen()、connect()函数"></a>listen()、connect()函数</h4><p>如果作为一个服务器，在调用socket()、bind()之后就会调用listen()来监听这个socket，如果客户端这时调用connect()发出连接请求，服务器端就会接收到这个请求。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int listen(int sockfd, int backlog);</span><br><span class="line">int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span><br></pre></td></tr></table></figure>
+<p>listen函数的第一个参数即为要监听的socket描述字，第二个参数为相应socket可以排队的最大连接个数。socket()函数创建的socket默认是一个主动类型的，listen函数将socket变为被动类型的，等待客户的连接请求。<br>connect函数的第一个参数即为客户端的socket描述字，第二参数为服务器的socket地址，第三个参数为socket地址的长度。客户端通过调用connect函数来建立与TCP服务器的连接。</p>
+<h4 id="accept-函数"><a href="#accept-函数" class="headerlink" title="accept()函数"></a>accept()函数</h4><p>TCP服务器端依次调用socket()、bind()、listen()之后，就会监听指定的socket地址了。TCP客户端依次调用socket()、connect()之后就想TCP服务器发送了一个连接请求。TCP服务器监听到这个请求之后，就会调用accept()函数取接收请求，这样连接就建立好了。之后就可以开始网络I/O操作了，即类同于普通文件的读写I/O操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</span><br></pre></td></tr></table></figure>
+<p>accept函数的第一个参数为服务器的socket描述字，第二个参数为指向struct sockaddr *的指针，用于返回客户端的协议地址，第三个参数为协议地址的长度。如果accpet成功，那么其返回值是由内核自动生成的一个全新的描述字，代表与返回客户的TCP连接。<br>注意：accept的第一个参数为服务器的socket描述字，是服务器开始调用socket()函数生成的，称为监听socket描述字；而accept函数返回的是已连接的socket描述字。一个服务器通常通常仅仅只创建一个监听socket描述字，它在该服务器的生命周期内一直存在。内核为每个由服务器进程接受的客户连接创建了一个已连接socket描述字，当服务器完成了对某个客户的服务，相应的已连接socket描述字就被关闭。</p>
+<h4 id="read-、write-等函数"><a href="#read-、write-等函数" class="headerlink" title="read()、write()等函数"></a>read()、write()等函数</h4><p>服务器与客户已经建立好连接了。可以调用网络I/O进行读写操作了，即实现了网络中不同进程之间的通信！网络I/O操作有下面几组：<br>read()/write()<br>recv()/send()<br>readv()/writev()<br>recvmsg()/sendmsg()<br>recvfrom()/sendto()</p>
+<h4 id="close-函数"><a href="#close-函数" class="headerlink" title="close()函数"></a>close()函数</h4><p>在服务器与客户端建立连接之后，会进行一些读写操作，完成了读写操作就要关闭相应的socket描述字，好比操作完打开的文件要调用fclose关闭打开的文件。<br>注意：close操作只是使相应socket描述字的引用计数-1，只有当引用计数为0的时候，才会触发TCP客户端向服务器发送终止连接请求。</p>
+<h4 id="socket函数与通信过程"><a href="#socket函数与通信过程" class="headerlink" title="socket函数与通信过程"></a>socket函数与通信过程</h4><p><img src="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/1.png"></p>
+<h3 id="HTTP连接"><a href="#HTTP连接" class="headerlink" title="HTTP连接"></a>HTTP连接</h3><h4 id="短连接："><a href="#短连接：" class="headerlink" title="短连接："></a>短连接：</h4><pre><code>连接-&gt;传输数据-&gt;关闭连接
+HTTP是无状态的，浏览器和服务器每进行一次HTTP操作，就建立一次连接，但任务结束就中断连接。
+也可以这样说：短连接是指SOCKET连接后发送后接收完数据后马上断开连接。
+</code></pre>
+<h4 id="长连接："><a href="#长连接：" class="headerlink" title="长连接："></a>长连接：</h4><pre><code>连接-&gt;传输数据-&gt;保持连接 -&gt; 传输数据-&gt; 。。。 -&gt;关闭连接。
+长连接指建立SOCKET连接后不管是否使用都保持连接，但安全性较差。
+</code></pre>
+<h4 id="http的长连接："><a href="#http的长连接：" class="headerlink" title="http的长连接："></a>http的长连接：</h4><pre><code>HTTP也可以建立长连接，使用Connection:keep-alive，HTTP 1.1默认进行持久连接。
+HTTP1.1和HTTP1.0相比较而言，最大的区别就是增加了持久连接支持，但还是无状态的,或者说是不可以信任的。
+</code></pre>
+<h3 id="TCP粘包、拆包"><a href="#TCP粘包、拆包" class="headerlink" title="TCP粘包、拆包"></a>TCP粘包、拆包</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/panchanggui/p/9518735.html">TCP粘包，拆包及解决方法</a><br>粘包拆包问题是处于网络比较底层的问题，在数据链路层、网络层以及传输层都有可能发生。我们日常的网络应用开发大都在传输层进行，由于UDP有消息保护边界，不会发生粘包拆包问题，因此粘包拆包问题只发生在TCP协议中。</p>
+<h4 id="什么是粘包和拆包"><a href="#什么是粘包和拆包" class="headerlink" title="什么是粘包和拆包"></a>什么是粘包和拆包</h4><p>假设客户端向服务端连续发送了两个数据包，用packet1和packet2来表示，那么服务端收到的数据可以分为三种，现列举如下：<br>第一种情况，接收端正常收到两个数据包，即没有发生拆包和粘包的现象。<br><img src="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/3.png"><br>第二种情况，接收端只收到一个数据包，由于TCP是不会出现丢包的，所以这一个数据包中包含了发送端发送的两个数据包的信息，这种现象即为粘包。这种情况由于接收端不知道这两个数据包的界限，所以对于接收端来说很难处理。<br><img src="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/4.png"><br>第三种情况，这种情况有两种表现形式，如下图。接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块，这种情况即发生了拆包和粘包。这两种情况如果不加特殊处理，对于接收端同样是不好处理的。<br><img src="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/5.png"><br><img src="/2021/12/30/Socket%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E4%BF%A1/6.png"></p>
+<h4 id="TCP粘包和拆包的原因"><a href="#TCP粘包和拆包的原因" class="headerlink" title="TCP粘包和拆包的原因"></a>TCP粘包和拆包的原因</h4><p>1.应用程序写入的数据大于套接字缓冲区大小，这将会发生拆包。<br>2.应用程序写入数据小于套接字缓冲区大小，网卡将应用多次写入的数据发送到网络上，这将会发生粘包。<br>3.进行MSS（最大报文长度）大小的TCP分段，当TCP报文长度-TCP头部长度&gt;MSS的时候将发生拆包。<br>4.接收方法不及时读取套接字缓冲区数据，这将发生粘包。</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>1、发送端给每个数据包添加包首部，首部中应该至少包含数据包的长度，这样接收端在接收到数据后，通过读取包首部的长度字段，便知道每一个数据包的实际长度了。<br>2、发送端将每个数据包封装为固定长度（不够的可以通过补0填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。<br>3、可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将不同的数据包拆分开。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2/" class="post-title-link" itemprop="url">设计模式2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-30 10:36:40 / 修改时间：10:38:23" itemprop="dateCreated datePublished" datetime="2021-12-30T10:36:40+08:00">2021-12-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -183,10 +455,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-29 10:14:08 / 修改时间：18:03:59" itemprop="dateCreated datePublished" datetime="2021-12-29T10:14:08+08:00">2021-12-29</time>
+              <time title="创建时间：2021-12-29 10:14:08" itemprop="dateCreated datePublished" datetime="2021-12-29T10:14:08+08:00">2021-12-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-30 14:04:57" itemprop="dateModified" datetime="2021-12-30T14:04:57+08:00">2021-12-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -197,7 +475,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
                 </span>
             </span>
 
@@ -229,6 +507,7 @@
 <p>使用gin编写的r.POST(“/somePost”, postting),postting内容如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">postting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	message := c.PostForm(<span class="string">&quot;message&quot;</span>)</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;anonymous&quot;</span>)</span><br><span class="line"></span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;posted&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: message,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过Postman可以看到/somePost能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/1.png"><br>Java运行访问到/somePost,读取并修改其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/6.png"></p>
+<h4 id="POST表单"><a href="#POST表单" class="headerlink" title="POST表单"></a>POST表单</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Icywind1/article/details/85628099">multipart/form-data的方式传递参数</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mufengforward/p/10510337.html">java中的http请求的封装（GET、POST、form表单形式）</a></p>
 <h3 id="PUT请求"><a href="#PUT请求" class="headerlink" title="PUT请求"></a>PUT请求</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zcf520android/article/details/51314959">HttpURLConnection 发送PUT请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36666651/article/details/79835777">使用HttpURLConnection的put或者post请求上传文件</a><br><a target="_blank" rel="noopener" href="https://codingdict.com/questions/134100">HttpURLConnection发送PUT，DELETE HTTP请求</a></p>
 <p>使用gin编写的r.PUT(“/somePut”, putting),putting内容如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">putting</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;put&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;123&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    <span class="string">&quot;456&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -236,7 +515,8 @@
 <h3 id="DELETE请求"><a href="#DELETE请求" class="headerlink" title="DELETE请求"></a>DELETE请求</h3><p>使用gin编写的r.DELETE(“/someDELETE”, delete),delete内容如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delete</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	nick := c.DefaultPostForm(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;sandy&quot;</span>)</span><br><span class="line">	c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">		<span class="string">&quot;status&quot;</span>:  <span class="string">&quot;delete&quot;</span>,</span><br><span class="line">		<span class="string">&quot;message&quot;</span>: <span class="string">&quot;helloworld&quot;</span>,</span><br><span class="line">		<span class="string">&quot;nick&quot;</span>:    nick,</span><br><span class="line">        <span class="string">&quot;describtion&quot;</span>: <span class="string">&quot;this is a delete request&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过Postman可以看到/someDELETE能够被访问。<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/3.png"><br>Java运行访问到/someDELETE,读取其中的JSon数据：<br><img src="/2021/12/29/HTTP%E9%80%9A%E4%BF%A12/4.png"></p>
-<p>###PUT请求上传文件<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangchengzi/p/9865100.html">给idea设置默认使用的maven配置</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38384994/article/details/115116418">idea配置自带maven</a></p>
+<h3 id="PUT请求上传文件"><a href="#PUT请求上传文件" class="headerlink" title="PUT请求上传文件"></a>PUT请求上传文件</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangchengzi/p/9865100.html">给idea设置默认使用的maven配置</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38384994/article/details/115116418">idea配置自带maven</a></p>
+<p>HTTP请求类型的一般用法：<br>POST上传，GET获取，PUT修改，DELETE删除。</p>
 
       
     </div>
@@ -948,345 +1228,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">HTTP请求学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-12-24 14:28:57 / 修改时间：18:13:45" itemprop="dateCreated datePublished" datetime="2021-12-24T14:28:57+08:00">2021-12-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ailunlee/article/details/90600174">HTTP请求的完全过程</a></p>
-<h2 id="HTTP请求的过程"><a href="#HTTP请求的过程" class="headerlink" title="HTTP请求的过程"></a>HTTP请求的过程</h2><h3 id="1-浏览器根据域名解析IP地址"><a href="#1-浏览器根据域名解析IP地址" class="headerlink" title="1.浏览器根据域名解析IP地址"></a>1.浏览器根据域名解析IP地址</h3><p>浏览器根据访问的域名找到其IP地址。DNS查找过程：<br>（1）浏览器缓存：首先搜索浏览器自身的DNS缓存（缓存的时间比较短，大概只有1分钟，且只能容纳1000条缓存），看自身的缓存中是否是有域名对应的条目，而且没有过期，如果有且没有过期则解析到此结束。<br>（2）系统缓存：如果浏览器自身的缓存里面没有找到对应的条目，那么浏览器会搜索操作系统自身的DNS缓存，如果找到且没有过期则停止搜索解析到此结束。<br>（3）路由器缓存：如果系统缓存也没有找到，则会向路由器发送查询请求。<br>（4）ISP（互联网服务提供商） DNS缓存：如果在路由缓存也没找到，最后要查的就是ISP缓存DNS的服务器。</p>
-<h3 id="2-浏览器和WEB服务器建立一个TCP连接"><a href="#2-浏览器和WEB服务器建立一个TCP连接" class="headerlink" title="2.浏览器和WEB服务器建立一个TCP连接"></a>2.浏览器和WEB服务器建立一个TCP连接</h3><p>TCP的3次握手。</p>
-<h3 id="3-浏览器给WEB服务器发送一个HTTP请求"><a href="#3-浏览器给WEB服务器发送一个HTTP请求" class="headerlink" title="3.浏览器给WEB服务器发送一个HTTP请求"></a>3.浏览器给WEB服务器发送一个HTTP请求</h3><p>一个HTTP请求报文由请求行（request line）、请求头部（headers）、空行（blank line）和请求数据（request body）4个部分组成。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/1.png"></p>
-<h4 id="3-1请求行"><a href="#3-1请求行" class="headerlink" title="3.1请求行"></a>3.1请求行</h4><p>请求行分为三个部分：请求方法、请求地址URL和HTTP协议版本，它们之间用空格分割。例如，GET /index.html HTTP/1.1。</p>
-<h5 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h5><p>HTTP/1.1 定义的请求方法有8种：GET（完整请求一个资源）、POST（提交表单）、PUT（上传文件）、DELETE（删除）、PATCH、HEAD（仅请求响应首部）、OPTIONS（返回请求的资源所支持的方法）、TRACE（追求一个资源请求中间所经过的代理）。最常的两种GET和POST，如果是RESTful接口的话一般会用到GET、POST、DELETE、PUT。</p>
-<ol>
-<li>Get<br>点击<strong>网页上的链接</strong>或者通过<strong>浏览器的地址栏输入网址</strong>来浏览网页的，使用的都是GET方式。<br>GET方法要求服务器将URL定位的资源放在<strong>响应报文的数据部分</strong>，会送给客户端。<br>使用GET方法时，<em>请求参数和对应的值附加在URL后面</em>，利用一个问号‘？’代表URL的结尾与请求参数的开始，<strong>传递参数长度受限制</strong>。<br>地址中‘？’之后的部分就是通过GET发送的请求数据，各个数据之间用‘&amp;’符号隔开。<br>不同的浏览器对地址的字符限制也有所不同，一般最多只能识别1024个字符，所以如果需要传送大量数据的时候，也不适合使用GET方式。<br>如果数据是英文字母/数字，原样发送；如果是空格，转换为+；如果是中文/其他字符，则直接把字符串用BASE64加密，得出：%E4%BD%A0%E5%A5%BD，其中%XX中的XX为该符号以16进制表示的ASCII。</li>
-<li>POST<br>客户端可以给服务器提供大量信息。<br>POST方法将<em>请求参数封装在HTTP请求数据中</em>，以名称/值的形式出现，<strong>可以传输大量数据</strong>，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。<br>POST方式请求行中不包含数据字符串，这些<strong>数据保存在“请求内容”部分</strong>，各数据之间也是使用‘&amp;’符号隔开。<br>POST方式大多用于页面的表单中。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/2.png"></li>
-</ol>
-<h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h5><p>URL：统一资源定位符，是一种资源位置的抽象唯一识别方法。<br>组成：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;<br>端口和路径有事可以省略（HTTP默认端口号是80）<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/3.png"></p>
-<h5 id="协议版本"><a href="#协议版本" class="headerlink" title="协议版本"></a>协议版本</h5><p>协议版本的格式为：HTTP/主版本号.次版本号，常用的有HTTP/1.0和HTTP/1.1</p>
-<h4 id="3-2请求头部"><a href="#3-2请求头部" class="headerlink" title="3.2请求头部"></a>3.2请求头部</h4><p>请求头部为请求报文添加了一些附加信息，由“名/值”对组成，每行一对，名和值之间使用冒号分隔。<br>请求头部的最后会有一个空行，表示请求头部结束，接下来为请求数据。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/4.png"></p>
-<h4 id="3-3请求数据"><a href="#3-3请求数据" class="headerlink" title="3.3请求数据"></a>3.3请求数据</h4><p>请求数据不在GET方法中使用，而<strong>在POST方法中使用</strong>。POST方法适用于需要客户填写表单的场合。与请求数据相关的最长使用的请求头部是Cntent-Type和Content-Length。下面是一个POST方法的请求报文：</p>
-<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST   /index.php  HTTP/<span class="number">1.1</span>    请求行</span><br><span class="line">Host: localhost</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">5.1</span>; rv:<span class="number">10.0</span><span class="number">.2</span>) Gecko/<span class="number">20100101</span> Firefox/<span class="number">10.0</span><span class="number">.2</span>   请求头</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,/;q=<span class="number">0.8</span></span><br><span class="line">Accept-Language: zh-cn,zh;q=<span class="number">0.5</span></span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Referer: http:<span class="comment">//localhost/</span></span><br><span class="line">Content-Length：<span class="number">25</span></span><br><span class="line">Content-Type：application/x-www-form-urlencoded</span><br><span class="line">    空行</span><br><span class="line">username=aa&amp;password=<span class="number">1234</span>   请求数据</span><br></pre></td></tr></table></figure>
-<h3 id="4-服务器端响应HTTP请求，浏览器得到HTML代码"><a href="#4-服务器端响应HTTP请求，浏览器得到HTML代码" class="headerlink" title="4.服务器端响应HTTP请求，浏览器得到HTML代码"></a>4.服务器端响应HTTP请求，浏览器得到HTML代码</h3><p>HTTP响应报文由状态行（status line）、相应头部（headers）、空行（blank line）和响应数据（response body）4个部分组成。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/5.png"></p>
-<h4 id="4-1状态行"><a href="#4-1状态行" class="headerlink" title="4.1状态行"></a>4.1状态行</h4><p>状态行由3部分组成，分别为：协议版本、状态码、状态码扫描。其中协议版本与请求报文一致，状态码描述是对状态码的简单描述。<br><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/6.png"></p>
-<h4 id="4-2响应头部"><a href="#4-2响应头部" class="headerlink" title="4.2响应头部"></a>4.2响应头部</h4><p><img src="/2021/12/24/HTTP%E8%AF%B7%E6%B1%82%E5%AD%A6%E4%B9%A0/7.png"></p>
-<h4 id="4-3响应数据"><a href="#4-3响应数据" class="headerlink" title="4.3响应数据"></a>4.3响应数据</h4><p>用于存放需要返回给客户端的数据信息。</p>
-<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK    状态行</span><br><span class="line">Date: Sun, <span class="number">17</span> Mar <span class="number">2013</span> <span class="number">08</span>:<span class="number">12</span>:<span class="number">54</span> GMT    响应头部</span><br><span class="line">Server: Apache/<span class="number">2.2</span><span class="number">.8</span> (Win32) PHP/<span class="number">5.2</span><span class="number">.5</span></span><br><span class="line">X-Powered-By: PHP/<span class="number">5.2</span><span class="number">.5</span></span><br><span class="line">Set-Cookie: PHPSESSID=c0huq7pdkmm5gg6osoe3mgjmm3; path=/</span><br><span class="line">Expires: Thu, <span class="number">19</span> Nov <span class="number">1981</span> <span class="number">08</span>:<span class="number">52</span>:<span class="number">00</span> GMT</span><br><span class="line">Cache-Control: no-store, no-cache, must-revalidate, post-check=<span class="number">0</span>, pre-check=<span class="number">0</span></span><br><span class="line">Pragma: no-cache</span><br><span class="line">Content-Length: <span class="number">4393</span></span><br><span class="line">Keep-Alive: timeout=<span class="number">5</span>, max=<span class="number">100</span></span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=utf<span class="number">-8</span></span><br><span class="line">    空行</span><br><span class="line">&lt;html&gt;     响应数据</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;HTTP响应示例&lt;title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">Hello HTTP!</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="5-浏览器解析HTML代码，并请求HTML代码中的资源"><a href="#5-浏览器解析HTML代码，并请求HTML代码中的资源" class="headerlink" title="5.浏览器解析HTML代码，并请求HTML代码中的资源"></a>5.浏览器解析HTML代码，并请求HTML代码中的资源</h3><p>浏览器拿到HTML文件后，开始解析HTML代码，遇到静态资源时，就向服务器端去请求下载。</p>
-<h3 id="6-关闭TCP连接，浏览器对页面进行渲染呈现给用户"><a href="#6-关闭TCP连接，浏览器对页面进行渲染呈现给用户" class="headerlink" title="6.关闭TCP连接，浏览器对页面进行渲染呈现给用户"></a>6.关闭TCP连接，浏览器对页面进行渲染呈现给用户</h3><p>浏览器利用自己内部的工作机制，把请求到的静态资源和HTML代码进行渲染，呈现给用户。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/" class="post-title-link" itemprop="url">java-DBus开发2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-23 09:42:05" itemprop="dateCreated datePublished" datetime="2021-12-23T09:42:05+08:00">2021-12-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-24 17:55:20" itemprop="dateModified" datetime="2021-12-24T17:55:20+08:00">2021-12-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Ubuntu下git安装使用"><a href="#Ubuntu下git安装使用" class="headerlink" title="Ubuntu下git安装使用"></a>Ubuntu下git安装使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/12.png"></p>
-<p>由于最早的时候发送.gitignore文件没有生效，于是根据<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010566681/article/details/53183146">详解Github的.gitignore忽略文件</a>将缓存清空再次上传。<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/13.png"><br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/14.png"><br>本地仓库已经提交过了，现在只需要push就好，但是报错了。<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/15.png"><br>这是当前分支和远程分支不一致所致，解决方法如下：<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/17.png"><br>上传成功，但是好像还是没生效。不理解了，后边再找找资料。</p>
-<h3 id="DBUS的signal使用"><a href="#DBUS的signal使用" class="headerlink" title="DBUS的signal使用"></a>DBUS的signal使用</h3><p><a target="_blank" rel="noopener" href="https://dbus.freedesktop.org/doc/dbus-java/dbus-java/dbus-javase3.html">官方文档关于signal的说法</a></p>
-<blockquote>
-<p>如果您有在重命名的接口中声明的信号（有关信号，请参见下文），那么在添加信号处理程序时，您必须使用addSigHandler方法，该方法采用与该信号对应的类对象。如果不这样做，则接收信号将失败。</p>
-</blockquote>
-<blockquote>
-<p>信号也被声明为接口的一部分。Java API 将这些建模为接口内的内部类。包含接口必须扩展 DBusInterface，表示信号的内部类必须扩展 DBusSignal 10. Signal 名称派生自此内部类的名称，而接口派生自其包含的接口。<br>信号可以像方法一样接受参数（尽管它们不能返回任何东西）。为了使反射起作用，一个 Signal 声明了一个正确类型的构造函数。构造函数必须将它们发出的对象路径作为它们的第一个（字符串）参数，然后依次是其他参数。它们还必须使用相同的参数调用超类构造函数。信号的完整定义见下：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.freedesktop;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusInterface;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSignal;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.exceptions.DBusException;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DBus</span> <span class="keyword">extends</span> <span class="title">DBusInterface</span>  </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameAcquired</span> <span class="keyword">extends</span> <span class="title">DBusSignal</span>  </span></span><br><span class="line"><span class="class">   </span>&#123;  </span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">final</span> String name;  </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">NameAcquired</span><span class="params">(String path, String name)</span>  </span></span><br><span class="line"><span class="function">                              <span class="keyword">throws</span> DBusException  </span></span><br><span class="line"><span class="function">      </span>&#123;  </span><br><span class="line">         <span class="keyword">super</span>(path, name);  </span><br><span class="line">         <span class="keyword">this</span>.name = name;  </span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>要处理来自总线上其他程序的传入信号，您必须注册一个信号处理程序。这必须实现 DBusSigHandler 并提供 handle 方法的实现。示例信号处理程序如下所示 。信号处理程序应该使用它们正在处理的信号进行参数化。如果您想要一个信号处理程序来处理多个信号，您可以省略参数化并使用 instanceof来检查您正在处理的信号类型。信号处理程序将在它们自己的线程中运行。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSignal;  </span><br><span class="line"><span class="keyword">import</span> org.freedesktop.dbus.DBusSigHandler;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span> <span class="keyword">extends</span> <span class="title">DBusSigHandler</span>&lt;<span class="title">DBus</span>.<span class="title">NameAcquired</span>&gt;  </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(DBus.NameAcquired sig)</span>  </span></span><br><span class="line"><span class="function">   </span>&#123;  </span><br><span class="line">         ...  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面是实现USB监听的实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DBusInterfaceName(&quot;org.freedesktop.DBus.ObjectManager&quot;)</span><span class="comment">//一定要注意大小写</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ObjectManager</span> <span class="keyword">extends</span> <span class="title">DBusInterface</span> </span>&#123;</span><br><span class="line">    <span class="meta">@DBusMemberName(&quot;InterfacesAdded&quot;)</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InterfacesAdded</span> <span class="keyword">extends</span> <span class="title">DBusSignal</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> Path objectpath;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> Map&lt;String, Map&lt;String,Variant&gt;&gt; map;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InterfacesAdded</span><span class="params">(String path,Path objectpath,Map&lt;String,Map&lt;String,Variant&gt;&gt; map)</span><span class="keyword">throws</span> DBusException </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(path,objectpath,map);</span><br><span class="line">            <span class="keyword">this</span>.objectpath=objectpath;</span><br><span class="line">            <span class="keyword">this</span>.map=map;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Path <span class="title">getObjectPath</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> objectpath;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> Map&lt;String, Map&lt;String, Variant&gt;&gt; getInterfacesAdded() &#123;</span><br><span class="line">            <span class="keyword">return</span> map;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceAddedHandler</span> <span class="keyword">implements</span> <span class="title">DBusSigHandler</span>&lt;<span class="title">ObjectManager</span>.<span class="title">InterfacesAdded</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> hasDeviceConnected = <span class="keyword">false</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InterfaceAddedHandler</span><span class="params">()</span> <span class="keyword">throws</span> DBusException</span>&#123;</span><br><span class="line">        DBusConnection dBusConnection;</span><br><span class="line">        dBusConnection = DBusConnection.getConnection(DBusConnection.SYSTEM);</span><br><span class="line">        dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>, <span class="string">&quot;/org/freedesktop/UDisks2&quot;</span>, ObjectManager.class);</span><br><span class="line">        dBusConnection.addSigHandler(ObjectManager.InterfacesAdded.class, <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(ObjectManager.InterfacesAdded signal)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println(signal.getInterfacesAdded().keySet().toString()); //这个方法看到下面过滤的条件应该是什么</span></span><br><span class="line">        Map&lt;String, Variant&gt; iamap=signal.getInterfacesAdded().get(<span class="string">&quot;org.freedesktop.UDisks2.Block&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(iamap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(iamap);</span><br><span class="line">            hasDeviceConnected = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> DBusException, IOException </span>&#123;</span><br><span class="line">    DBusConnection dBusConnection;</span><br><span class="line">    dBusConnection = DBusConnection.getConnection(DBusConnection.SYSTEM);</span><br><span class="line">    org.freedesktop.DBus dbus = dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.DBus&quot;</span>, <span class="string">&quot;/or/freedesktop/DBus&quot;</span>, org.freedesktop.DBus.class);</span><br><span class="line">    String uDiskDbusBusName = dbus.GetNameOwner(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>);</span><br><span class="line">    InterfaceAddedHandler interfaceAddedHandler=<span class="keyword">new</span> InterfaceAddedHandler();</span><br><span class="line">    ObjectManager udiskObjectManager=dBusConnection.getRemoteObject(<span class="string">&quot;org.freedesktop.UDisks2&quot;</span>, <span class="string">&quot;/&quot;</span>, ObjectManager.class);</span><br><span class="line">    dBusConnection.addSigHandler(ObjectManager.InterfacesAdded.class,uDiskDbusBusName,udiskObjectManager,interfaceAddedHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一定要检查DBus接口名是否正确，对于某些过滤条件可以通过各种方式（如System.out输出）来查看原有哪些条件，比如这句signal.getInterfacesAdded().get(“org.freedesktop.UDisks2.Block”);就是因为get了错误的对象，因此没有输出。</p>
-<p>首先运行程序，在VM的选项中选择USB的连接事件，运行结果如下：<br><img src="/2021/12/23/java-DBus%E5%BC%80%E5%8F%912/1.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">设计模式学习1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-20 18:09:10" itemprop="dateCreated datePublished" datetime="2021-12-20T18:09:10+08:00">2021-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-21 09:08:54" itemprop="dateModified" datetime="2021-12-21T09:08:54+08:00">2021-12-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1，设计模式概述"><a href="#1，设计模式概述" class="headerlink" title="1，设计模式概述"></a>1，设计模式概述</h1><h2 id="1-1-产生背景"><a href="#1-1-产生背景" class="headerlink" title="1.1 产生背景"></a>1.1 产生背景</h2><p>1990年软件工程届开始研讨设计模式的话题，GoF为出版《设计模式：可复用面向对象软件的基础》的4位作者。</p>
-<h2 id="1-2-概念"><a href="#1-2-概念" class="headerlink" title="1.2 概念"></a>1.2 概念</h2><p>软件设计模式(Software Design Pattern)，又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。它描述了在软件设计过程中的一些不断重复发生的问题，以及该问题的解决方案。也就是说，它是解决特定问题的一系列套路，是前辈们的代码设计经验的总结，具有一定的普遍性，可以反复使用。</p>
-<h2 id="1-3-学习的必要性"><a href="#1-3-学习的必要性" class="headerlink" title="1.3 学习的必要性"></a>1.3 学习的必要性</h2><p>设计模式的本质是面向对象设计原则的实际运用，是对类的封装性、继承性和多态性以及类的关联关系和组合关系的充分理解。<br>正确使用设计模式具有以下优点。</p>
-<ul>
-<li>可以提高程序员的思维能力、编程能力和设计能力。</li>
-<li>使程序设计更加标准化、代码编制更加工程化，使软件开发效率大大提高，从而缩短软件的开发周期。</li>
-<li>使设计的代码可重用性高、可读性强、可靠性高、灵活性好、可维护性强。</li>
-</ul>
-<h2 id="1-4-设计模式分类"><a href="#1-4-设计模式分类" class="headerlink" title="1.4 设计模式分类"></a>1.4 设计模式分类</h2><ul>
-<li><p>创建性模式</p>
-<p>用于描述“怎样创建对象”，它的主要特点是“将对象的创建与使用分离”。GoF（四人组）书中提供了单例、原型、工厂方法、抽象工厂、建造者等5种创建型模式。</p>
-</li>
-<li><p>结构性模式</p>
-<p>用于描述如何将类或对象按某种布局组成更大的结构，coE(四人组)书中提供了代理、适配器、桥接、装饰、外观、享元、组合7种结构型模式。</p>
-</li>
-<li><p>行为型模式</p>
-<p>用于描述类或对象之间怎样相互协作共同完成单个对象无法单独完成的任务，以及怎样分配职责。GoF(四人组)书中提供了模板方法、策略、命令、职责链、状态、观察者、中介者、迭代器、访问者、备忘录、解释器等11 种行为型模式。</p>
-</li>
-</ul>
-<h1 id="2，UML"><a href="#2，UML" class="headerlink" title="2，UML"></a>2，UML</h1><p>统一建模语言(Unified Modeling Language，UML）是用来设计软件的可视化建模语言。它的特点是简单、统一、图形化、能表达软件设计中的动态与静态信息。<br>UML从目标系统的不同角度出发，定义了用例图、类图、对象图、状态图、活动图、时序图、协作图、构件图、部署图等9种图。</p>
-<h2 id="2-1-类图概述"><a href="#2-1-类图概述" class="headerlink" title="2.1 类图概述"></a>2.1 类图概述</h2><p>类图(Class diagram)是显示了模型的静态结构，特别是模型中存在的类、类的内部结构以及它们与其他类的关系等。类图不显示暂时性的信息。类图是面向对象建模的主要组成部分。</p>
-<h2 id="2-2-类图的作用"><a href="#2-2-类图的作用" class="headerlink" title="2.2 类图的作用"></a>2.2 类图的作用</h2><ul>
-<li>在软件工程中，类图是一种静态的结构图，描述了系统的类的集合，类的属性和类之间的关系，可以简化了人们对系统的理解;</li>
-<li>类图是系统分析和设计阶段的重要产物，是系统编码和测试的重要模型。</li>
-</ul>
-<h2 id="2-3-类图表示法"><a href="#2-3-类图表示法" class="headerlink" title="2.3 类图表示法"></a>2.3 类图表示法</h2><h3 id="2-3-1-类的表示方式"><a href="#2-3-1-类的表示方式" class="headerlink" title="2.3.1 类的表示方式"></a>2.3.1 类的表示方式</h3><p>在M类图中，类使用包含类名、属性(field）和方法(method)且带有分割线的矩形来表示，比如下图表示一个Employee类，它包含name , age和address这3个属性，以及work()方法。</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219230432131.png" alt="image-20211219230432131"></p>
-<p>属性/方法名称前加的加号和减号表示了这个属性/方法的可见性，UML类图中表示可见性的符号有三种:</p>
-<ul>
-<li>+:表示public </li>
-<li>-:表示private</li>
-<li>#:表示protected</li>
-</ul>
-<p>属性的完整表示方式是:  **可见性   名称 ︰ 类型  [  =  缺省值] **<br>方法的完整表示方式是:  <strong>可见性   名称(参数列表)    [    :    返回类型]</strong></p>
-<blockquote>
-<p>注意</p>
-<p>1,中括号的内容表示是可选的</p>
-<p>2，也有将类型放在变量名前面，返回值类型放在方法名前面</p>
-</blockquote>
-<p><strong>栗子：</strong></p>
-<p>![image-20211219231117885]image-20211219231117885.png)</p>
-<p>上图Demo类定义了三个方法</p>
-<ul>
-<li><p>methond()方法：修饰符为public，没有参数，没有返回值</p>
-</li>
-<li><p>method1()方法：修饰符为private，没有参数，返回值类型string</p>
-</li>
-<li><p>method2()方法：修饰符为protected，接受两个参数，第一个参数为int，第二个参数为string，返回值类型为int</p>
-</li>
-</ul>
-<h3 id="2-3-2-类与类之间关系的表示方式"><a href="#2-3-2-类与类之间关系的表示方式" class="headerlink" title="2.3.2 类与类之间关系的表示方式"></a>2.3.2 类与类之间关系的表示方式</h3><h4 id="2-3-2-1-关联关系"><a href="#2-3-2-1-关联关系" class="headerlink" title="2.3.2.1 关联关系"></a>2.3.2.1 关联关系</h4><p>关联关系是对象之间的一种引用关系，用于表示一类对象与另一类对象之间的联系，如老师和学生、师傅和徒弟、丈夫和妻子等。关联关系是类与类之间最常用的一种关系，分为一般关联关系、聚合关系和组合关系。我们先介绍一般关联。<br>关联又可以分为单向关联，双向关联，自关联。</p>
-<p><strong>1，单向关联</strong></p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219231850881.png" alt="image-20211219231850881"></p>
-<p>在UML类图中单向关联用一个带箭头的实线表示。上图表示每个顾客都有一个地址，这通过让customer类持有一个类型为Address的成员变量类实现。</p>
-<p><strong>2，双向关联</strong></p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219233951851.png" alt="image-20211219233951851"></p>
-<p>从上图中我们很容易看出，所谓的双向关联就是双方各自持有对方类型的成员变量。<br>在UML类图中，双向关联用一个不带箭头的直线表示。上图中在customer类中维护一个List&lt;Product&gt;，表示一个顾客可以购买多个商品;在Product类中维护一个Customer类型的成员变量表示这个产品被哪个顾客所购买。</p>
-<p><strong>3,自关联</strong></p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234158055.png" alt="image-20211219234158055"></p>
-<p>自关联在UML类图中用一个带有箭头且指向自身的线表示。上图的意思就是Node类包含类型为subNode的成员变量，也就是“自己包含自己”。</p>
-<h4 id="2-3-2-2-聚合关系"><a href="#2-3-2-2-聚合关系" class="headerlink" title="2.3.2.2 聚合关系"></a>2.3.2.2 聚合关系</h4><p>聚合关系是关联关系的一种，是强关联关系，是整体和部分之间的关系。<br>聚合关系也是通过成员对象来实现的，其中成员对象是整体对象的一部分，但是成员对象可以脱离整体对象而独立存在。例如，学校与老师的关系，学校包含老师，但如果学校停办了，老师依然存在。<br>在UML类图中，聚合关系可以用带空心菱形的实线来表示，菱形指向整体。下图所示是大学和教师的关系图:</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234441276.png" alt="image-20211219234441276"></p>
-<h4 id="2-3-2-3-组合关系"><a href="#2-3-2-3-组合关系" class="headerlink" title="2.3.2.3 组合关系"></a>2.3.2.3 组合关系</h4><p>组合表示类之间的整体与部分的关系，但它是一种更强烈的聚合关系。<br>在组合关系中，整体对象可以控制部分对象的生命周期，一旦整体对象不存在，部分对象也将不存在，部分对象不能脱离整体对象而存在。例如，头和嘴的关系，没有了头，嘴也就不存在了。<br>在UML类图中，组合关系用带实心菱形的实线来表示，菱形指向整体。下图所示是头和嘴的关系图:</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219234808482.png" alt="image-20211219234808482"></p>
-<h4 id="2-3-2-4-依赖关系"><a href="#2-3-2-4-依赖关系" class="headerlink" title="2.3.2.4 依赖关系"></a>2.3.2.4 依赖关系</h4><p>依赖关系是一种使用关系，它是对象之间耦合度最弱的一种关联方式，是临时性的关联。在代码中，某个类的方法通过局部变量、方法的参数或者对静态方法的调用来访问另一个类（被依赖类)中的某些方法来完成一些职责。在UML类图中，依赖关系使用带箭头的虚线来表示，箭头从使用类指向被依赖的类。下图所示是司机和汽车的关系图，司机驾驶汽车:</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235001423.png" alt="image-20211219235001423"></p>
-<h4 id="2-3-2-5-继承关系"><a href="#2-3-2-5-继承关系" class="headerlink" title="2.3.2.5 继承关系"></a>2.3.2.5 继承关系</h4><p>继承关系是对象之间耦合度最大的一种关系，表示一般与特殊的关系，是父类与子类之间的关系，是一种继承关系。<br>在UML类图中，泛化关系用带空心三角箭头的实线来表示，箭头从子类指向父类。在代码实现时，使用面向对象的继承机制来实现泛化关系。例如，Student类和Teacher类都是Person类的子类，其类图如下图所示:</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235257998.png" alt="image-20211219235257998"></p>
-<h4 id="2-3-2-6-实现关系"><a href="#2-3-2-6-实现关系" class="headerlink" title="2.3.2.6 实现关系"></a>2.3.2.6 实现关系</h4><p>实现关系是接口与实现类之间的关系。在这种关系中，类实现了接口，类中的操作实现了接口中所声明的所有的抽象操作。</p>
-<p>在UML类图中，实现关系使用带空心三角箭头的虚线来表示，箭头从实现类指向接口。例如，汽车和船实现了交通工具,其类图如下所示:</p>
-<p><img src="/2021/12/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20211219235608370.png" alt="image-20211219235608370"></p>
-<h1 id="3，软件设计原则"><a href="#3，软件设计原则" class="headerlink" title="3，软件设计原则"></a>3，软件设计原则</h1><p>在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性，程序员要尽量根据6条原则来开发程序，从而提高软件开发效率、节约软件开发成本和维护成本。</p>
-<h2 id="3-1-开闭原则"><a href="#3-1-开闭原则" class="headerlink" title="3.1 开闭原则"></a>3.1 开闭原则</h2><p><strong>对扩展开放，对修改关闭</strong>。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果简言之，是为了使程序的扩展性好，易于维护和升级。<br>想要达到这样的效果，我们需要使用接口和抽象类。<br>因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。</p>
-<h2 id="3-2-里氏代换原则"><a href="#3-2-里氏代换原则" class="headerlink" title="3.2 里氏代换原则"></a>3.2 里氏代换原则</h2><p>里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
-<h2 id="3-3-依赖倒转原则"><a href="#3-3-依赖倒转原则" class="headerlink" title="3.3 依赖倒转原则"></a>3.3 依赖倒转原则</h2><p>这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
-<h2 id="3-4-接口隔离原则"><a href="#3-4-接口隔离原则" class="headerlink" title="3.4 接口隔离原则"></a>3.4 接口隔离原则</h2><p>使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
-<h2 id="3-5-迪米特法则"><a href="#3-5-迪米特法则" class="headerlink" title="3.5 迪米特法则"></a>3.5 迪米特法则</h2><p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
-<h2 id="3-6-合成复用原则"><a href="#3-6-合成复用原则" class="headerlink" title="3.6 合成复用原则"></a>3.6 合成复用原则</h2><p>尽量使用合成/聚合的方式，而不是使用继承。</p>
-<h1 id="4，创建者模式"><a href="#4，创建者模式" class="headerlink" title="4，创建者模式"></a>4，创建者模式</h1><p>创建型模式的主要关注点是”怎样创建对象?”，它的主要特点是”将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节。<br>创建型模式分为:</p>
-<ul>
-<li>单例模式</li>
-<li>工厂方法模式</li>
-<li>抽象工程模式</li>
-<li>原型模式</li>
-<li>建造者模式</li>
-</ul>
-<h2 id="4-1-单例设计模式"><a href="#4-1-单例设计模式" class="headerlink" title="4.1 单例设计模式"></a>4.1 单例设计模式</h2><p>单例模式(singleton Pattern)是Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式,可以直接访问，不需要实例化该类的对象。</p>
-<h3 id="4-1-1-单例模式的结构"><a href="#4-1-1-单例模式的结构" class="headerlink" title="4.1.1 单例模式的结构"></a>4.1.1 单例模式的结构</h3><p>单例模式的主要有以下角色:</p>
-<ul>
-<li>单例类。只能创建一个实例的类</li>
-<li>访问类。使用单例类</li>
-</ul>
-<h3 id="4-1-2-单例模式的实现"><a href="#4-1-2-单例模式的实现" class="headerlink" title="4.1.2 单例模式的实现"></a>4.1.2 单例模式的实现</h3><blockquote>
-<p>单例设计模式分类两种：</p>
-<p>​    饿汉式:类加载就会导致该单实例对象被创建<br>​    懒汉式:类加载不会导致该单实例对象被创建，而是首次使用该对象时才会创建</p>
-</blockquote>
-<h3 id="4-1-3-使用场景"><a href="#4-1-3-使用场景" class="headerlink" title="4.1.3 使用场景"></a>4.1.3 使用场景</h3><ul>
-<li>1、要求生产唯一序列号。</li>
-<li>2、WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</li>
-<li>3、创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1356,20 +1297,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
