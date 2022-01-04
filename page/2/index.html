@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,197 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/24/HttpURLConnection%E7%B1%BB%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/24/HttpURLConnection%E7%B1%BB%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">HttpURLConnection类详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-24 17:46:28" itemprop="dateCreated datePublished" datetime="2021-12-24T17:46:28+08:00">2021-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-27 09:19:21" itemprop="dateModified" datetime="2021-12-27T09:19:21+08:00">2021-12-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="详解HttpURLConnection"><a href="#详解HttpURLConnection" class="headerlink" title="详解HttpURLConnection"></a>详解HttpURLConnection</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/woxueliuyun/article/details/43267365">详解HttpURLConnection</a><br>请求响应流程<br><img src="/2021/12/24/HttpURLConnection%E7%B1%BB%E8%AF%A6%E8%A7%A3/1.jpg"></p>
+<h3 id="设置连接参数的方法"><a href="#设置连接参数的方法" class="headerlink" title="设置连接参数的方法"></a>设置连接参数的方法</h3><ul>
+<li>setAllowUserInteraction</li>
+<li>setDoInput</li>
+<li>setDoOutput</li>
+<li>setIfModifiedSince</li>
+<li>setUseCaches</li>
+<li>setDefaultAllowUserInteraction</li>
+<li>setDefaultUseCaches</li>
+</ul>
+<h3 id="设置请求头或响应头"><a href="#设置请求头或响应头" class="headerlink" title="设置请求头或响应头"></a>设置请求头或响应头</h3><p>HTTP请求允许一个key带多个用逗号分开的values，但是HttpURLConnection只提供了单个操作的方法：</p>
+<ul>
+<li>setRequestProperty(key,value)</li>
+<li>addRequestProperty(key,value)<br>setRequestProperty和addRequestProperty的区别就是，setRequestProperty会覆盖已经存在的key的所有values，有清零重新赋值的作用。而addRequestProperty则是在原来key的基础上继续添加其他value。</li>
+</ul>
+<h3 id="发起URL请求"><a href="#发起URL请求" class="headerlink" title="发起URL请求"></a>发起URL请求</h3><p>建立实际连接之后，就是发送请求，把请求参数传到服务器，这就需要使用outputStream把请求参数传给服务器：</p>
+<ul>
+<li>getOutputStream </li>
+</ul>
+<h3 id="获取响应"><a href="#获取响应" class="headerlink" title="获取响应"></a>获取响应</h3><p>请求发送成功之后，即可获取响应的状态码，如果成功既可以读取响应中的数据，获取这些数据的方法包括：</p>
+<ul>
+<li>getContent</li>
+<li>getHeaderField</li>
+<li>getInputStream<br>对于大部分请求来说，getInputStream和getContent是用的最多的。<br>相应的信息头用以下方法获取：</li>
+<li>getContentEncoding</li>
+<li>getContentLength</li>
+<li>getContentType</li>
+<li>getDate</li>
+<li>getExpiration</li>
+<li>getLastModifed </li>
+</ul>
+<h3 id="HttpURLConnection"><a href="#HttpURLConnection" class="headerlink" title="HttpURLConnection"></a>HttpURLConnection</h3><p>任何网络连接都需要经过socket才能连接，HttpURLConnection不需要设置socket，所以，HttpURLConnection并不是底层的连接，而是在底层连接上的一个请求。这就是为什么HttpURLConneciton只是一个抽象类，自身不能被实例化的原因。HttpURLConnection只能通过URL.openConnection()方法创建具体的实例。<br>虽然底层的网络连接可以被多个HttpURLConnection实例共享，但每一个HttpURLConnection实例只能发送一个请求。请求结束之后，应该调用HttpURLConnection实例的InputStream或OutputStream的close()方法以释放请求的网络资源，不过这种方式对于持久化连接没用。对于持久化连接，得用disconnect()方法关闭底层连接的socket。</p>
+<h3 id="创建HttpURLConnection"><a href="#创建HttpURLConnection" class="headerlink" title="创建HttpURLConnection"></a>创建HttpURLConnection</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">URL url = <span class="keyword">new</span> URL(<span class="string">&quot;http://localhost:8080/xxx.do&quot;</span>);  </span><br><span class="line">URLConnection urlConnection = url.openConnection();</span><br><span class="line"><span class="comment">// 此处的urlConnection对象实际上是根据URL的请求协议(此处是http)生成的</span></span><br><span class="line"><span class="comment">// URLConnection类的子类HttpURLConnection,故此处最好将其转化  </span></span><br><span class="line"><span class="comment">// 为HttpURLConnection类型的对象,以便用到HttpURLConnection更多的API.如下:  </span></span><br><span class="line">HttpURLConnection httpUrlConnection = (HttpURLConnection) urlConnection;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="设置HttpURLConnection参数"><a href="#设置HttpURLConnection参数" class="headerlink" title="设置HttpURLConnection参数"></a>设置HttpURLConnection参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设定请求的方法为&quot;POST&quot;，默认是GET  </span></span><br><span class="line">httpUrlConnection.setRequestMethod(<span class="string">&quot;POST&quot;</span>);  </span><br><span class="line"><span class="comment">// 设置是否向httpUrlConnection输出，因为这个是post请求，参数要放在  </span></span><br><span class="line"><span class="comment">// http正文内，因此需要设为true, 默认情况下是false;  </span></span><br><span class="line">httpUrlConnection.setDoOutput(<span class="keyword">true</span>);  </span><br><span class="line"><span class="comment">// 设置是否从httpUrlConnection读入，默认情况下是true;  </span></span><br><span class="line">httpUrlConnection.setDoInput(<span class="keyword">true</span>);     </span><br><span class="line"><span class="comment">// Post 请求不能使用缓存  </span></span><br><span class="line">httpUrlConnection.setUseCaches(<span class="keyword">false</span>);  </span><br><span class="line"><span class="comment">// 设定传送的内容类型是可序列化的java对象  </span></span><br><span class="line"><span class="comment">// (如果不设此项,在传送序列化对象时,当WEB服务默认的不是这种类型时可能抛java.io.EOFException)  </span></span><br><span class="line">httpUrlConnection.setRequestProperty(<span class="string">&quot;Content-type&quot;</span>, <span class="string">&quot;application/x-java-serialized-object&quot;</span>);  </span><br><span class="line"><span class="comment">// 连接，从上述url.openConnection()至此的配置必须要在connect之前完成</span></span><br><span class="line">httpUrlConnection.connect();</span><br></pre></td></tr></table></figure>
+
+<h3 id="URLConnection建立连接"><a href="#URLConnection建立连接" class="headerlink" title="URLConnection建立连接"></a>URLConnection建立连接</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处getOutputStream会隐含的进行connect(即：如同调用上面的connect()方法，  </span></span><br><span class="line"><span class="comment">// 所以在开发中不调用上述的connect()也可以)。  </span></span><br><span class="line">OutputStream outStrm = httpUrlConnection.getOutputStream();  </span><br></pre></td></tr></table></figure>
+<p>getInputStream()也是同理。</p>
+<h3 id="HttpURLConnection发送请求"><a href="#HttpURLConnection发送请求" class="headerlink" title="HttpURLConnection发送请求"></a>HttpURLConnection发送请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 现在通过输出流对象构建对象输出流对象，以实现输出可序列化的对象。  </span></span><br><span class="line">ObjectOutputStream objOutputStrm = <span class="keyword">new</span> ObjectOutputStream(outStrm);  </span><br><span class="line"><span class="comment">// 向对象输出流写出数据，这些数据将存到内存缓冲区中  </span></span><br><span class="line">objOutputStrm.writeObject(<span class="keyword">new</span> String(<span class="string">&quot;我是测试数据&quot;</span>));  </span><br><span class="line"><span class="comment">// 刷新对象输出流，将任何字节都写入潜在的流中（写出为ObjectOutputStream）  </span></span><br><span class="line">objOutputStm.flush();  </span><br><span class="line"><span class="comment">// 关闭流对象。此时，不能再向对象输出流写入任何数据，先前写入的数据存在于内存缓冲区中,  </span></span><br><span class="line"><span class="comment">// 在调用下边的getInputStream()函数时才把准备好的http请求正式发送到服务器  </span></span><br><span class="line">objOutputStm.close();  </span><br></pre></td></tr></table></figure>
+
+<h3 id="HttpURLConnection获取响应"><a href="#HttpURLConnection获取响应" class="headerlink" title="HttpURLConnection获取响应"></a>HttpURLConnection获取响应</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用HttpURLConnection连接对象的getInputStream()函数,  </span></span><br><span class="line">InputStream inStrm = httpConn.getInputStream(); </span><br></pre></td></tr></table></figure>
+
+<h3 id="设置POST参数"><a href="#设置POST参数" class="headerlink" title="设置POST参数"></a>设置POST参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">OutputStream os = httpConn.getOutputStream();  </span><br><span class="line">             String param = <span class="keyword">new</span> String();  </span><br><span class="line">             param = <span class="string">&quot;CorpID=&quot;</span> + CorpID +  </span><br><span class="line">                     <span class="string">&quot;&amp;LoginName=&quot;</span> + LoginName+  </span><br><span class="line">                     <span class="string">&quot;&amp;send_no=&quot;</span> + phoneNumber +  </span><br><span class="line">                     <span class="string">&quot;&amp;msg=&quot;</span> + java.net.URLEncoder.encode(msg,<span class="string">&quot;GBK&quot;</span>); ;  </span><br><span class="line">             os.write(param.getBytes());  </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">多线程下载文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-24 15:53:36" itemprop="dateCreated datePublished" datetime="2021-12-24T15:53:36+08:00">2021-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 17:46:18" itemprop="dateModified" datetime="2021-12-29T17:46:18+08:00">2021-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_16055765/article/details/83342069">java实现HTTP请求的四种方式</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hhhshct/p/8523697.html">java实现HTTP请求的三种方式</a><br><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/aokunsang-1069794">多线程分段下载文件</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34401512/article/details/77867576">多线程下载介绍</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43827595/article/details/104574959?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.highlightwordscore&spm=1001.2101.3001.4242.1">在网页中实现pdf在线预览</a><br>为了实现多线程下载文件，先把远程文件弄好，顺便发掘Hexo的功能。<br>在hexo的source目录下新建目录pdfile，将pdf文件放入。加载静态页面。<br><img src="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/1.png"><br>好吧，这个方式需要访问远程网址才能使用，战略性放弃了。</p>
+<hr>
+<p>找了python的官网下载一个使用指南。访问链接(<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.10.1/python3101.chm">https://www.python.org/ftp/python/3.10.1/python3101.chm</a>)</p>
+<hr>
+<p>找到了大佬的代码：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/warrior4236/p/5686404.html">多线程实现下载文件</a><br>运行成功，但是9.1MB的文件下载速度很慢，尝试将线程从4修改为10。很好，不仅报错：java.net.SocketTimeoutException: Read timed out。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangchaoqi1985/article/details/80462075">Read timed out解决方案</a><br>还卡死了！！<br><img src="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/2.png"></p>
+<blockquote>
+<p>线程过多的影响有两种。首先，在太多线程之间分配固定数量的工作会使每个线程的工作量太少，以至于启动和终止线程的开销浪费了有用的工作。其次，过多线程正在运行会从共享有限硬件资源的方式中产生开销。<br>区分软件线程和硬件线程很重要。软件线程是程序创建的线程。硬件线程是真正的物理资源。芯片上每个内核可能有一个或多个硬件线程，例如使用英特尔超线程技术。<br>当软件线程多于硬件线程时，操作系统通常求助于循环调度。每个软件线程都有一个短暂的时间片，称为时间片，可以在硬件线程上运行。当时间片用完时，调度程序将挂起线程，并允许等待该线程的下一个线程在硬件线程上运行。</p>
+</blockquote>
+<p>java.io.FileNotFoundException: E:\work\work (拒绝访问。)<br>是因为访问了一个文件目录，而不是文件，因此会抛出这个拒绝访问的异常。</p>
+<p>统计了一下下载文件的时间为3.4分钟，普通浏览器下载时间为1.83分钟。<br><img src="/2021/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/3.png"><br>更换为6个线程并发下载文件，下载时间为2.9分钟。</p>
+<p>修改代码后下载时间为1.83分钟。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -973,393 +1164,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/" class="post-title-link" itemprop="url">Linux环境安装与熟悉</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-14 13:57:51" itemprop="dateCreated datePublished" datetime="2021-12-14T13:57:51+08:00">2021-12-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-24 13:54:20" itemprop="dateModified" datetime="2021-12-24T13:54:20+08:00">2021-12-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Linux环境搭建"><a href="#Linux环境搭建" class="headerlink" title="Linux环境搭建"></a>Linux环境搭建</h3><h4 id="安装VMware"><a href="#安装VMware" class="headerlink" title="安装VMware"></a>安装VMware</h4><p><a target="_blank" rel="noopener" href="https://www.ypojie.com/6066.html">VMware16下载地址及激活许可证</a><br>点击安装程序即可安装，除修改安装路径外无需改动。</p>
-<h4 id="安装Ubantu"><a href="#安装Ubantu" class="headerlink" title="安装Ubantu"></a>安装Ubantu</h4><p><a target="_blank" rel="noopener" href="https://ubuntu.com/download/desktop">Ubuntu官网下载地址</a><br>VM中新建虚拟机，将镜像文件导入，打开即可自动安装。<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/1.png"><br>安装成功，界面如下<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/2.png"><br>发现时间与当前本地时间不同，考虑时区有误。修改时区步骤如下：</p>
-<ol>
-<li>运行tzselect<br>选择亚洲 Asia，确认之后选择中国（China)，最后选择北京(Beijing)<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/5.png"><br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/6.png"><br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/7.png"></li>
-<li>复制文件到/etc目录下<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/8.png"></li>
-<li>再次查看时间date -R，已经修改为北京时间<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/9.png"></li>
-</ol>
-<h4 id="Xmanager安装"><a href="#Xmanager安装" class="headerlink" title="Xmanager安装"></a>Xmanager安装</h4><p>使用过程中发现VMware经常处于未响应状态，通过ssh来访问，减少此类现象发生。</p>
-<h3 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41622739/article/details/95921494">Linux创建文件</a></p>
-<h4 id="文件读写操作"><a href="#文件读写操作" class="headerlink" title="文件读写操作"></a>文件读写操作</h4><p>使用echo与重定向符&gt;创建了一个txt文件，并在文件中写入了“HelloLinux！”的字符串。<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/3.png"><br>使用vi打开此文件，按a/i进入编辑模式。再按esc退出编辑模式，shfit + : 进入最后一行命令模式，输入wq保存文件并退出。<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/4.png"></p>
-<h4 id="安装操作"><a href="#安装操作" class="headerlink" title="安装操作"></a>安装操作</h4><p>在使用vi编辑文件过程中发现按方向键不能移动光标，会输出ABCD，以及退格键也不能正常删除字符。查资料发现这是由于Ubuntu预装的是vim-tiny，而我们需要使用vim-full。输入以下命令安装vim-full</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-<p>其中sudo是以管理员身份运行，apt-get指令可用于安装、卸载、升级应用，apt-get install指令来安装软件。</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/laov/p/3541414.html">Linux常用操作命令</a></p>
-<h4 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>实现功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ls</td>
-<td>显示文件或目录</td>
-</tr>
-<tr>
-<td>ls -l</td>
-<td>列出文件详细信息l(list)</td>
-</tr>
-<tr>
-<td>ls -a</td>
-<td>列出当前目录下所有文件及目录，包括隐藏的a(all)</td>
-</tr>
-<tr>
-<td>mkdir</td>
-<td>创建目录</td>
-</tr>
-<tr>
-<td>mkdir -p</td>
-<td>创建目录，若无父目录，则创建p(parent)</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>切换目录</td>
-</tr>
-<tr>
-<td>touch</td>
-<td>创建空文件</td>
-</tr>
-<tr>
-<td>echo</td>
-<td>创建带有内容的文件。</td>
-</tr>
-<tr>
-<td>cat</td>
-<td>查看文件内容</td>
-</tr>
-<tr>
-<td>cp</td>
-<td>拷贝</td>
-</tr>
-<tr>
-<td>mv</td>
-<td>移动或重命名</td>
-</tr>
-<tr>
-<td>rm</td>
-<td>删除文件</td>
-</tr>
-<tr>
-<td>rm -r</td>
-<td>递归删除，可删除子目录及文件</td>
-</tr>
-<tr>
-<td>rm -f</td>
-<td>强制删除</td>
-</tr>
-<tr>
-<td>find</td>
-<td>在文件系统中搜索某文件</td>
-</tr>
-<tr>
-<td>wc</td>
-<td>统计文本中行数、字数、字符数</td>
-</tr>
-<tr>
-<td>grep</td>
-<td>在文本文件中查找某个字符串</td>
-</tr>
-<tr>
-<td>rmdir</td>
-<td>删除空目录</td>
-</tr>
-<tr>
-<td>tree</td>
-<td>树形结构显示目录，需要安装tree包</td>
-</tr>
-<tr>
-<td>pwd</td>
-<td>显示当前目录</td>
-</tr>
-<tr>
-<td>ln</td>
-<td>创建链接文件</td>
-</tr>
-<tr>
-<td>more、less</td>
-<td>分页显示文本文件内容</td>
-</tr>
-<tr>
-<td>head、tail</td>
-<td>显示文件头、尾内容</td>
-</tr>
-<tr>
-<td>ctrl+alt+F1</td>
-<td>命令行全屏模式</td>
-</tr>
-</tbody></table>
-<h4 id="Vim使用"><a href="#Vim使用" class="headerlink" title="Vim使用"></a>Vim使用</h4><p>vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。<br>命令模式下：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>实现功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:q</td>
-<td>退出</td>
-</tr>
-<tr>
-<td>:q!</td>
-<td>强制退出</td>
-</tr>
-<tr>
-<td>:wq</td>
-<td>保存并退出</td>
-</tr>
-<tr>
-<td>:set number</td>
-<td>显示行号</td>
-</tr>
-<tr>
-<td>:set nonumber</td>
-<td>隐藏行号</td>
-</tr>
-<tr>
-<td>/apache</td>
-<td>在文档中查找apache 按n跳到下一个，shift+n上一个</td>
-</tr>
-<tr>
-<td>yyp</td>
-<td>复制光标所在行，并粘贴</td>
-</tr>
-</tbody></table>
-<p>h(左移一个字符←)、j(下一行↓)、k(上一行↑)、l(右移一个字符→)</p>
-<h4 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>实现功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>stat</td>
-<td>显示指定文件的详细信息，比ls更详细</td>
-</tr>
-<tr>
-<td>who</td>
-<td>显示在线登陆用户</td>
-</tr>
-<tr>
-<td>whoami</td>
-<td>显示当前操作用户</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>显示主机名</td>
-</tr>
-<tr>
-<td>uname</td>
-<td>显示系统信息</td>
-</tr>
-<tr>
-<td>top</td>
-<td>动态显示当前耗费资源最多进程信息</td>
-</tr>
-<tr>
-<td>ps</td>
-<td>显示瞬间进程状态 ps -aux</td>
-</tr>
-<tr>
-<td>du</td>
-<td>查看目录大小 du -h /home带有单位显示目录信息</td>
-</tr>
-<tr>
-<td>df</td>
-<td>查看磁盘大小 df -h 带有单位显示磁盘信息</td>
-</tr>
-<tr>
-<td>ifconfig</td>
-<td>查看网络情况</td>
-</tr>
-<tr>
-<td>ping</td>
-<td>测试网络连通</td>
-</tr>
-<tr>
-<td>netstat</td>
-<td>显示网络状态信息</td>
-</tr>
-<tr>
-<td>man</td>
-<td>命令不会用了，找男人  如：man ls</td>
-</tr>
-<tr>
-<td>clear</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td>alias</td>
-<td>对命令重命名 如：alias showmeit=”ps -aux” ，另外解除使用unaliax showmeit</td>
-</tr>
-<tr>
-<td>kill</td>
-<td>杀死进程，可以先用ps 或 top命令查看进程的id，然后再用kill命令杀死进程。</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="虚拟机网络问题"><a href="#虚拟机网络问题" class="headerlink" title="虚拟机网络问题"></a>虚拟机网络问题</h3><p>使用idea上传代码到git的时候发现网络不通了，ip address发现ens33没有ip地址。<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/10.png"><br>找了很多办法都挺复杂，也没什么效果。网络服务也是开启的。由于只有一台虚拟机，直接恢复默认设置了。<br><img src="/2021/12/14/Linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E7%86%9F%E6%82%89/11.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/" class="post-title-link" itemprop="url">进程与线程学习2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-12-14 11:46:35 / 修改时间：14:23:33" itemprop="dateCreated datePublished" datetime="2021-12-14T11:46:35+08:00">2021-12-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h5><p>当开始一个线程的时候，将花费几百微秒来组织类似以下的内容：一个新的局部变量栈（Stack）<br>线程池就可以节省这种开销：通过预先创建一个可循环使用线程的池来减少这一开销<br>线程池对于高效的并行编程和细粒度并发是必不可少的<br>它运行在不被线程启动的开销淹没的情况下运行短期操作<br>使用线程池需要注意的几点：<br>不可以设置池线程的Name；<br>池线程都是后台线程；<br>阻塞池线程可使性能降低；<br>【可以自由地更改池线程的优先级，当它释放回池的时候优先级将还原为正常状态】<br>可以通过Thread.CurrentThread.IsThreadPoolThread属性来判断是否执行在池线程上。<br>进入线程池：Task.Run</p>
-<h6 id="线程池中的整洁"><a href="#线程池中的整洁" class="headerlink" title="线程池中的整洁"></a>线程池中的整洁</h6><p>线程池提供了另一个功能，即确保临时超出 计算-Bound的工作不会导致CPU超额订阅<br>CPU超额订阅：活跃的线程超过CPU的核数，操作系统就需要对线程进行时间切片<br>超额订阅对性能影响很大，时间切片需要昂贵的上下文切换，可能使CPU缓存失效，而CPU缓存对现代处理器的性能至关重要。<br>CLR的策略：<br>·CLR通过对任务排队并对其启动进行节流限制来避免线程池中的超额订阅。<br>·它首先运行尽可能多的并发任务(只要还有 CPU核)，然后通过爬山算法调整并发级别，并在特定方向上不断调整工作负载。<br>·如果吞吐量提高，它将继续朝同一方向（否则将反转)。<br>·这确保它始终追随最佳性能曲线，即使面对计算机上竞争的进程活动时也是如此·如果下面两点能够满足，那么CLR的策略将发挥出最佳效果:<br>·工作项大多是短时间运行的（&lt;250毫秒，或者理想情况下&lt;100毫秒)，因此CLR有很多机会进行测量和调整。<br>·大部分时间都被阻塞的工作项不会主宰线程池</p>
-<h5 id="Thread的问题"><a href="#Thread的问题" class="headerlink" title="Thread的问题"></a>Thread的问题</h5><p>·线程（Thread）是用来创建并发(concurrency)的一种低级别工具，它有一些限制，尤其是:<br>·虽然开始线程的时候可以方便的传入数据，但是当Join 的时候，很难从线程获得返回值。·可能需要设置一些共享字段。<br>·如果操作抛出异常，捕获和传播该异常都很麻烦。<br>·无法告诉线程在结束时开始做另外的工作，你必须进行Join 操作（在进程中阻塞当前的线程)<br>·很难使用较小的并发(concurrent)来组建大型的并发。</p>
-<h5 id="Task类"><a href="#Task类" class="headerlink" title="Task类"></a>Task类</h5><p>Task类可以解决上述问题，Task是一个相对高级的抽象，它代表了一个并发操作（concurrent）<br>    该操作可能由Thread支持，或不由Thread支持<br>Task是可组合的(使用Continuation把它们串成链)<br>    可以使用线程池来减少启动延迟<br>    使用TaskCompletionSource, Tasks可以利用回调的方式，在等待I/O绑定操作时完全避免线程</p>
-<h6 id="开始一个Task"><a href="#开始一个Task" class="headerlink" title="开始一个Task"></a>开始一个Task</h6><p>Task类在System.Threading.Tasks命名空间下。<br>·开始一个Task最简单的办法就是使用Task.Run这个静态方法。<br>·传入一个Action委托即可<br>·Task 默认使用线程池，也就是后台线程:<br>    当主线程结束时，你创建的所有tasks都会结束。<br>·Task.Run返回一个Task 对象，可以使用它来监视其过程<br>·在Task.Run之后，我们没有调用Start，因为该方法创建的是“热”任务(hot task)<br>·可以通过Task的构造函数创建“冷”任务(cold task)，但是很少这样做</p>
-<h6 id="Wait等待"><a href="#Wait等待" class="headerlink" title="Wait等待"></a>Wait等待</h6><p>调用task的Wait方法会进行阻塞直到操作完成<br>相当于调用thread上的Join方法<br>Wait也可以让你指定一个超时时间和一个取消令牌来提前结束等待</p>
-<h6 id="长时间运行的任务Long-running-tasks"><a href="#长时间运行的任务Long-running-tasks" class="headerlink" title="长时间运行的任务Long-running tasks"></a>长时间运行的任务Long-running tasks</h6><p>默认情况下，CLR在线程池中运行Task，这非常适合短时间运行的Compute-Bound类工作<br>针对长时间运行的任务或者阻塞操作，可以不采用线程池<br><img src="/2021/12/14/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A02/11.png"><br>其中Task.Factory.StartNew()是.Net4.0的Task.Run()。<br>如果同时运行多个 long-running tasks(尤其是其中有处于阻塞状态的)，那么性能将会受很大影响，这时有比TaskCreationOptions.LongRunning更好的办法:<br>·如果任务是IO-Bound,TaskCompletionSource和异步函数可以让你用回调(Coninuations)代替线程来实现并发。<br>·如果任务是Compute-Bound，生产者/消费者队列允许你对任务的并发性进行限流，避免把其他线程和进程饿死。</p>
-<h6 id="Task的返回值"><a href="#Task的返回值" class="headerlink" title="Task的返回值"></a>Task的返回值</h6><p>Task有一个泛型子类叫做Task<TResult>，它允许发出一个返回值<br>使用Func<TResult>委托或者兼容的Lambda表达式来调用Task.Run就可以得到Func<TResult>。<br>随后，可以通过Result属性来获得返回的结果。<br>如果这个task还没有完成操作，访问Result属性会阻塞该线程直到该task完成操作。</TResult></TResult></TResult></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; task = Task.Run(()=&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Foo&quot;);</span><br><span class="line">        return 3;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    int result = task.Result;</span><br><span class="line">    Console.WriteLine(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; primeNumberTask = Task.Run(()=&gt;</span><br><span class="line">        Enumerable.Range(2,3000000).Count(n=&gt;</span><br><span class="line">            Enumberable.Range(2,(int)Math.Sqrt(n)-1).All(i=&gt; n%i&gt;0)));</span><br><span class="line">//在2-3000000的序列中计数，计数对象是能够被2-它的平方根减一的数除后余数不为零</span><br><span class="line">    Cosole.WriteLine(&quot;Task Running...&quot;);</span><br><span class="line">    Cosole.WriteLine(&quot;The answer is &quot;+ primeNumberTask.Result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Task<TResult>可以看作是一种所谓的“未来/许诺”(future、promise)，在它里面包裹着一个Result，在稍后的时候就会变得可用。</TResult></p>
-<h6 id="Task的异常"><a href="#Task的异常" class="headerlink" title="Task的异常"></a>Task的异常</h6><p>与Thread不一样，Task可以很方便的传播异常<br>如果你的task里面抛出了一个未处理的异常（故障)，那么该异常就会重新被抛出给:<br>·调用了wait()的地方<br>·访问了Task<TResult>的Result属性的地方。</TResult></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Task task = Task.Run(() =&gt; &#123; throw null; &#125;);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                task.Wait(); //将throw null;异常重新抛出给wait()</span><br><span class="line">            &#125;</span><br><span class="line">            catch(AggregateException aex)</span><br><span class="line">            &#123;</span><br><span class="line">                if(aex.InnerException is NullReferenceException)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Null&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    throw;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>CLR将异常包裹在AggregateException中，以便在并行编程场景中发挥很好的作用。</p>
-<p>无需重新抛出异常，通过Task的IsFaulted和IsCanceled属性也可以检测出Task是否发生了故障。<br>如果两个属性都返回false，那么没有错误发生。<br>如果IsCanceled为true，那就说明一个OperationCanceledException为该Task抛出了。<br>如果IsFaulted为true，那就说明另一个类型的异常被抛出了，而OException也将指明错误。</p>
-<h6 id="异常与“自治”的Task"><a href="#异常与“自治”的Task" class="headerlink" title="异常与“自治”的Task"></a>异常与“自治”的Task</h6><p>自治的，“设置完就不管了”的Task。就是指不通过调用Wait()方法、Result属性或 continuation进行会合的任务。<br>针对自治的Task，需要像Thread一样，显式的处理异常，避免发生“悄无声息的故障”。<br>自治Task上未处理的异常称为未观察到的异常。</p>
-<h6 id="未观察到的异常"><a href="#未观察到的异常" class="headerlink" title="未观察到的异常"></a>未观察到的异常</h6><p>可以通过全局的TaskScheduler.Unobserved TaskException来订阅未观察到的异常。<br>关于什么是“未观察到的异常”，有一些细微的差别:<br>    使用超时进行等待的Task，如果在超时后发生故障，那么它将会产生一个“未观察到的异常”。<br>    在Task发生故障后，如果访问Task的 Exception属性，那么该异常就被认为是“已观察到的”。</p>
-<h5 id="Continuation"><a href="#Continuation" class="headerlink" title="Continuation"></a>Continuation</h5><p>一个Continuation</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">&#123;</span><br><span class="line">    Task&lt;int&gt; primeNumberTask = Task.Run(()=&gt;</span><br><span class="line">        Enumerable.Range(2,3000000).Count(n=&gt;</span><br><span class="line">            Enumberable.Range(2,(int)Math.Sqrt(n)-1).All(i=&gt; n%i&gt;0)));</span><br><span class="line"></span><br><span class="line">    var awaiter = prineNumberTask.GetAwaiter();</span><br><span class="line">    awaiter.OnCompleted(()=&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        int result = awaiter.GetResult();</span><br><span class="line">        Console.WriteLine(result);</span><br><span class="line">    &#125;);</span><br><span class="line">    Cosole.ReadLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在task上调用GetAwaiter会返回一个awaiter 对象<br>它的OnCompleted方法会告诉之前的task:”当你结束/发生故障的时候要执行委托”。<br>可以将Continuation附加到已经结束的 task 上面，此时Continuation将会被安排立即执行。</p>
-<h5 id="awaiter"><a href="#awaiter" class="headerlink" title="awaiter"></a>awaiter</h5><p>任何可以暴露下列两个方法和一个属性的对象就是awaiter :<br>·OnCompleted<br>·GetResult<br>一个叫做IsCompleted的 bool属性没有接或者父类来统一这些成员。<br>其中OnCompleted是INotifyCompletion的一部分</p>
-<h6 id="如果发生故障"><a href="#如果发生故障" class="headerlink" title="如果发生故障"></a>如果发生故障</h6><p>·如果之前的任务发生故障，那么当Continuation代码调用awaiter.GetResult()的时候，异常会被重新抛出。<br>·无需调用GetResult，我们可以直接访问task的Result属性。<br>·但调用GetResult的好处是，如果 task发生故障，那么异常会被直接的抛出，而不是包裹在AggregateException里面，这样的话catch 块就简洁很多了。</p>
-<h5 id="非泛型task"><a href="#非泛型task" class="headerlink" title="非泛型task"></a>非泛型task</h5><p>针对非泛型的task，GetResult()方法有一个void返回值，它就是用来重新抛出异常。</p>
-<h5 id="同步上下文"><a href="#同步上下文" class="headerlink" title="同步上下文"></a>同步上下文</h5><p>同步上下文指：阻塞状态和非阻塞状态切换<br>·如果同步上下文出现了，那么OnCompleted 会自动捕获它，并将Continuation提交到这个上下文中。这一点在富客户端应用中非常有用，因为它会把 Continuation放回到U线程中。<br>·如果是编写一个库，则不希望出现上述行为，因为开销较大的UI线程切换应该在程序运行离开库的时候只发生一次，而不是出现在方法调用之间。所以，我们可以便用ConfigureAwait方法来避免这种行为。<br>·如果没有同步上下文出现，或者你使用的是ConfigureAwait(false)，那么Continuation会运行在先前task的同一个线程上，从而避免不必要的开销</p>
-<p>ContinueWith<br>·另外一种附加Continuation的方式就是调用task的 ContinueWith方法<br>·ContinueWith本身返回一个task，它可以用它来附加更多的Continuation。<br>·但是，必须直接处理AggregateException :<br>    ·如果task发生故障，需要写额外的代码来把 Continuation封装(marshal)到UI应用上。<br>    ·在非UI上下文中，若想让Continuation和 task执行在同一个线程上，必须指定TaskContinuationOptions.ExecuteSynchronously，否则它将弹回到线程池。<br>·ContinueWVith对于并行编程来说非常有用。</p>
-<p>【P16待看】</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1429,7 +1233,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1469,7 +1273,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
