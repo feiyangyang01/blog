@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">40</span></a>
 
   </li>
   </ul>
@@ -156,6 +156,79 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sandy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sandy的学习之路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Hexo主题配置及使用问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-14 14:28:51" itemprop="dateCreated datePublished" datetime="2021-12-14T14:28:51+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-30 14:09:34" itemprop="dateModified" datetime="2021-12-30T14:09:34+08:00">2021-12-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Hexo主题配置"><a href="#Hexo主题配置" class="headerlink" title="Hexo主题配置"></a>Hexo主题配置</h3><p>之前一直想把主题美化一下，但是总出错，点击标签、分类找不到文章，原来是缺少了几个步骤，参考下面的内容完成了美化。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">Hexo博客优化之Next主题美化</a><br><a target="_blank" rel="noopener" href="https://himmy.blog.csdn.net/article/details/93644533?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.nonecase">Next主题下添加分类、标签、关于菜单项</a></p>
+<h3 id="warning"><a href="#warning" class="headerlink" title="warning"></a>warning</h3><p>今天使用的时候发现报错warning了<br><img src="/2021/12/14/Hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/1.png"><br>网上说是因为node版本太高了<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010263423/article/details/106981801/">解决办法</a></p>
+<h3 id="文章tags的写法："><a href="#文章tags的写法：" class="headerlink" title="文章tags的写法："></a>文章tags的写法：</h3><p> tags: [标签1,标签2,标签3]</p>
+<h3 id="文章categories写法："><a href="#文章categories写法：" class="headerlink" title="文章categories写法："></a>文章categories写法：</h3><ul>
+<li>子分类写法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">  - Java</span><br><span class="line">  - Servlet</span><br></pre></td></tr></table></figure>
+或者<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">categories: [Java, Servlet]</span><br></pre></td></tr></table></figure></li>
+<li>多个分类写法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [Java, Servlet]</span><br><span class="line">- [Programming]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="hexo-d上传时发生错误"><a href="#hexo-d上传时发生错误" class="headerlink" title="hexo d上传时发生错误"></a>hexo d上传时发生错误</h3><p>hexo发生error：spawn failed错误的解决方法<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43336281/article/details/114744671?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162971334816780274119137%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=162971334816780274119137&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2">将https改为http</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1245,79 +1318,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sandy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sandy的学习之路">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/06/%E7%AE%80%E6%98%93%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-title-link" itemprop="url">简易进程管理器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-06 13:34:01" itemprop="dateCreated datePublished" datetime="2021-12-06T13:34:01+08:00">2021-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 14:23:26" itemprop="dateModified" datetime="2021-12-14T14:23:26+08:00">2021-12-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1387,7 +1387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
